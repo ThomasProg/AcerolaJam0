@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgqayvxgseasc"]
+
+[ext_resource type="PackedScene" uid="uid://rj56stw1oyc6" path="res://scenes/background.tscn" id="2_itqdd"]
+[ext_resource type="PackedScene" uid="uid://2icn0xqpuuhn" path="res://scenes/game2.tscn" id="2_p71ge"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ataol"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jokwv"]
+viewport_path = NodePath("SubViewport2")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+texture = SubResource("ViewportTexture_ataol")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0512657, 0, -5.01837)
+texture = SubResource("ViewportTexture_jokwv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Game" parent="SubViewport" instance=ExtResource("2_p71ge")]
+position = Vector2(960, 540)
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Background" parent="SubViewport2" instance=ExtResource("2_itqdd")]
+position = Vector2(960, 540)

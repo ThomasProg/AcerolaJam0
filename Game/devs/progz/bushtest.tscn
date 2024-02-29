@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://craqlrxnqo016"]
+
+[ext_resource type="Texture2D" uid="uid://flo384hb3kgn" path="res://Textures/circleWithBorder.tres" id="1_qt26d"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0980392, 0.537255, 0, 1)
+texture = ExtResource("1_qt26d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.0313726, 0.270588, 0, 1)
+position = Vector2(-144, -324)
+texture = ExtResource("1_qt26d")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.184314, 0.854902, 0, 1)
+position = Vector2(215, -88)
+texture = ExtResource("1_qt26d")

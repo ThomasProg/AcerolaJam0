@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtoltwc24efuf"]
+
+[ext_resource type="PackedScene" uid="uid://2icn0xqpuuhn" path="res://scenes/game2.tscn" id="1_5tve1"]
+
+[node name="SubViewport" type="SubViewport"]
+disable_3d = true
+size = Vector2i(1920, 1080)
+
+[node name="Game" parent="." instance=ExtResource("1_5tve1")]
+position = Vector2(960, 540)

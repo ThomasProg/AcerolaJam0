@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://mj6782vdo5a3"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
+[ext_resource type="Script" path="res://scripts/jumpResetArea.gd" id="3_la6bx"]
+[ext_resource type="PackedScene" uid="uid://ccmoji781onka" path="res://prefabs/skills/meleeAttack.tscn" id="3_wbee7"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="4_r8e58"]
+
+[sub_resource type="Curve" id="Curve_7jcob"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_s5coo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.138408, 0.106592), 0.0, 1.03693, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_2m41t"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qh2d8"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2m16n"]
+gradient = SubResource("Gradient_qh2d8")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe4gd"]
+size = Vector2(102.4, 102.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0eri"]
+size = Vector2(102.4, 102.4)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "sprite")]
+script = ExtResource("1_mbevd")
+speed = 1500.0
+jumpVelocityCurve = SubResource("Curve_7jcob")
+jumpDuration = 0.5
+fallingWithJumpCurve = SubResource("Curve_s5coo")
+fallingCurve = SubResource("Curve_2m41t")
+meleeAttackPrefab = ExtResource("3_wbee7")
+health = NodePath("Health")
+sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = SubResource("GradientTexture2D_2m16n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pe4gd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-368, 8)
+zoom = Vector2(0.25, 0.25)
+
+[node name="JumpResetArea" type="Area2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(0, 15)
+script = ExtResource("3_la6bx")
+player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpResetArea"]
+shape = SubResource("RectangleShape2D_h0eri")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_r8e58")

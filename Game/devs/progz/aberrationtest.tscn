@@ -1,0 +1,61 @@
+[gd_scene load_steps=13 format=3 uid="uid://dg2y6kqb8v3th"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/aberrationRadial.gdshader" id="1_7668c"]
+[ext_resource type="Shader" path="res://scripts/shaders/aberration.gdshader" id="2_ssndx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_71jan"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kn27k"]
+noise = SubResource("FastNoiseLite_71jan")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfshd"]
+shader = ExtResource("1_7668c")
+shader_parameter/apply = true
+shader_parameter/amount = 20.0
+shader_parameter/green = 0.105
+shader_parameter/offset_texture = SubResource("NoiseTexture2D_kn27k")
+
+[sub_resource type="Gradient" id="Gradient_qtiky"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rqg5k"]
+gradient = SubResource("Gradient_qtiky")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6mh0k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_81q3q"]
+noise = SubResource("FastNoiseLite_6mh0k")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8ghcm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xh0ku"]
+noise = SubResource("FastNoiseLite_8ghcm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxg3j"]
+shader = ExtResource("2_ssndx")
+shader_parameter/apply = true
+shader_parameter/amount = 64.645
+shader_parameter/offset_texture = SubResource("NoiseTexture2D_xh0ku")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sfshd")
+position = Vector2(-5544.38, 9191.75)
+scale = Vector2(25.2007, 24.7627)
+texture = SubResource("GradientTexture2D_rqg5k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2139, -626)
+texture = SubResource("NoiseTexture2D_81q3q")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bxg3j")
+position = Vector2(5110, -286)
+scale = Vector2(7.54394, 7.2913)
+texture = SubResource("GradientTexture2D_rqg5k")
