@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://c58hmb2dnj2i8"]
+
+[ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_vmr8y"]
+[ext_resource type="Shader" path="res://scripts/shaders/aberrationBlackAndWhite.gdshader" id="2_n1w13"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="3_0bj2p"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="4_qqvdq"]
+[ext_resource type="Script" path="res://scripts/detectionOutArea.gd" id="6_gwhh4"]
+[ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_lhuxo"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="10_w8gxl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfa2w"]
+noise_type = 4
+fractal_type = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_hi2gs"]
+seamless = true
+noise = SubResource("FastNoiseLite_rfa2w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
+shader = ExtResource("2_n1w13")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.5
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.46
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_hi2gs")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
+size = Vector2(500, 500)
+
+[sub_resource type="Gradient" id="Gradient_trnrj"]
+offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
+colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5oajt"]
+gradient = SubResource("Gradient_trnrj")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2m0v"]
+radius = 5000.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nla1m"]
+radius = 2500.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pskhr"]
+radius = 150.0
+
+[node name="flyingEnemy" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_vmr8y")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_rtmeo")
+mesh = SubResource("QuadMesh_kkumv")
+texture = SubResource("GradientTexture2D_5oajt")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_0bj2p")
+life = 8.0
+maxLife = 8.0
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("4_qqvdq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 100.0
+max_speed = 1600.0
+debug_enabled = true
+
+[node name="DetectionOutArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("6_gwhh4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionOutArea"]
+shape = SubResource("CircleShape2D_k2m0v")
+debug_color = Color(0, 0.576471, 0.678431, 0.0862745)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("9_lhuxo")
+shouldNotifyOutbool = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_nla1m")
+debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("10_w8gxl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_pskhr")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_exited" from="DetectionOutArea" to="DetectionOutArea" method="_on_body_exited"]
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]

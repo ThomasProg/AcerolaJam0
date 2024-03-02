@@ -9,22 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var currentColorSkill:Node = null
 @export var currentColorSkillIndex:int = 0
 
-@export var speed : float = 3000
-
-@export var jumpVelocityCurve : Curve
-@export var jumpDuration : float = 0.3
-@export var maxJumpSpeed : float = 850
-var durationSinceLastJump : float = 0
-
-@export var fallingWithJumpCurve : Curve
-
-@export var fallingCurve : Curve
-@export var fallDurationUntilMaxSpeed : float = 3
-@export var maxFallingSpeed : float = 5000
-var durationSinceLastFallStart : float = 0
-
-@export var coyotteTime = 0.1
-var durationSinceLastFloorTime : float = 0
+@export var speed : float = 1500
 
 @export var trailAnchor : Node2D
 
@@ -36,6 +21,8 @@ var direction : float = 0
 @export var regenerationPerSecond : float = 0
 
 @export var health:Health
+
+@onready var camera:Camera2D = $Camera2D
 
 enum State
 {
@@ -53,8 +40,7 @@ enum State
 @export var sprite : Sprite2D
 #@export var playerState : PlayerState
 
-@export var jumpBufferDuration = 0.13
-var timeSinceJumpPressed : float = jumpBufferDuration
+@onready var jump: Jump = $Jump
 
 func _ready():
 	colorSkills = [RedPowerUp, GreenPowerUp, BluePowerUp]
@@ -83,12 +69,14 @@ func _ready():
 func _ProcessMovementInputs(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump"):
-		timeSinceJumpPressed = 0.0
+		jump.timeSinceJumpPressed = 0.0
 		
-	if state != State.JUMP and durationSinceLastFloorTime < coyotteTime and timeSinceJumpPressed < jumpBufferDuration:
-		durationSinceLastJump = 0
-		velocity.y = - maxJumpSpeed
-		state = State.JUMP
+	state = jump.tryStartJump(state)	
+	#
+	#if state != State.JUMP and jump.durationSinceLastFloorTime < jump.coyotteTime and jump.timeSinceJumpPressed < jump.jumpBufferDuration:
+		#jump.durationSinceLastJump = 0
+		#velocity.y = - jump.maxJumpSpeed
+		#state = State.JUMP
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -99,46 +87,8 @@ func _ProcessMovementInputs(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 func _physics_process(delta):
-	
-	timeSinceJumpPressed += delta
-	durationSinceLastFloorTime += delta
-	
-	if (state == State.ATTACK):
-		return
-	
-	# Add the gravity.
-	if ((not is_on_floor())):
-		durationSinceLastJump += delta
-		if (velocity.y >= 0):
-			if (state != State.FALLING) and (state != State.FALLING_WITH_JUMP):
-				state = State.FALLING_WITH_JUMP
-				durationSinceLastFallStart = 0
-			else:
-				durationSinceLastFallStart += delta
-				
-			if (state == State.FALLING_WITH_JUMP) && !Input.is_action_pressed("jump"): 
-				state = State.FALLING
-				durationSinceLastFallStart = 0
 			
-			
-			var usedCurve = fallingWithJumpCurve
-			if (state == State.FALLING):
-				usedCurve = fallingCurve
-
-			var y = usedCurve.sample(durationSinceLastFallStart / fallDurationUntilMaxSpeed)
-			velocity.y = y * maxFallingSpeed
-		else:
-			if (state != State.JUMP):
-				state = State.IN_AIR
-			var y = jumpVelocityCurve.sample(durationSinceLastJump / jumpDuration)
-			velocity.y = -y * maxJumpSpeed / jumpDuration
-#			position.y += (y - lastY) * maxJumpSpeed
-	else:
-		durationSinceLastFloorTime = 0
-		if (velocity.x == 0):
-			state = State.IDLE
-		else:
-			state = State.RUN
+	state = jump.processJump(delta, state)
 		
 	#if (!playerState.isDead):
 	_ProcessMovementInputs(delta)

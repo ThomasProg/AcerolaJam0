@@ -1,4 +1,4 @@
-extends Area2D
+extends Node
 
 @export var dps:float = 3
 
@@ -9,8 +9,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for body in get_overlapping_bodies():
-		for child in body.get_children():
-			if (child is Health):
-				child.dealDamages(dps * delta, self)
-			
+	if (get_parent() is Area2D):
+		for body in get_parent().get_overlapping_bodies():
+			for child in body.get_children():
+				if (child is Health):
+					child.dealDamages(dps * delta, self)
+				

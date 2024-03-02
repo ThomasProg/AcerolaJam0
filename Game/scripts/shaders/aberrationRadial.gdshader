@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
 uniform bool apply = true;
-uniform float amount = 1.0;
-uniform float green = 1.0;
+uniform float amount = 2.0;
+uniform float green = 0.105;
 uniform sampler2D offset_texture;
 
 //void vertex() {
@@ -32,6 +32,7 @@ void fragment() {
 		float noise = amount * texture(offset_texture, UV).r / 100.0;
 		vec2 newPointRed = center + (pointToCenterLength - noise - 0.3) * vec2(cos(angle-noise), sin(angle-noise));
 		vec2 newPointBlue = center + (pointToCenterLength - noise) * vec2(cos(angle-noise), sin(angle-noise));
+
 
 		//color.g = 0.0;
 		//color.b = 0.0;

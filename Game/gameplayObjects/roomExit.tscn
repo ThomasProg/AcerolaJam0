@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://r8jfnx182qj2"]
+
+[ext_resource type="Script" path="res://scripts/roomExit.gd" id="1_snsl8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1sys"]
+size = Vector2(1665, 232)
+
+[node name="RoomExit" type="Area2D" node_paths=PackedStringArray("playerEnter")]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_snsl8")
+playerEnter = NodePath("PlayerEnter")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i1sys")
+metadata/_edit_lock_ = true
+
+[node name="PlayerEnter" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

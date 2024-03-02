@@ -1,20 +1,48 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmwdaip7vte4i"]
+[gd_scene load_steps=14 format=3 uid="uid://dmwdaip7vte4i"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/aberrationRadial.gdshader" id="1_27e6t"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_hr1yt"]
+[ext_resource type="Shader" path="res://scripts/shaders/aberrationBlackAndWhite.gdshader" id="1_po06c"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="2_8e76u"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_svvf0"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nqxh5"]
+noise_type = 4
+fractal_type = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s2xrr"]
-noise = SubResource("FastNoiseLite_svvf0")
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_xsf8k"]
+seamless = true
+noise = SubResource("FastNoiseLite_nqxh5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n761a"]
+shader = ExtResource("1_po06c")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.5
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.46
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_xsf8k")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ve50l"]
+size = Vector2(500, 500)
+
+[sub_resource type="Gradient" id="Gradient_qjm38"]
+offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
+colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jshod"]
+gradient = SubResource("Gradient_qjm38")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_boxh0"]
-shader = ExtResource("1_27e6t")
-shader_parameter/apply = true
-shader_parameter/amount = 20.0
-shader_parameter/green = 0.105
-shader_parameter/offset_texture = SubResource("NoiseTexture2D_s2xrr")
+shader = ExtResource("1_po06c")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
 
 [sub_resource type="Gradient" id="Gradient_npw8s"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -31,14 +59,23 @@ fill_to = Vector2(0.5, 0)
 radius = 140.1
 
 [node name="Enemy" type="Area2D"]
-script = ExtResource("1_hr1yt")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_n761a")
+mesh = SubResource("QuadMesh_ve50l")
+texture = SubResource("GradientTexture2D_jshod")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_boxh0")
 texture = SubResource("GradientTexture2D_cw84w")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_8e76u")
 
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("1_hr1yt")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_tmcis")
