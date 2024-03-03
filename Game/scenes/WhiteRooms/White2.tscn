@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://4qrxkjflly2e"]
+[gd_scene load_steps=13 format=3 uid="uid://4qrxkjflly2e"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_eefwc"]
+[ext_resource type="Material" uid="uid://du0oj7jdvy8yc" path="res://materials/M_whiteWalls.tres" id="2_6i3cu"]
+[ext_resource type="Material" uid="uid://c0ljy60jgp8r0" path="res://materials/M_whiteBackground.tres" id="2_oifnm"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="2_u0fxt"]
-[ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/slimeEnemy.tscn" id="3_wfr3y"]
-[ext_resource type="PackedScene" uid="uid://c88kq3pxww3ae" path="res://gameplayObjects/enemyThrower.tscn" id="4_yyhhc"]
+[ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/enemies/slimeEnemy.tscn" id="3_wfr3y"]
+[ext_resource type="PackedScene" uid="uid://c88kq3pxww3ae" path="res://gameplayObjects/enemies/enemyThrower.tscn" id="4_yyhhc"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="6_etpqf"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="6_gmpm7"]
 
@@ -16,12 +18,18 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-265, -10924, 34832, -1
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 70.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlufr"]
+size = Vector2(2000, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m78kj"]
+size = Vector2(200, 2000)
+
 [node name="White2" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_eefwc")
 roomLimits = NodePath("MeshInstance2D")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0, 0.184314, 0.117647, 1)
+material = ExtResource("2_oifnm")
 position = Vector2(16545.4, -1212.5)
 scale = Vector2(33785.1, 19385)
 mesh = SubResource("QuadMesh_0fg02")
@@ -33,6 +41,7 @@ navigation_polygon = SubResource("NavigationPolygon_tl2a0")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
+material = ExtResource("2_6i3cu")
 position = Vector2(114, 78)
 scale = Vector2(10, 10)
 tile_set = ExtResource("2_u0fxt")
@@ -162,7 +171,7 @@ target = NodePath("target")
 position = Vector2(0, 200)
 
 [node name="Player" parent="." instance=ExtResource("6_etpqf")]
-position = Vector2(17286, 7761)
+position = Vector2(270, 0)
 
 [node name="enemyThrower" parent="." instance=ExtResource("4_yyhhc")]
 position = Vector2(21039, 1332)
@@ -172,7 +181,22 @@ position = Vector2(18406, 8649)
 nextRoom = "res://scenes/WhiteRooms/White5.tscn"
 nextExitName = "RoomExit_left"
 
-[node name="PlayerEnter" parent="RoomExit_down" index="1"]
+[node name="PlayerEnter" parent="RoomExit_down" index="0"]
 position = Vector2(-931, -730)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_down"]
+shape = SubResource("RectangleShape2D_tlufr")
+
+[node name="RoomExit_left" parent="." instance=ExtResource("6_gmpm7")]
+position = Vector2(-539, -256)
+nextRoom = "res://scenes/WhiteRooms/WhiteVillage.tscn"
+
+[node name="PlayerEnter" parent="RoomExit_left" index="0"]
+position = Vector2(489, 517)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_left"]
+shape = SubResource("RectangleShape2D_m78kj")
+metadata/_edit_lock_ = true
+
 [editable path="RoomExit_down"]
+[editable path="RoomExit_left"]

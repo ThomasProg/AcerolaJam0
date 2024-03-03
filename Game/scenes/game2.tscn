@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="8_vl037"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="10_uh1wg"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="11_efihx"]
-[ext_resource type="PackedScene" uid="uid://dmwdaip7vte4i" path="res://gameplayObjects/enemy.tscn" id="12_pv2jm"]
+[ext_resource type="PackedScene" uid="uid://dmwdaip7vte4i" path="res://gameplayObjects/enemies/enemy.tscn" id="12_pv2jm"]
 
 [sub_resource type="Gradient" id="Gradient_jhooo"]
 offsets = PackedFloat32Array(1)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3wjxkcakedpq"]
+[gd_scene load_steps=11 format=3 uid="uid://c3wjxkcakedpq"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_xs3pb"]
+[ext_resource type="Material" uid="uid://c0ljy60jgp8r0" path="res://materials/M_whiteBackground.tres" id="2_0ay5o"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="2_k0bnc"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="3_a4mge"]
-[ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/slimeEnemy.tscn" id="4_k3nxt"]
-[ext_resource type="PackedScene" uid="uid://c88kq3pxww3ae" path="res://gameplayObjects/enemyThrower.tscn" id="5_rxb8x"]
+[ext_resource type="Material" uid="uid://du0oj7jdvy8yc" path="res://materials/M_whiteWalls.tres" id="3_jjex2"]
+[ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/enemies/slimeEnemy.tscn" id="4_k3nxt"]
+[ext_resource type="PackedScene" uid="uid://c88kq3pxww3ae" path="res://gameplayObjects/enemies/enemyThrower.tscn" id="5_rxb8x"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="6_oydkp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vmvj3"]
@@ -22,6 +24,7 @@ roomLimits = NodePath("MeshInstance2D")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 modulate = Color(0, 0.184314, 0.117647, 1)
+material = ExtResource("2_0ay5o")
 position = Vector2(14887.5, 539.5)
 scale = Vector2(26181, 11653)
 mesh = SubResource("QuadMesh_vmvj3")
@@ -33,6 +36,7 @@ navigation_polygon = SubResource("NavigationPolygon_y21br")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
+material = ExtResource("3_jjex2")
 position = Vector2(114, 78)
 scale = Vector2(10, 10)
 tile_set = ExtResource("2_k0bnc")
@@ -62,25 +66,31 @@ position = Vector2(20447, -74)
 
 [node name="enemyThrower" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(9538, -2477)
+offDuration = 0.8
 
 [node name="enemyThrower2" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(14718, -2810)
+offDuration = 0.8
 initialDelay = 3.23
 
 [node name="enemyThrower3" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(16264, -2773)
+offDuration = 0.8
 initialDelay = 0.232
 
 [node name="enemyThrower5" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(20917, -3270)
+offDuration = 0.8
 initialDelay = 0.232
 
 [node name="enemyThrower6" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(18108, -2761)
+offDuration = 0.8
 initialDelay = 0.232
 
 [node name="enemyThrower4" parent="Enemies" instance=ExtResource("5_rxb8x")]
 position = Vector2(12318, -2799)
+offDuration = 0.8
 initialDelay = 1.32
 
 [node name="SlimeEnemy7" parent="Enemies" instance=ExtResource("4_k3nxt")]
@@ -96,7 +106,6 @@ position = Vector2(18824, -100)
 position = Vector2(9798, 2337)
 rotation = 1.11701
 amount = 5
-duration = 4.0
 force = 1000.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -108,7 +117,6 @@ position = Vector2(0, 400)
 position = Vector2(12842, 3317)
 rotation = 1.11701
 amount = 5
-duration = 4.0
 force = 1000.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -120,7 +128,6 @@ position = Vector2(0, 400)
 position = Vector2(19343, 2980)
 rotation = -1.11701
 amount = 5
-duration = 4.0
 force = 1000.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -132,7 +139,6 @@ position = Vector2(0, 400)
 position = Vector2(10946, 2650)
 rotation = 1.11701
 amount = 5
-duration = 4.0
 force = 1000.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -144,7 +150,6 @@ position = Vector2(0, 400)
 position = Vector2(27537, 152)
 rotation = 1.11701
 amount = 5
-duration = 4.0
 force = 1000.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -156,7 +161,6 @@ position = Vector2(0, 400)
 position = Vector2(25991, 3589)
 rotation = 2.28638
 amount = 4
-duration = 4.0
 force = 1800.0
 deltaAngle = 10.0
 target = NodePath("target")
@@ -168,7 +172,6 @@ position = Vector2(0, 400)
 position = Vector2(10324, 4552)
 rotation = -2.42775
 amount = 4
-duration = 4.0
 force = 1700.0
 deltaAngle = 10.0
 target = NodePath("target")
@@ -180,7 +183,6 @@ position = Vector2(0, 400)
 position = Vector2(27548, -1060)
 rotation = 2.17817
 amount = 5
-duration = 4.0
 force = 1300.0
 deltaAngle = 30.0
 target = NodePath("target")
@@ -196,25 +198,19 @@ position = Vector2(4581, -5462)
 nextRoom = "res://scenes/WhiteRooms/White2.tscn"
 nextExitName = "RoomExit_down"
 
-[node name="PlayerEnter" parent="RoomExit_left" index="1"]
+[node name="PlayerEnter" parent="RoomExit_left" index="0"]
 position = Vector2(-430, 272)
 
 [node name="RoomExit_down" parent="." instance=ExtResource("6_oydkp")]
 position = Vector2(16225, 6599)
 
-[node name="CollisionShape2D" parent="RoomExit_down" index="0"]
-scale = Vector2(1.5, 1.5)
-
-[node name="PlayerEnter" parent="RoomExit_down" index="1"]
+[node name="PlayerEnter" parent="RoomExit_down" index="0"]
 position = Vector2(-430, 272)
 
 [node name="RoomExit_right" parent="." instance=ExtResource("6_oydkp")]
 position = Vector2(23436, -5526)
 
-[node name="CollisionShape2D" parent="RoomExit_right" index="0"]
-scale = Vector2(1.465, 1.465)
-
-[node name="PlayerEnter" parent="RoomExit_right" index="1"]
+[node name="PlayerEnter" parent="RoomExit_right" index="0"]
 position = Vector2(-430, 272)
 
 [editable path="RoomExit_left"]

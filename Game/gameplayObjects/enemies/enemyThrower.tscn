@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c88kq3pxww3ae"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemyThrower.gd" id="1_rc5gv"]
-[ext_resource type="PackedScene" uid="uid://vlxakc8grnel" path="res://gameplayObjects/fallingEnemy.tscn" id="2_5eyvp"]
+[ext_resource type="PackedScene" uid="uid://vlxakc8grnel" path="res://gameplayObjects/enemies/fallingEnemy.tscn" id="2_5eyvp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e36x8"]
 

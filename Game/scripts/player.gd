@@ -17,9 +17,10 @@ var direction : float = 0
 
 @export var regenerationPerSecond : float = 0
 
-@export var health:Health
+@onready var health:Health = $Health
 
 @onready var camera:Camera2D = $Camera2D
+@onready var dialogueTrigger:Area2D = $DialogueTrigger
 
 enum State
 {
@@ -84,8 +85,8 @@ func _ProcessMovementInputs(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 func _physics_process(delta):
-	if Dialogic.current_timeline != null:
-		return
+	#if Dialogic.current_timeline != null:
+		#return
 			
 	state = jump.processJump(delta, state)
 		
@@ -99,21 +100,42 @@ var isAttackReversed = false
 #func _ready():
 	#availableColors = [PlayerColor.DEFAULT, redColor, greenColor, blueColor]
 
+var blockDialogue = false
+
 func _process(delta):
 	health.heal(regenerationPerSecond * delta, self)
 	
-	if Input.is_action_just_pressed("attack") and state != State.ATTACK:
-		var attack = meleeAttackPrefab.instantiate() as MeleeAttack
-		add_child(attack)
-		attack.setSkillOwner(self)
-		attack.isRight = (direction > 0)
-		attack.isReversed = isAttackReversed
-		attack.damages = attack.damages * dmgMultiplicator
-		isAttackReversed = !isAttackReversed
-		var previousState = state
-		state = State.ATTACK
-		velocity = Vector2(0,0)
-		attack.tree_exiting.connect(func(): state = previousState)
+	if Input.is_action_just_pressed("attack"):
+		var npcs:Array[NPC] = []
+		for body in dialogueTrigger.get_overlapping_bodies():
+			if body is NPC:
+				npcs.push_back(body)
+				
+		if (!blockDialogue and !npcs.is_empty()):
+			npcs.sort_custom(func(a:NPC, b:NPC): 
+				return a.global_position.distance_squared_to(global_position) < b.global_position.distance_squared_to(global_position))
+				
+			var hasRunDialogue = npcs[0].runDialogue()
+			if (hasRunDialogue):
+				blockDialogue = true
+				Dialogic.timeline_ended.connect(func():
+					await get_tree().process_frame
+					blockDialogue = false
+					)
+	
+				
+		elif state != State.ATTACK:
+			var attack = meleeAttackPrefab.instantiate() as MeleeAttack
+			add_child(attack)
+			attack.setSkillOwner(self)
+			attack.isRight = (direction > 0)
+			attack.isReversed = isAttackReversed
+			attack.damages = attack.damages * dmgMultiplicator
+			isAttackReversed = !isAttackReversed
+			var previousState = state
+			state = State.ATTACK
+			velocity = Vector2(0,0)
+			attack.tree_exiting.connect(func(): state = previousState)
 		
 	if Input.is_action_just_pressed("changeColor"):
 		currentColorSkillIndex = (currentColorSkillIndex + 1) % (colorSkills.size() + 1)

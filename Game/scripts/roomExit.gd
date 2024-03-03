@@ -21,11 +21,13 @@ func _on_body_entered(body):
 		await get_tree().physics_frame
 		
 		var root = get_tree().get_root()
-		var NodeToRemove = root.get_child(0) 
 		
-		
-		root.remove_child(NodeToRemove) 
-		
+		var nodesToRemove = []
+		for child in root.get_children():
+			if child is Node2D:
+				nodesToRemove.push_back(child)
+				root.remove_child(child) 
+
 		var newPackedScene = load(nextRoom) as PackedScene 
 		var room = newPackedScene.instantiate() as Room
 		room.player = room.find_child("Player", true, false)
@@ -34,4 +36,5 @@ func _on_body_entered(body):
 		root.add_child(room)
 		#get_tree().change_scene_to_packed(nextRoom)
 		
-		NodeToRemove.queue_free()
+		for nodeToRemove in nodesToRemove:
+			nodeToRemove.queue_free()

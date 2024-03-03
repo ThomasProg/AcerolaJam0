@@ -9,19 +9,38 @@ class_name NPC
 
 @export var state = Player.State.IDLE
 
+@export var dialogues: Array[DialogicTimeline]
+@export var currentDialogueIndex:int = 0
+@export var repeatLastDialogue:bool = false
+
 @onready var jump: Jump = $Jump
 @onready var navAgent: NavigationAgent2D = $NavigationAgent2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-#func startSmallJump():
-	#nextIsSmallJump = true
-#
-#func startBigJump():
-	#nextIsBigJump = true
-	
 signal onFloorAndMoving()
+
+func runDialogue():
+	if (dialogues.is_empty()):
+		return false
+	
+	if Dialogic.current_timeline != null:
+		return false
+	
+	if (currentDialogueIndex >= dialogues.size()):
+		if (repeatLastDialogue):
+			currentDialogueIndex = dialogues.size() - 1
+		else:
+			return false
+	
+	Dialogic.start(dialogues[currentDialogueIndex])
+	get_viewport().set_input_as_handled()
+	
+	if (currentDialogueIndex < dialogues.size()):
+		currentDialogueIndex += 1
+		
+	return true
 	
 func pressJumpOnFloor():
 	nextFloorIsJump = 1
@@ -55,9 +74,6 @@ func _physics_process(delta):
 	state = jump.tryStartJump(state)
 	state = jump.processJump(delta, state)
 		
-	## Add the gravity.
-	#if (not is_on_floor()):
-		#velocity.y += gravity * delta
 	if (is_on_floor() and abs(velocity.x) > 0.1):
 		onFloorAndMoving.emit()
 		if (nextFloorIsJump == 0):

@@ -1,0 +1,9 @@
+Welcome to my house!!!
+How do you find it?
+- It's great! [if {""} == ""]
+	I knew you'd like it!
+	I just finished building it.
+- Rather bad
+	Oh...
+	I wish the [outline_size=1][outline_color=purple][wave amp=20 freq=5]aberrations[/wave][/outline_color] ate you.
+[end_timeline]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=13 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
@@ -18,11 +18,13 @@ size = Vector2(100, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0eri"]
 size = Vector2(100, 100)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ylxm"]
+radius = 400.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 10
 script = ExtResource("1_mbevd")
 meleeAttackPrefab = ExtResource("3_wbee7")
-health = NodePath("Health")
 sprite = NodePath("MeshInstance2D")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
@@ -55,3 +57,11 @@ jumpVelocityCurve = ExtResource("2_6gkgu")
 fallingWithJumpCurve = ExtResource("3_ng7cd")
 fallingCurve = ExtResource("4_2fp5u")
 nbMaxAirJumps = 1
+
+[node name="DialogueTrigger" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
+shape = SubResource("CircleShape2D_7ylxm")
+debug_color = Color(0, 0.6, 0.701961, 0.0862745)

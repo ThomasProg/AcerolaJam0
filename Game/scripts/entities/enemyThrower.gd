@@ -2,7 +2,8 @@ extends Node2D
 
 @export var instantiated: PackedScene
 @export var amount: int = 10
-@export var duration:float = 2.0
+@export var onDuration:float = 2.0
+@export var offDuration:float = 2.0
 @export var force:float = 100.0
 @export var maxSpeed:float = 3000.0
 @export var initialDelay:float = 0.0
@@ -14,7 +15,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(initialDelay).timeout
-	timer.start()
+	timer.start(onDuration + offDuration)
 	throwEnemies()
 
 func throwEnemies():
@@ -33,7 +34,7 @@ func throwEnemies():
 		newEnemy.skillOwner = self
 		
 		add_child(newEnemy)
-		await get_tree().create_timer(duration / amount).timeout
+		await get_tree().create_timer(onDuration / amount).timeout
 
 
 func _on_timer_timeout():

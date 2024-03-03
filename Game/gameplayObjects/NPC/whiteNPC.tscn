@@ -13,6 +13,7 @@ size = Vector2(100, 100)
 size = Vector2(100, 100)
 
 [node name="WhiteNPC" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_xqd6h")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
