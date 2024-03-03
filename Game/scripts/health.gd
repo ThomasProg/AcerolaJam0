@@ -27,10 +27,10 @@ func dealDamages(damages:float, attacker:Node):
 		if (shouldRemoveOnDeath):
 			get_parent().queue_free()
 	
-func heal(heal:float, healer:Node):
+func heal(amount:float, healer:Node):
 	var parent = get_parent()
 
-	life += heal
+	life += amount
 	
 	onHeal.emit(healer)
 	

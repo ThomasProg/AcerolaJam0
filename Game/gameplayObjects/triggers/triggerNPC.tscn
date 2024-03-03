@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://pddc74gvehw"]
+
+[ext_resource type="Script" path="res://scripts/triggerNPC.gd" id="1_j5nml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ym4gy"]
+size = Vector2(200, 200)
+
+[node name="TriggerNPC" type="Area2D"]
+position = Vector2(4842, 4821)
+script = ExtResource("1_j5nml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ym4gy")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

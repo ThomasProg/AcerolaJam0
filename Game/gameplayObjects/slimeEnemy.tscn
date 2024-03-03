@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dkv1t46wreme0"]
+[gd_scene load_steps=23 format=3 uid="uid://dkv1t46wreme0"]
 
 [ext_resource type="Script" path="res://scripts/entities/slimeEnemy.gd" id="1_p5qrr"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ri3a4"]
+[ext_resource type="Shader" path="res://scripts/shaders/slimeEnemy.gdshader" id="2_47821"]
 [ext_resource type="Shader" path="res://scripts/shaders/aberrationBlackAndWhite.gdshader" id="3_juv3j"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_w3xps"]
 [ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_4mu16"]
@@ -20,7 +21,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_rfa2w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
-shader = ExtResource("3_juv3j")
+shader = ExtResource("2_47821")
 shader_parameter/u_resolution = Vector2(500, 500)
 shader_parameter/u_speed = 0.5
 shader_parameter/u_color = Color(1, 1, 1, 1)
@@ -43,8 +44,18 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="QuadMesh" id="QuadMesh_e7u53"]
-size = Vector2(250, 250)
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_f6qkc"]
+seamless = true
+noise = SubResource("FastNoiseLite_rfa2w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpodr"]
+shader = ExtResource("3_juv3j")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.5
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.46
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_f6qkc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q4ev"]
 size = Vector2(250, 250)
@@ -52,8 +63,8 @@ size = Vector2(250, 250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d5swr"]
 size = Vector2(6000, 4000)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o7aq8"]
-radius = 150.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q76o"]
+size = Vector2(250, 250)
 
 [node name="SlimeEnemy" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -66,9 +77,11 @@ material = SubResource("ShaderMaterial_rtmeo")
 mesh = SubResource("QuadMesh_kkumv")
 texture = SubResource("GradientTexture2D_5oajt")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="."]
 visible = false
-mesh = SubResource("QuadMesh_e7u53")
+material = SubResource("ShaderMaterial_cpodr")
+mesh = SubResource("QuadMesh_kkumv")
+texture = SubResource("GradientTexture2D_5oajt")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_w3xps")
@@ -114,7 +127,7 @@ collision_mask = 8
 script = ExtResource("10_wdllu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource("CircleShape2D_o7aq8")
+shape = SubResource("RectangleShape2D_5q76o")
 debug_color = Color(0.996078, 0, 0.219608, 0.419608)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

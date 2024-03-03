@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 @export var defaultModulate: Color = Color.WHITE
 @export var colorSkills = []
 @export var currentColorSkill:Node = null
@@ -37,7 +34,7 @@ enum State
 
 @export var state = State.IDLE
 
-@export var sprite : Sprite2D
+@export var sprite : CanvasItem
 #@export var playerState : PlayerState
 
 @onready var jump: Jump = $Jump
@@ -87,6 +84,8 @@ func _ProcessMovementInputs(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 func _physics_process(delta):
+	if Dialogic.current_timeline != null:
+		return
 			
 	state = jump.processJump(delta, state)
 		

@@ -18,6 +18,7 @@ var jumpDirection:Vector2 = Vector2.ZERO
 enum SlimeState { DEFAULT, BEFORE_LINK, IN_LINK }
 
 @export var slimeState:SlimeState = SlimeState.DEFAULT
+@export var jumpWaitTime:float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -100,7 +101,7 @@ func _physics_process(delta):
 	
 	if (is_on_floor() and target != null):
 		if (timer.time_left <= 0):
-			timer.start(-1)
+			timer.start(jumpWaitTime)
 
 func tryToJump():
 	if (target == null):
@@ -125,5 +126,7 @@ func _on_detection_area_body_entered(body):
 	if (body is Player):
 		target = body
 		if (timer.time_left <= 0):
-			tryToJump()
-			
+			timer.start(randf_range(0,jumpWaitTime/2.0))
+			#await get_tree().create_timer(timer.)
+			#tryToJump()
+			#

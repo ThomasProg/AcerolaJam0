@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqyhyhu607eh"]
+
+[ext_resource type="Script" path="res://scripts/entities/npc.gd" id="1_xqd6h"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="2_jv32b"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="3_o0vcn"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="4_ssfg6"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_h3cvy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_i33b3"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a07v"]
+size = Vector2(100, 100)
+
+[node name="WhiteNPC" type="CharacterBody2D"]
+script = ExtResource("1_xqd6h")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_i33b3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8a07v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 100.0
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_jv32b")
+characterBody = NodePath("..")
+jumpVelocityCurve = ExtResource("3_o0vcn")
+fallingWithJumpCurve = ExtResource("4_ssfg6")
+fallingCurve = ExtResource("5_h3cvy")
+nbMaxAirJumps = 1
+nbAirJumpsLeft = 1
