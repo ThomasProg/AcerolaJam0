@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bflpmm0s3vyjj"]
+
+[ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/M_redBackground.tres" id="1_8tasq"]
+[ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="1_ahfme"]
+[ext_resource type="Material" uid="uid://t48nps78p8tc" path="res://materials/M_redWalls.tres" id="2_a1peg"]
+[ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="2_c6b26"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xdsk6"]
+vertices = PackedVector2Array(12985, -5739, 13518, 8437, -11039, 8705, -10719, -5845)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-10788, -5916, 13053, -5809, 13591, 8507, -11111, 8776)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 70.0
+
+[node name="EmptyRedRoom" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = ExtResource("1_8tasq")
+position = Vector2(1180, 1117)
+scale = Vector2(23462.5, 13565)
+mesh = SubResource("QuadMesh_gnqr8")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+navigation_polygon = SubResource("NavigationPolygon_xdsk6")
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
+material = ExtResource("2_a1peg")
+position = Vector2(114, 78)
+scale = Vector2(10, 10)
+tile_set = ExtResource("1_ahfme")
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_c6b26")]
+position = Vector2(-7866, 768)

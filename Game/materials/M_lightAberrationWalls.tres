@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cid332lr8rbtr"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/backgrounds/aberrationBackground.gdshader" id="1_i0c6f"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n4j7k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qr2kv"]
+noise = SubResource("FastNoiseLite_n4j7k")
+
+[resource]
+shader = ExtResource("1_i0c6f")
+shader_parameter/color1 = Color(0.129412, 0.101961, 0.137255, 1)
+shader_parameter/color2 = Color(0.168627, 0.14902, 0.184314, 1)
+shader_parameter/color3 = Color(0.247059, 0.196078, 0.25098, 1)
+shader_parameter/distorsion = 120.0
+shader_parameter/maxDistorsionLength = 10000.0
+shader_parameter/noise = SubResource("NoiseTexture2D_qr2kv")

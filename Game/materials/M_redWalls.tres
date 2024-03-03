@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://t48nps78p8tc"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/backgrounds/redBackground.gdshader" id="1_7bdrv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8bh2f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pmwxx"]
+noise = SubResource("FastNoiseLite_8bh2f")
+
+[resource]
+shader = ExtResource("1_7bdrv")
+shader_parameter/color1 = Color(0.447059, 0.254902, 0.196078, 1)
+shader_parameter/color2 = Color(0.505882, 0.156863, 0.129412, 1)
+shader_parameter/color3 = Color(0.239216, 0.0588235, 0.0588235, 1)
+shader_parameter/color4 = Color(0.309804, 0.0862745, 0.0862745, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_pmwxx")
