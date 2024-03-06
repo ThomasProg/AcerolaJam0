@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dg2y6kqb8v3th"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/aberrationRadial.gdshader" id="1_7668c"]
-[ext_resource type="Shader" path="res://scripts/shaders/aberration.gdshader" id="2_ssndx"]
+[ext_resource type="Shader" path="res://shaders/aberrationRadial.gdshader" id="1_7668c"]
+[ext_resource type="Shader" path="res://shaders/aberration.gdshader" id="2_ssndx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_71jan"]
 

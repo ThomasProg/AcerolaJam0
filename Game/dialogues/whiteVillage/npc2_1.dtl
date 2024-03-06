@@ -2,7 +2,7 @@ I heard something happened to the [color=dark_blue]Blue[/color] village...
 I hope they're fine.
 - The village of blue? [if {""} == ""]
 	Yes. \
-They were the ones who encountered the [outline_size=1][outline_color=purple][wave amp=20 freq=5]aberrations[/wave][/outline_color] first.
-	I hope they managed to run away..
+They were the ones who encountered the [outline_size=3][outline_color=purple][wave amp=20 freq=5]aberrations[/wave][/outline_color][/outline_size] first.
+I hope they managed to run away..
 - Oh no!
 [end_timeline]

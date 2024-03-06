@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=16 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
+[ext_resource type="PackedScene" uid="uid://d3hrqqxu0w27i" path="res://prefabs/skills/dashAttack.tscn" id="2_tytx6"]
 [ext_resource type="Script" path="res://scripts/jumpResetArea.gd" id="3_la6bx"]
 [ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="3_ng7cd"]
-[ext_resource type="PackedScene" uid="uid://ccmoji781onka" path="res://prefabs/skills/meleeAttack.tscn" id="3_wbee7"]
 [ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="4_2fp5u"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="4_r8e58"]
 [ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_a5qrp"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="5_r0i4p"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ejxjl"]
 size = Vector2(100, 100)
@@ -21,11 +22,30 @@ size = Vector2(100, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ylxm"]
 radius = 400.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[sub_resource type="Animation" id="Animation_rn7od"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dvrc"]
+_data = {
+"jump": SubResource("Animation_rn7od")
+}
+
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 10
 script = ExtResource("1_mbevd")
-meleeAttackPrefab = ExtResource("3_wbee7")
-sprite = NodePath("MeshInstance2D")
+meleeAttackPrefab = ExtResource("2_tytx6")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("QuadMesh_ejxjl")
@@ -39,6 +59,7 @@ zoom = Vector2(0.225, 0.225)
 
 [node name="JumpResetArea" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(0, 15)
+collision_layer = 0
 script = ExtResource("3_la6bx")
 player = NodePath("..")
 
@@ -49,6 +70,9 @@ shape = SubResource("RectangleShape2D_h0eri")
 script = ExtResource("4_r8e58")
 life = 5.0
 maxLife = 5.0
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("5_r0i4p")
 
 [node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
 script = ExtResource("5_a5qrp")
@@ -65,3 +89,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
 shape = SubResource("CircleShape2D_7ylxm")
 debug_color = Color(0, 0.6, 0.701961, 0.0862745)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_5dvrc")
+}

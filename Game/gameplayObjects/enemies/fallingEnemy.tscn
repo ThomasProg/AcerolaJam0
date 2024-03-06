@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://vlxakc8grnel"]
 
 [ext_resource type="Script" path="res://scripts/entities/fallingEnemy.gd" id="1_2gqby"]
-[ext_resource type="Shader" path="res://scripts/shaders/aberrationRadial.gdshader" id="1_q4ryn"]
+[ext_resource type="Shader" path="res://shaders/aberrationRadial.gdshader" id="1_q4ryn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2chsd"]
 

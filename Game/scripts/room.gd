@@ -3,11 +3,13 @@ class_name Room
 
 var player: Player
 @export var roomLimits:MeshInstance2D
+@export var isCheckpoint:bool = false
 
 func findExit(exitName:String):
 	for child in get_children():
 		if (child as RoomExit and child.name == exitName):
 			return child
+	return null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhpe10uow08f2"]
+
+[ext_resource type="Script" path="res://scripts/entities/pikeEnemy.gd" id="1_3lnqh"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="3_kumpu"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="4_i1gvf"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="5_non1a"]
+[ext_resource type="Shader" path="res://shaders/rotatingTriangleEnemy.gdshader" id="10_ea0h5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbeax"]
+shader = ExtResource("10_ea0h5")
+shader_parameter/u_speed = 0.5
+shader_parameter/size = 100.0
+shader_parameter/glow = 2.0
+shader_parameter/triangleShape = 250.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
+size = Vector2(500, 500)
+
+[sub_resource type="Gradient" id="Gradient_trnrj"]
+offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
+colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_237yw"]
+gradient = SubResource("Gradient_trnrj")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_w71ba"]
+resource_name = "pikeDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(5, 2),
+"update": 0,
+"values": [Vector2(1, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e0vl1"]
+resource_name = "pikeUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:activationRatio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ye5e"]
+_data = {
+"pikeDown": SubResource("Animation_w71ba"),
+"pikeUp": SubResource("Animation_e0vl1")
+}
+
+[node name="SpikeEnemy" type="Area2D"]
+scale = Vector2(1, 2)
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_3lnqh")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_kumpu")
+life = 8.0
+maxLife = 8.0
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("4_i1gvf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -115)
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("5_non1a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
+position = Vector2(0, -115)
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+autostart = true
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_jbeax")
+position = Vector2(0, -115)
+mesh = SubResource("QuadMesh_kkumv")
+texture = SubResource("GradientTexture2D_237yw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ye5e")
+}
+
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

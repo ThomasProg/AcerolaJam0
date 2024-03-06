@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bpcv64mwqo3hs"]
+
+[ext_resource type="Shader" path="res://shaders/rotatingTriangleEnemy.gdshader" id="1_pqrf0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jbocl"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8w6jm"]
+seamless = true
+noise = SubResource("FastNoiseLite_jbocl")
+
+[resource]
+shader = ExtResource("1_pqrf0")
+shader_parameter/u_speed = 0.05
+shader_parameter/size = 75.0
+shader_parameter/glow = 2.0
+shader_parameter/triangleShape = 200.0
+shader_parameter/u_mask = SubResource("NoiseTexture2D_8w6jm")

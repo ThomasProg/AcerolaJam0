@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1k5k61220x73"]
+
+[ext_resource type="Shader" path="res://shaders/damageArea.gdshader" id="2_nj5x3"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="3_x5pi2"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="5_ekjdh"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="6_6jo34"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="7_ppojs"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="8_hmama"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="9_01jiy"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="10_ebeay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7iye"]
+size = Vector2(500, 500)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ys41"]
+noise_type = 0
+frequency = 0.084
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_2ln2s"]
+seamless = true
+noise = SubResource("FastNoiseLite_4ys41")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
+shader = ExtResource("2_nj5x3")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 5.82
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.8
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_2ln2s")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
+size = Vector2(500, 500)
+
+[node name="DamageArea" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_x5pi2")
+dmg = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_a7iye")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+modulate = Color(0.592157, 0.207843, 0.439216, 0.392157)
+material = SubResource("ShaderMaterial_rtmeo")
+mesh = SubResource("QuadMesh_kkumv")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_ekjdh")
+life = 8.0
+maxLife = 8.0
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("6_6jo34")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource("7_ppojs")
+jumpVelocityCurve = ExtResource("8_hmama")
+jumpDuration = 0.4
+maxJumpSpeed = 500.0
+fallingWithJumpCurve = ExtResource("9_01jiy")
+fallingCurve = ExtResource("10_ebeay")
+fallDurationUntilMaxSpeed = 2.5
+maxFallingSpeed = 4000.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

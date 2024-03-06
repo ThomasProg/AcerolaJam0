@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bflpmm0s3vyjj"]
 
-[ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/M_redBackground.tres" id="1_8tasq"]
+[ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/environment/M_redBackground.tres" id="1_8tasq"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="1_ahfme"]
-[ext_resource type="Material" uid="uid://t48nps78p8tc" path="res://materials/M_redWalls.tres" id="2_a1peg"]
+[ext_resource type="Material" uid="uid://t48nps78p8tc" path="res://materials/environment/M_redWalls.tres" id="2_a1peg"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="2_c6b26"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]

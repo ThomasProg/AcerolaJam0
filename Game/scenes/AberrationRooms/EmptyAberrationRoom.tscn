@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bts4cadugtmj2"]
 
-[ext_resource type="Material" uid="uid://fp1ke0lcxgj4" path="res://materials/M_aberrationBackground.tres" id="1_4dq7w"]
-[ext_resource type="Material" uid="uid://bfshxma2ljc3g" path="res://materials/M_aberrationWalls.tres" id="2_7iimu"]
+[ext_resource type="Material" uid="uid://fp1ke0lcxgj4" path="res://materials/environment/M_aberrationBackground.tres" id="1_4dq7w"]
+[ext_resource type="Material" uid="uid://bfshxma2ljc3g" path="res://materials/environment/M_aberrationWalls.tres" id="2_7iimu"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_y6jf7"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_v60ew"]
 

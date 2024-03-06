@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://brohcba2s1rk"]
 
-[ext_resource type="Material" uid="uid://bv518tpdeix5y" path="res://materials/M_greenBackground.tres" id="1_ptfni"]
-[ext_resource type="Material" uid="uid://2pqpmlm80e3e" path="res://materials/M_greenWalls.tres" id="2_mq30n"]
+[ext_resource type="Material" uid="uid://bv518tpdeix5y" path="res://materials/environment/M_greenBackground.tres" id="1_ptfni"]
+[ext_resource type="Material" uid="uid://2pqpmlm80e3e" path="res://materials/environment/M_greenWalls.tres" id="2_mq30n"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_yyysg"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_jdbiu"]
 

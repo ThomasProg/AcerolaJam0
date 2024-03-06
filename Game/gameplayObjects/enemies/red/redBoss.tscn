@@ -1,0 +1,146 @@
+[gd_scene load_steps=26 format=3 uid="uid://8sg37qut2lmd"]
+
+[ext_resource type="Script" path="res://scripts/entities/redBoss.gd" id="1_6k66t"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="2_1rmnh"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="3_4nib3"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="4_1qhyc"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_e6bc3"]
+[ext_resource type="Shader" path="res://shaders/triangleAberrationAura.gdshader" id="6_5y6bw"]
+[ext_resource type="Material" uid="uid://bpcv64mwqo3hs" path="res://materials/entities/M_RedBoss.tres" id="7_hlol5"]
+[ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://Textures/T_Boss.tres" id="8_irt40"]
+[ext_resource type="Script" path="res://scripts/skills/charging.gd" id="8_tqa7i"]
+[ext_resource type="Script" path="res://scripts/skills/growPikes.gd" id="9_vy62b"]
+[ext_resource type="PackedScene" uid="uid://dhpe10uow08f2" path="res://gameplayObjects/enemies/red/spikeEnemy.tscn" id="10_1nb10"]
+[ext_resource type="Script" path="res://scripts/skills/bossSpawnEnemies.gd" id="11_rk1qb"]
+[ext_resource type="PackedScene" uid="uid://m65bkbdw7rco" path="res://gameplayObjects/enemies/red/rotatingTriangleEnemy.tscn" id="12_3sf5l"]
+[ext_resource type="PackedScene" uid="uid://b65e1yxusumbp" path="res://prefabs/particles/spikeSpawnParticles.tscn" id="12_syl6e"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="13_prp1y"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="14_lenv0"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="15_xayuu"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="17_hxakx"]
+[ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="19_kwsfx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5px2l"]
+noise_type = 0
+frequency = 0.084
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_hi2gs"]
+seamless = true
+noise = SubResource("FastNoiseLite_5px2l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6c1ng"]
+shader = ExtResource("6_5y6bw")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 5.82
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.8
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_hi2gs")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lim1o"]
+size = Vector2(350, 350)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qqx0d"]
+size = Vector2(500, 500)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4beew"]
+radius = 1500.0
+
+[node name="RedBoss" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_6k66t")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 100.0
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_1rmnh")
+characterBody = NodePath("..")
+jumpVelocityCurve = ExtResource("3_4nib3")
+fallingWithJumpCurve = ExtResource("4_1qhyc")
+fallingCurve = ExtResource("5_e6bc3")
+nbMaxAirJumps = 1
+nbAirJumpsLeft = 1
+
+[node name="Aura" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(0.592157, 0.207843, 0.439216, 0.392157)
+material = SubResource("ShaderMaterial_6c1ng")
+position = Vector2(0, -100)
+mesh = SubResource("QuadMesh_lim1o")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+material = ExtResource("7_hlol5")
+mesh = SubResource("QuadMesh_qqx0d")
+texture = ExtResource("8_irt40")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="Charging" type="Node" parent="."]
+script = ExtResource("8_tqa7i")
+rotationSpeed = 5.0
+preChargeSpeed = 2500.0
+
+[node name="GrowSpikes" type="Node" parent="."]
+script = ExtResource("9_vy62b")
+spikePrefab = ExtResource("10_1nb10")
+particlesPrefab = ExtResource("12_syl6e")
+nbEnemies = 10
+removeRandomSpike = false
+
+[node name="BossSpawnEnemies" type="Node" parent="."]
+script = ExtResource("11_rk1qb")
+enemyPrefab = ExtResource("12_3sf5l")
+
+[node name="ChargingBerserk" type="Node" parent="."]
+script = ExtResource("8_tqa7i")
+rotationSpeed = 8.0
+preChargeSpeed = 3500.0
+
+[node name="GrowSpikesBerserk" type="Node" parent="."]
+script = ExtResource("9_vy62b")
+spikePrefab = ExtResource("10_1nb10")
+particlesPrefab = ExtResource("12_syl6e")
+
+[node name="BossSpawnEnemiesBerserk" type="Node" parent="."]
+script = ExtResource("11_rk1qb")
+enemyPrefab = ExtResource("12_3sf5l")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("13_prp1y")
+life = 120.0
+maxLife = 120.0
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("15_xayuu")
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("14_lenv0")
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("17_hxakx")
+dmg = 0.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("19_kwsfx")
+shouldNotifyOut = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_4beew")
+debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]

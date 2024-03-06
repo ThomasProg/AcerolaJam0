@@ -17,10 +17,17 @@ var direction : float = 0
 
 @export var regenerationPerSecond : float = 0
 
+@export var impulseVelocity:Vector2 = Vector2.ZERO
+@export var impulseVelocityDamping:float = 10000
+
+@export var attackCooldown = 0.1
+var currentAttackCooldown = 0.0
+
 @onready var health:Health = $Health
 
 @onready var camera:Camera2D = $Camera2D
 @onready var dialogueTrigger:Area2D = $DialogueTrigger
+@onready var animationPlayer:AnimationPlayer = $AnimationPlayer
 
 enum State
 {
@@ -30,12 +37,12 @@ enum State
 	FALLING_WITH_JUMP, 
 	FALLING,
 	IN_AIR,
-	ATTACK
+	#ATTACK
 }
 
 @export var state = State.IDLE
 
-@export var sprite : CanvasItem
+@onready var sprite : CanvasItem = $MeshInstance2D
 #@export var playerState : PlayerState
 
 @onready var jump: Jump = $Jump
@@ -59,17 +66,23 @@ func _ready():
 		sprite.self_modulate = lerp(Color.BLACK, Color.WHITE, health.life / health.maxLife) 
 	)
 	
-	#playerState.onDeath.connect(func(playerState): 
-		#direction = 0
-		#velocity.x = 0
-	#)
+	health.onDeath.connect(func(killer): 
+		await get_tree().physics_frame
+		SaveManager.loadLastCheckpoint()
+	)
 	
 func _ProcessMovementInputs(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump"):
 		jump.timeSinceJumpPressed = 0.0
 		
+	var isJumping = (state == State.JUMP)
+		
 	state = jump.tryStartJump(state)	
+	
+	#if (!isJumping and (state == State.JUMP)):
+		#animationPlayer.play("jump")
+	#
 	#
 	#if state != State.JUMP and jump.durationSinceLastFloorTime < jump.coyotteTime and jump.timeSinceJumpPressed < jump.jumpBufferDuration:
 		#jump.durationSinceLastJump = 0
@@ -78,15 +91,18 @@ func _ProcessMovementInputs(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * speed
+	var axisDirection = Input.get_axis("ui_left", "ui_right")
+	if axisDirection:
+		direction =  signf(axisDirection)
+		velocity.x = direction * speed + impulseVelocity.x
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed) + impulseVelocity.x
 	
 func _physics_process(delta):
 	#if Dialogic.current_timeline != null:
 		#return
+			
+	camera.global_scale = Vector2.ONE
 			
 	state = jump.processJump(delta, state)
 		
@@ -94,6 +110,12 @@ func _physics_process(delta):
 	_ProcessMovementInputs(delta)
 
 	move_and_slide()
+	
+	var dampVelocity = impulseVelocity.normalized() * impulseVelocityDamping * delta
+	if (dampVelocity.length_squared() < impulseVelocity.length_squared()):
+		impulseVelocity -= dampVelocity
+	else:
+		impulseVelocity = Vector2.ZERO
 
 var isAttackReversed = false
 
@@ -103,9 +125,10 @@ var isAttackReversed = false
 var blockDialogue = false
 
 func _process(delta):
+	currentAttackCooldown -= delta
 	health.heal(regenerationPerSecond * delta, self)
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("dash"):
 		var npcs:Array[NPC] = []
 		for body in dialogueTrigger.get_overlapping_bodies():
 			if body is NPC:
@@ -124,29 +147,38 @@ func _process(delta):
 					)
 	
 				
-		elif state != State.ATTACK:
-			var attack = meleeAttackPrefab.instantiate() as MeleeAttack
-			add_child(attack)
-			attack.setSkillOwner(self)
-			attack.isRight = (direction > 0)
-			attack.isReversed = isAttackReversed
+		#elif state != State.ATTACK:
+		elif (currentAttackCooldown < 0.0):
+			currentAttackCooldown = attackCooldown
+			var attack = meleeAttackPrefab.instantiate() as DashAttack
+			get_parent().add_child(attack)
+			attack.global_position = global_position
+			#attack.isRight = (direction > 0)
+			#attack.isReversed = isAttackReversed
+			#attack.direction = Vector2(direction, 0)
+			if Input.is_action_just_pressed("dash"):
+				attack.direction = Vector2(1, 0)
+			if Input.is_action_just_pressed("attack"):
+				attack.direction = Vector2(-1, 0)
+			
 			attack.damages = attack.damages * dmgMultiplicator
-			isAttackReversed = !isAttackReversed
-			var previousState = state
-			state = State.ATTACK
-			velocity = Vector2(0,0)
-			attack.tree_exiting.connect(func(): state = previousState)
+			#isAttackReversed = !isAttackReversed
+			attack.setSkillOwner(self)
+			#var previousState = state
+			#state = State.ATTACK
+			#velocity = Vector2(0,0) + impulseVelocity
+			#attack.tree_exiting.connect(func(): state = previousState)
 		
-	if Input.is_action_just_pressed("changeColor"):
-		currentColorSkillIndex = (currentColorSkillIndex + 1) % (colorSkills.size() + 1)
-		if (currentColorSkill != null):
-			currentColorSkill.onRemoved()
-			currentColorSkill.queue_free()
-		
-		if (currentColorSkillIndex == 0):
-			sprite.modulate = defaultModulate
-		else:
-			currentColorSkill = colorSkills[currentColorSkillIndex - 1].new()
-			currentColorSkill.setSkillOwner(self)
-		#sprite.modulate = availableColors[currentColor]
+	#if Input.is_action_just_pressed("changeColor"):
+		#currentColorSkillIndex = (currentColorSkillIndex + 1) % (colorSkills.size() + 1)
+		#if (currentColorSkill != null):
+			#currentColorSkill.onRemoved()
+			#currentColorSkill.queue_free()
+		#
+		#if (currentColorSkillIndex == 0):
+			#sprite.modulate = defaultModulate
+		#else:
+			#currentColorSkill = colorSkills[currentColorSkillIndex - 1].new()
+			#currentColorSkill.setSkillOwner(self)
+
 		

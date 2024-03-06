@@ -1,0 +1,123 @@
+[gd_scene load_steps=21 format=3 uid="uid://dkv1t46wreme0"]
+
+[ext_resource type="Script" path="res://scripts/entities/slimeEnemy.gd" id="1_p5qrr"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ri3a4"]
+[ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="2_47821"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="3_w3xps"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_4mu16"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="6_3p45x"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="6_tut8d"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="7_uodak"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="8_20bqm"]
+[ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_f5drd"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="10_wdllu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q4ev"]
+size = Vector2(250, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5swr"]
+size = Vector2(3000, 2000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q76o"]
+size = Vector2(250, 250)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfa2w"]
+noise_type = 4
+fractal_type = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_hi2gs"]
+seamless = true
+noise = SubResource("FastNoiseLite_rfa2w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
+shader = ExtResource("2_47821")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.5
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.46
+shader_parameter/minColorMult = 0.2
+shader_parameter/u_mask = SubResource("NoiseTexture3D_hi2gs")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
+size = Vector2(500, 500)
+
+[sub_resource type="Gradient" id="Gradient_trnrj"]
+offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
+colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5oajt"]
+gradient = SubResource("Gradient_trnrj")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="SlimeEnemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_p5qrr")
+speed = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2q4ev")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("9_f5drd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_d5swr")
+debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("10_wdllu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("RectangleShape2D_5q76o")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_rtmeo")
+mesh = SubResource("QuadMesh_kkumv")
+texture = SubResource("GradientTexture2D_5oajt")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_w3xps")
+life = 8.0
+maxLife = 8.0
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("6_tut8d")
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("1_ri3a4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("5_4mu16")
+characterBody = NodePath("..")
+jumpVelocityCurve = ExtResource("6_3p45x")
+jumpDuration = 0.4
+maxJumpSpeed = 500.0
+fallingWithJumpCurve = ExtResource("7_uodak")
+fallingCurve = ExtResource("8_20bqm")
+fallDurationUntilMaxSpeed = 2.5
+maxFallingSpeed = 4000.0
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbnf05a68hdcr"]
+
+[ext_resource type="Script" path="res://scripts/skills/dashAttack.gd" id="1_cwsgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljhpx"]
+size = Vector2(50, 50)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bofxq"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 67.6
+initial_velocity_max = 203.86
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_esp12"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 67.6
+initial_velocity_max = 203.86
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+
+[sub_resource type="Curve" id="Curve_gr65g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.243094, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4fnt0"]
+curve = SubResource("Curve_gr65g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3j4gt"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 534.49
+gravity = Vector3(0, 0, 0)
+damping_min = 800.0
+damping_max = 800.0
+scale_min = 10.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_4fnt0")
+
+[sub_resource type="Animation" id="Animation_f2hid"]
+resource_name = "attack"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laser:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laser:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vs76a"]
+_data = {
+"attack": SubResource("Animation_f2hid")
+}
+
+[node name="DashAttack" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_cwsgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ljhpx")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CollisionShape2D"]
+visible = false
+position = Vector2(275, 0)
+amount = 90
+process_material = SubResource("ParticleProcessMaterial_bofxq")
+
+[node name="Laser" type="GPUParticles2D" parent="."]
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_esp12")
+lifetime = 0.3
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+position = Vector2(400, 0)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_3j4gt")
+explosiveness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vs76a")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

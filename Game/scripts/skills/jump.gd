@@ -3,7 +3,7 @@ class_name Jump
 
 @export var characterBody: CharacterBody2D
 
-@export var jumpBufferDuration = 0.13
+@export var jumpBufferDuration = 0.25
 var timeSinceJumpPressed : float = jumpBufferDuration
 
 @export var jumpVelocityCurve : Curve
@@ -57,12 +57,13 @@ func processJump(delta, state):
 	timeSinceJumpPressed += delta
 	durationSinceLastFloorTime += delta
 	
-	if (state == Player.State.ATTACK):
-		return state
+	#if (state == Player.State.ATTACK):
+		#return state
 	
 	# Add the gravity.
 	if ((not characterBody.is_on_floor())):
 		durationSinceLastJump += delta
+
 		if (characterBody.velocity.y >= 0):
 			if (state != Player.State.FALLING) and (state != Player.State.FALLING_WITH_JUMP):
 				state = Player.State.FALLING_WITH_JUMP
@@ -72,14 +73,14 @@ func processJump(delta, state):
 				
 			if (state == Player.State.FALLING_WITH_JUMP) && !Input.is_action_pressed("jump"): 
 				state = Player.State.FALLING
-				durationSinceLastFallStart = 0
+				#durationSinceLastFallStart = 0
 			
 			
-			var usedCurve = fallingWithJumpCurve
-			if (state == Player.State.FALLING):
-				usedCurve = fallingCurve
+			#var usedCurve = fallingWithJumpCurve
+			#if (state == Player.State.FALLING):
+			var usedCurve = fallingCurve
 
-			var y = usedCurve.sample(durationSinceLastFallStart / fallDurationUntilMaxSpeed)
+			var y = usedCurve.sample(clamp(durationSinceLastFallStart / fallDurationUntilMaxSpeed, 0.0, 1.0))
 			characterBody.velocity.y = y * maxFallingSpeed
 		else:
 			if (state != Player.State.JUMP):

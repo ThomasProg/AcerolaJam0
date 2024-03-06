@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdrb2s8vp6soy"]
 
-[ext_resource type="Material" uid="uid://bhkdbtehgjd1h" path="res://materials/M_blueBackground.tres" id="1_k4omc"]
-[ext_resource type="Material" uid="uid://ct4xxkxxhxe1x" path="res://materials/M_blueWalls.tres" id="2_6a6ul"]
+[ext_resource type="Material" uid="uid://bhkdbtehgjd1h" path="res://materials/environment/M_blueBackground.tres" id="1_k4omc"]
+[ext_resource type="Material" uid="uid://ct4xxkxxhxe1x" path="res://materials/environment/M_blueWalls.tres" id="2_6a6ul"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_n5urb"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_d2huw"]
 

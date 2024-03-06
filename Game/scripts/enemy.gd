@@ -1,6 +1,6 @@
 extends Node
 
-@export var dps:float = 3
+#@export var dps:float = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,9 +9,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (get_parent() is Area2D):
-		for body in get_parent().get_overlapping_bodies():
-			for child in body.get_children():
-				if (child is Health):
-					child.dealDamages(dps * delta, self)
-				
+	pass
+	#if (get_parent() is Area2D):
+		#for body in get_parent().get_overlapping_bodies():
+			#for child in body.get_children():
+				#if (child is Health):
+					#child.dealDamages(dps * delta, self)
+				#

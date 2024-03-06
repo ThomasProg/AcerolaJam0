@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dmwdaip7vte4i"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_hr1yt"]
-[ext_resource type="Shader" path="res://scripts/shaders/aberrationBlackAndWhite.gdshader" id="1_po06c"]
+[ext_resource type="Shader" path="res://shaders/aberrationBlackAndWhite.gdshader" id="1_po06c"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="2_8e76u"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nqxh5"]

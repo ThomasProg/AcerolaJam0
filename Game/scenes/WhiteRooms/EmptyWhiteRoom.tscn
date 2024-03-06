@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0wneypbee8of"]
+[gd_scene load_steps=8 format=3 uid="uid://c0wneypbee8of"]
 
-[ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/M_redBackground.tres" id="1_00qdl"]
+[ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/environment/M_redBackground.tres" id="1_00qdl"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="1_3ekbs"]
+[ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_o22rp"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="2_6u4jc"]
-[ext_resource type="Material" uid="uid://du0oj7jdvy8yc" path="res://materials/M_whiteWalls.tres" id="2_g4vag"]
+[ext_resource type="Material" uid="uid://du0oj7jdvy8yc" path="res://materials/environment/M_whiteWalls.tres" id="2_g4vag"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -16,7 +17,12 @@ agent_radius = 70.0
 
 [node name="EmptyWhiteRoom" type="Node2D"]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Env" type="Node2D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = ExtResource("1_o22rp")
+
+[node name="RoomLimits" type="MeshInstance2D" parent="Env"]
 material = ExtResource("1_00qdl")
 position = Vector2(13324.8, 2228.5)
 scale = Vector2(23462.5, 13565)
