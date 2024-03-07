@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://2pqpmlm80e3e"]
 
 [ext_resource type="Shader" path="res://shaders/backgrounds/greenBackground.gdshader" id="1_l27m8"]
-[ext_resource type="Texture2D" uid="uid://cby63d1v010mj" path="res://Textures/backgroundNoise.tres" id="2_0hemx"]
+[ext_resource type="Texture2D" uid="uid://cby63d1v010mj" path="res://textures/backgroundNoise.tres" id="2_0hemx"]
 
 [resource]
 shader = ExtResource("1_l27m8")

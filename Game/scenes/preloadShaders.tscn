@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyqgyp0xwaj4u"]
+
+[ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="1_7eanq"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="2_tcv07"]
+[ext_resource type="Texture2D" uid="uid://bdloid1gblhy4" path="res://textures/enemies/T_Slime.tres" id="3_4jsq3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_135te"]
+shader = ExtResource("1_7eanq")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/u_color = null
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
+shader_parameter/u_mask = ExtResource("2_tcv07")
+
+[sub_resource type="QuadMesh" id="QuadMesh_q6pn2"]
+size = Vector2(100, 100)
+
+[node name="PreloadShaders" type="SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_135te")
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_4jsq3")

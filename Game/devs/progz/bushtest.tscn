@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://craqlrxnqo016"]
 
-[ext_resource type="Texture2D" uid="uid://flo384hb3kgn" path="res://Textures/circleWithBorder.tres" id="1_qt26d"]
+[ext_resource type="Texture2D" uid="uid://flo384hb3kgn" path="res://textures/circleWithBorder.tres" id="1_qt26d"]
 
 [node name="Node2D" type="Node2D"]
 

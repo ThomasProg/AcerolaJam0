@@ -14,8 +14,8 @@ config/name="ShapeJourney"
 run/main_scene="res://scenes/WhiteRooms/White1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://Textures/gameIcon.png"
-config/icon="res://Textures/gameIcon.png"
+boot_splash/image="res://textures/gameIcon.png"
+config/icon="res://textures/gameIcon.png"
 run/first_room="res://scenes/WhiteRooms/White1.tscn"
 
 [autoload]

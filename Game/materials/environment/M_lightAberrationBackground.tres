@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://fpkeludf6glu"]
 
 [ext_resource type="Shader" path="res://shaders/backgrounds/aberrationBackground.gdshader" id="1_2q4jm"]
-[ext_resource type="Texture2D" uid="uid://cby63d1v010mj" path="res://Textures/backgroundNoise.tres" id="2_6cf7b"]
+[ext_resource type="Texture2D" uid="uid://cby63d1v010mj" path="res://textures/backgroundNoise.tres" id="2_6cf7b"]
 
 [resource]
 shader = ExtResource("1_2q4jm")

@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkv1t46wreme0"]
+[gd_scene load_steps=19 format=3 uid="uid://dkv1t46wreme0"]
 
 [ext_resource type="Script" path="res://scripts/entities/slimeEnemy.gd" id="1_p5qrr"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ri3a4"]
 [ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="2_47821"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_w3xps"]
-[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/enemySeemlessNoise2D.tres" id="5_2oql1"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="5_2oql1"]
 [ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_4mu16"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="6_3p45x"]
+[ext_resource type="Texture2D" uid="uid://bdloid1gblhy4" path="res://textures/enemies/T_Slime.tres" id="6_t3sv6"]
 [ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="6_tut8d"]
 [ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="7_uodak"]
 [ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="8_20bqm"]
@@ -34,18 +35,6 @@ shader_parameter/u_mask = ExtResource("5_2oql1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)
-
-[sub_resource type="Gradient" id="Gradient_trnrj"]
-offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
-colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5oajt"]
-gradient = SubResource("Gradient_trnrj")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="SlimeEnemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -78,7 +67,7 @@ debug_color = Color(0.996078, 0, 0.219608, 0.419608)
 [node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_rtmeo")
 mesh = SubResource("QuadMesh_kkumv")
-texture = SubResource("GradientTexture2D_5oajt")
+texture = ExtResource("6_t3sv6")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_w3xps")

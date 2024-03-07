@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://diq55qywusa"]
 
 [ext_resource type="Shader" path="res://shaders/rotatingTriangleEnemy.gdshader" id="1_u8ch0"]
-[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/enemySeemlessNoise2D.tres" id="2_pedi3"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="2_pedi3"]
 
 [resource]
 shader = ExtResource("1_u8ch0")

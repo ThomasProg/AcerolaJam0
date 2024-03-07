@@ -7,7 +7,7 @@
 [ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_e6bc3"]
 [ext_resource type="Shader" path="res://shaders/triangleAberrationAura.gdshader" id="6_5y6bw"]
 [ext_resource type="Material" uid="uid://bpcv64mwqo3hs" path="res://materials/entities/M_RedBoss.tres" id="7_hlol5"]
-[ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://Textures/T_Boss.tres" id="8_irt40"]
+[ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="8_irt40"]
 [ext_resource type="Script" path="res://scripts/skills/charging.gd" id="8_tqa7i"]
 [ext_resource type="Script" path="res://scripts/skills/growPikes.gd" id="9_vy62b"]
 [ext_resource type="PackedScene" uid="uid://dhpe10uow08f2" path="res://gameplayObjects/enemies/red/spikeEnemy.tscn" id="10_1nb10"]

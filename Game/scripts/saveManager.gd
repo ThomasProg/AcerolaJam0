@@ -14,15 +14,29 @@ func _ready():
 	
 	preloadDialogic()	
 	preloadNextRooms()
+	ResourceLoader.load_threaded_request("res://Textures/enemySeemlessNoise2D.tres")
+	ResourceLoader.load_threaded_request("res://Textures/enemies/T_Slime.tres")	
+	
+	var packedScene = ResourceLoader.load("res://scenes/preloadShaders.tscn") as PackedScene
+	var preloadShaders = packedScene.instantiate()
+	
+	await get_tree().process_frame
+	get_tree().root.add_child(preloadShaders)
+	#await get_tree().process_frame
+	#await get_tree().process_frame
+	#await get_tree().process_frame
+	#preloadShaders.queue_free()
+	
 	
 func preloadDialogic():
 	#ResourceLoader.load_threaded_request(ProjectSettings.get_setting("dialogic/layout/default_style"))
 	var defaultStyle:DialogicStyle = ResourceLoader.load(ProjectSettings.get_setting("dialogic/layout/default_style")) as DialogicStyle
 	defaultStyle.prepare()
 	
-	var styles:Array[String] = ProjectSettings.get_setting("dialogic/layout/style_list")
+	var styles:Array = ProjectSettings.get_setting("dialogic/layout/style_list")
 	for style in styles:
-		ResourceLoader.load_threaded_request(style)
+		if (style is String):
+			ResourceLoader.load_threaded_request(style)
 
 func preloadNextRooms():
 	if (currentRoom == null):
