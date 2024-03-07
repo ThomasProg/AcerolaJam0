@@ -125,8 +125,8 @@ position = Vector2(8051, 8377)
 
 [node name="RoomExit_up" parent="." instance=ExtResource("9_1mlud")]
 position = Vector2(15223, -3712)
-nextRoom = "res://scenes/WhiteRooms/White4.tscn"
-nextExitName = "RoomExit_up"
+nextRoom = "res://scenes/WhiteRooms/White3.tscn"
+nextExitName = "RoomExit_down"
 metadata/_edit_lock_ = true
 
 [node name="PlayerEnter" parent="RoomExit_up" index="0"]

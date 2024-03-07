@@ -20,14 +20,15 @@ var direction : float = 0
 @export var impulseVelocity:Vector2 = Vector2.ZERO
 @export var impulseVelocityDamping:float = 10000
 
-@export var attackCooldown = 0.1
-var currentAttackCooldown = 0.0
+@export var attackCooldown:float = 0.1
+var currentAttackCooldown:float = 0.0
 
 @onready var health:Health = $Health
 
 @onready var camera:Camera2D = $Camera2D
 @onready var dialogueTrigger:Area2D = $DialogueTrigger
 @onready var animationPlayer:AnimationPlayer = $AnimationPlayer
+@onready var ingameMenu: CanvasLayer = $InGameMenu
 
 enum State
 {
@@ -72,31 +73,29 @@ func _ready():
 	)
 	
 func _ProcessMovementInputs(delta):
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump"):
-		jump.timeSinceJumpPressed = 0.0
-		
-	var isJumping = (state == State.JUMP)
-		
-	state = jump.tryStartJump(state)	
+	var isTalking = processInputs()
 	
-	#if (!isJumping and (state == State.JUMP)):
-		#animationPlayer.play("jump")
-	#
-	#
-	#if state != State.JUMP and jump.durationSinceLastFloorTime < jump.coyotteTime and jump.timeSinceJumpPressed < jump.jumpBufferDuration:
-		#jump.durationSinceLastJump = 0
-		#velocity.y = - jump.maxJumpSpeed
-		#state = State.JUMP
+	if (!isTalking and Dialogic.current_timeline == null):
+		# Handle Jump.
+		if Input.is_action_just_pressed("jump"):
+			jump.timeSinceJumpPressed = 0.0
+			
+		var isJumping = (state == State.JUMP)
+			
+		state = jump.tryStartJump(state)	
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var axisDirection = Input.get_axis("ui_left", "ui_right")
-	if axisDirection:
-		direction =  signf(axisDirection)
-		velocity.x = direction * speed + impulseVelocity.x
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var axisDirection = Input.get_axis("ui_left", "ui_right")
+		if axisDirection:
+			direction = signf(axisDirection)
+			velocity.x = direction * speed + impulseVelocity.x
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed) + impulseVelocity.x
+			
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed) + impulseVelocity.x
+		direction = 0
+		velocity.x = 0
 	
 func _physics_process(delta):
 	#if Dialogic.current_timeline != null:
@@ -106,9 +105,8 @@ func _physics_process(delta):
 			
 	state = jump.processJump(delta, state)
 		
-	#if (!playerState.isDead):
 	_ProcessMovementInputs(delta)
-
+		
 	move_and_slide()
 	
 	var dampVelocity = impulseVelocity.normalized() * impulseVelocityDamping * delta
@@ -124,11 +122,11 @@ var isAttackReversed = false
 
 var blockDialogue = false
 
-func _process(delta):
-	currentAttackCooldown -= delta
-	health.heal(regenerationPerSecond * delta, self)
+func processInputs():
+	if (Input.is_action_just_pressed("openInGameMenu")):
+		ingameMenu.visible = !ingameMenu.visible 
 	
-	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("talk"):
 		var npcs:Array[NPC] = []
 		for body in dialogueTrigger.get_overlapping_bodies():
 			if body is NPC:
@@ -145,10 +143,12 @@ func _process(delta):
 					await get_tree().process_frame
 					blockDialogue = false
 					)
+				return true
 	
 				
 		#elif state != State.ATTACK:
-		elif (currentAttackCooldown < 0.0):
+	if Dialogic.current_timeline == null and (Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("dash")):
+		if (currentAttackCooldown < 0.0):
 			currentAttackCooldown = attackCooldown
 			var attack = meleeAttackPrefab.instantiate() as DashAttack
 			get_parent().add_child(attack)
@@ -181,4 +181,11 @@ func _process(delta):
 			#currentColorSkill = colorSkills[currentColorSkillIndex - 1].new()
 			#currentColorSkill.setSkillOwner(self)
 
+	return false
+
+func _process(delta):
+	currentAttackCooldown -= delta
+	health.heal(regenerationPerSecond * delta, self)
+	
+	#processInputs()
 		

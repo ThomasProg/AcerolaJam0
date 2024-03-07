@@ -23,7 +23,6 @@ roomLimits = NodePath("Env/RoomLimits")
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)
-scale = Vector2(1, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
 environment = ExtResource("6_x42kh")

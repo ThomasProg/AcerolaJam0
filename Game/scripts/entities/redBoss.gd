@@ -15,6 +15,11 @@ extends CharacterBody2D
 
 @onready var health:Health = $Health
 
+# UI
+@onready var bossUI:Node = $CanvasLayer
+@onready var bossProgressBar:ProgressBar = $CanvasLayer/MarginContainer/VBoxContainer/ProgressBar
+@onready var bossLabel:RichTextLabel = $CanvasLayer/MarginContainer/VBoxContainer/RichTextLabel
+
 var angularVelocity:float = 0.0
 var angularVelocityDampening:float = 2*PI
 
@@ -135,8 +140,19 @@ func _ready():
 			charging = $ChargingBerserk
 			spawnEnemies = $BossSpawnEnemiesBerserk
 			growSpikes = $GrowSpikesBerserk
+			
+		bossProgressBar.min_value = 0
+		bossProgressBar.max_value = health.maxLife
+		bossProgressBar.value = health.life
+		remove_child(bossUI)
+		get_parent().add_child(bossUI)
 		)
 			
+	health.onDeath.connect(func(killer:Node):
+		
+		bossProgressBar.value = 0
+		bossLabel.text = "[center]This is the end of the demo\nThanks for playing![/center]"
+		)
 
 
 func _physics_process(delta):

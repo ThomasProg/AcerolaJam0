@@ -5,11 +5,11 @@ extends AudioStreamPlayer
 
 ## Sound to be played if one of the sibling ChoiceButtons is pressed. 
 ## If sibling ChoiceButton has a sound_pressed set, that is prioritized.
-@export var sound_pressed:AudioStream
-## Sound to be played on hover. See [sound_pressed] for more.
-@export var sound_hover:AudioStream
-## Sound to be played on focus. See [sound_pressed] for more.
-@export var sound_focus:AudioStream
+#@export var sound_pressed:AudioStream
+### Sound to be played on hover. See [sound_pressed] for more.
+#@export var sound_hover:AudioStream
+### Sound to be played on focus. See [sound_pressed] for more.
+#@export var sound_focus:AudioStream
 
 func _ready():
 	add_to_group('dialogic_button_sound')
@@ -35,18 +35,18 @@ func _connect_all_buttons():
 func _on_pressed(custom_sound) -> void:
 	if custom_sound != null:
 		play_sound(custom_sound)
-	else:
-		play_sound(sound_pressed)
+	#else:
+		#play_sound(sound_pressed)
 
 func _on_hover(custom_sound) -> void:
 	if custom_sound != null:
 		play_sound(custom_sound)
-	else:
-		play_sound(sound_hover)
+	#else:
+		#play_sound(sound_hover)
 
 func _on_focus(custom_sound) -> void:
 	if custom_sound != null:
 		play_sound(custom_sound)
-	else:
-		play_sound(sound_focus)
+	#else:
+		#play_sound(sound_focus)
 

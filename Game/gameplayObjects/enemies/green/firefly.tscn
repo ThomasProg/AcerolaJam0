@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://ch3pcjycnxoub"]
+
+[ext_resource type="Script" path="res://scripts/entities/firefly.gd" id="1_qd4xg"]
+[ext_resource type="Shader" path="res://shaders/aberrationRadial.gdshader" id="2_anux5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8yfm"]
+radius = 50.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5pipw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w8ifw"]
+noise = SubResource("FastNoiseLite_5pipw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nk26a"]
+shader = ExtResource("2_anux5")
+shader_parameter/apply = true
+shader_parameter/amount = 2.0
+shader_parameter/green = 0.32
+shader_parameter/offset_texture = SubResource("NoiseTexture2D_w8ifw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_n7lk2"]
+size = Vector2(200, 200)
+
+[sub_resource type="Gradient" id="Gradient_oxwai"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6idgm"]
+gradient = SubResource("Gradient_oxwai")
+width = 255
+height = 255
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="firefly" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_qd4xg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_d8yfm")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_nk26a")
+mesh = SubResource("QuadMesh_n7lk2")
+texture = SubResource("GradientTexture2D_6idgm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

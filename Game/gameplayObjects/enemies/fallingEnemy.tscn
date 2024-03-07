@@ -43,7 +43,6 @@ mesh = SubResource("QuadMesh_n7lk2")
 texture = SubResource("GradientTexture2D_lstwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_yj1a2")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

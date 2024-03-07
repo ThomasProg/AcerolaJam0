@@ -35,7 +35,6 @@ isCheckpoint = true
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)
-scale = Vector2(1, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
 environment = ExtResource("2_p0fck")
@@ -115,7 +114,7 @@ metadata/_edit_lock_ = true
 
 [node name="RoomExit_left" parent="." instance=ExtResource("8_6perk")]
 position = Vector2(7774, 9716)
-nextRoom = "res://scenes/WhiteRooms/White4.tscn"
+nextRoom = "res://scenes/RedRooms/Red4.tscn"
 metadata/_edit_lock_ = true
 
 [node name="PlayerEnter" parent="RoomExit_left" index="0"]
