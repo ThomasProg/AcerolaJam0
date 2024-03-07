@@ -1,29 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://c58hmb2dnj2i8"]
+[gd_scene load_steps=16 format=3 uid="uid://c58hmb2dnj2i8"]
 
 [ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_vmr8y"]
-[ext_resource type="Shader" path="res://shaders/aberrationBlackAndWhite.gdshader" id="2_n1w13"]
+[ext_resource type="Shader" path="res://shaders/flyingEnemy.gdshader" id="2_n7qhc"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_0bj2p"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/seemlessNoise2D.tres" id="3_1plgn"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_qqvdq"]
 [ext_resource type="Script" path="res://scripts/detectionOutArea.gd" id="6_gwhh4"]
 [ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_lhuxo"]
 [ext_resource type="Script" path="res://scripts/damageArea.gd" id="10_w8gxl"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfa2w"]
-noise_type = 4
-fractal_type = 2
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_hi2gs"]
-seamless = true
-noise = SubResource("FastNoiseLite_rfa2w")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
-shader = ExtResource("2_n1w13")
+shader = ExtResource("2_n7qhc")
 shader_parameter/u_resolution = Vector2(500, 500)
-shader_parameter/u_speed = 0.5
+shader_parameter/u_speed = 0.3
 shader_parameter/u_color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.46
 shader_parameter/minColorMult = 0.2
-shader_parameter/u_mask = SubResource("NoiseTexture3D_hi2gs")
+shader_parameter/u_mask = ExtResource("3_1plgn")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)
@@ -73,6 +66,7 @@ max_speed = 1600.0
 debug_enabled = true
 
 [node name="DetectionOutArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("6_gwhh4")
@@ -82,6 +76,7 @@ shape = SubResource("CircleShape2D_k2m0v")
 debug_color = Color(0, 0.576471, 0.678431, 0.0862745)
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("9_lhuxo")
@@ -92,6 +87,7 @@ shape = SubResource("CircleShape2D_nla1m")
 debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("10_w8gxl")
