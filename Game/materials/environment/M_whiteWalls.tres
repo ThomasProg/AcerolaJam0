@@ -1,15 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://du0oj7jdvy8yc"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://du0oj7jdvy8yc"]
 
 [ext_resource type="Shader" path="res://shaders/backgrounds/whiteBackground.gdshader" id="1_opbfk"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vbaen"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qr2kv"]
-noise = SubResource("FastNoiseLite_vbaen")
+[ext_resource type="Texture2D" uid="uid://cby63d1v010mj" path="res://Textures/backgroundNoise.tres" id="2_ym71s"]
 
 [resource]
 shader = ExtResource("1_opbfk")
 shader_parameter/color1 = Color(0.113725, 0.113725, 0.113725, 1)
 shader_parameter/color2 = Color(0.156863, 0.156863, 0.156863, 1)
 shader_parameter/color3 = Color(0.215686, 0.215686, 0.215686, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_qr2kv")
+shader_parameter/noise = ExtResource("2_ym71s")

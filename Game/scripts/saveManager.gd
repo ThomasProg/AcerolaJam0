@@ -11,6 +11,28 @@ func _ready():
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")
 	currentCheckpoint.exit = ""
+	
+	preloadDialogic()	
+	preloadNextRooms()
+	
+func preloadDialogic():
+	#ResourceLoader.load_threaded_request(ProjectSettings.get_setting("dialogic/layout/default_style"))
+	var defaultStyle:DialogicStyle = ResourceLoader.load(ProjectSettings.get_setting("dialogic/layout/default_style")) as DialogicStyle
+	defaultStyle.prepare()
+	
+	var styles:Array[String] = ProjectSettings.get_setting("dialogic/layout/style_list")
+	for style in styles:
+		ResourceLoader.load_threaded_request(style)
+
+func preloadNextRooms():
+	if (currentRoom == null):
+		return
+		
+	var exits = currentRoom.findAllExits()
+	for roomExit in exits:
+		ResourceLoader.load_threaded_request(roomExit.nextRoom)
+		
+		#Dialogic.preload_timeline()
 
 func saveCheckpoint(checkpointName:String):
 	ResourceSaver.save(currentCheckpoint, checkpointName)
@@ -58,3 +80,5 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 
 	currentRoom = room
 	currentRoomPath = newRoomPath
+	preloadNextRooms()
+	

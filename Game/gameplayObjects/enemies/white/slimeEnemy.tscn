@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ri3a4"]
 [ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="2_47821"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_w3xps"]
-[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/seemlessNoise2D.tres" id="5_2oql1"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/enemySeemlessNoise2D.tres" id="5_2oql1"]
 [ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_4mu16"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="6_3p45x"]
 [ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="6_tut8d"]
@@ -29,6 +29,7 @@ shader_parameter/u_speed = 0.3
 shader_parameter/u_color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.46
 shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
 shader_parameter/u_mask = ExtResource("5_2oql1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]

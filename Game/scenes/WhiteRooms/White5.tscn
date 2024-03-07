@@ -225,7 +225,7 @@ nextRoom = "res://scenes/RedRooms/Red4.tscn"
 nextExitName = "RoomExit_left"
 
 [node name="PlayerEnter" parent="RoomExit_down" index="0"]
-position = Vector2(-430, 272)
+position = Vector2(-1578, -1713)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_down"]
 shape = SubResource("RectangleShape2D_jndou")

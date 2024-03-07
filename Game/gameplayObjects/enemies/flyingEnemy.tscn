@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_vmr8y"]
 [ext_resource type="Shader" path="res://shaders/flyingEnemy.gdshader" id="2_n7qhc"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_0bj2p"]
-[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/seemlessNoise2D.tres" id="3_1plgn"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://Textures/enemySeemlessNoise2D.tres" id="3_1plgn"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_qqvdq"]
 [ext_resource type="Script" path="res://scripts/detectionOutArea.gd" id="6_gwhh4"]
 [ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_lhuxo"]
@@ -16,6 +16,7 @@ shader_parameter/u_speed = 0.3
 shader_parameter/u_color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.46
 shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
 shader_parameter/u_mask = ExtResource("3_1plgn")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
