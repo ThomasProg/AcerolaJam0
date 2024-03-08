@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://i7b8wupc7ml6"]
+
+[ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_oisyo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a3wpn"]
+radius = 200.0
+height = 400.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wincv"]
+radius = 200.0
+
+[node name="FlyingPlatform" type="AnimatableBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_oisyo")
+radius = 200
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.278431, 0.831373, 0.462745, 1)
+mesh = SubResource("SphereMesh_a3wpn")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wincv")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 200.0
+neighbor_distance = 2000.0
+max_speed = 1200.0

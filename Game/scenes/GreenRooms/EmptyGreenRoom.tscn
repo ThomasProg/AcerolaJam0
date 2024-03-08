@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://brohcba2s1rk"]
+[gd_scene load_steps=9 format=3 uid="uid://brohcba2s1rk"]
 
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_5t4nf"]
 [ext_resource type="Material" uid="uid://bv518tpdeix5y" path="res://materials/environment/M_greenBackground.tres" id="1_ptfni"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_y6le2"]
 [ext_resource type="Material" uid="uid://2pqpmlm80e3e" path="res://materials/environment/M_greenWalls.tres" id="2_mq30n"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_yyysg"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_jdbiu"]
@@ -15,7 +16,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(697, 1193, 25182, 1193,
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 70.0
 
-[node name="EmptyGreenRoom" type="Node2D"]
+[node name="EmptyGreenRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+script = ExtResource("1_y6le2")
+roomLimits = NodePath("Env/RoomLimits")
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)

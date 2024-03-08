@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdrb2s8vp6soy"]
+[gd_scene load_steps=11 format=3 uid="uid://cdrb2s8vp6soy"]
 
 [ext_resource type="Material" uid="uid://bhkdbtehgjd1h" path="res://materials/environment/M_blueBackground.tres" id="1_k4omc"]
 [ext_resource type="Material" uid="uid://ct4xxkxxhxe1x" path="res://materials/environment/M_blueWalls.tres" id="2_6a6ul"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_n5urb"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_d2huw"]
+[ext_resource type="Material" uid="uid://bpcv64mwqo3hs" path="res://materials/entities/M_RedBoss.tres" id="5_3co3x"]
+[ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="6_y0y1q"]
+[ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/enemies/white/slimeEnemy.tscn" id="7_r4qlc"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -13,6 +16,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-10788, -5916, 13053, -5809, 13591, 8507, -11111, 8776)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 70.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_1sfoj"]
+size = Vector2(500, 500)
 
 [node name="EmptyRedRoom" type="Node2D"]
 
@@ -40,3 +46,18 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_d2huw")]
 position = Vector2(-7866, 768)
+
+[node name="ThrowTriangleAbility" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ThrowTriangleAbility"]
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="ThrowTriangleAbility"]
+material = ExtResource("5_3co3x")
+mesh = SubResource("QuadMesh_1sfoj")
+texture = ExtResource("6_y0y1q")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SlimeEnemy" parent="." instance=ExtResource("7_r4qlc")]
+position = Vector2(-4436, 1728)

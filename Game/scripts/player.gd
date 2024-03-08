@@ -30,6 +30,7 @@ var currentAttackCooldown:float = 0.0
 @onready var animationPlayer:AnimationPlayer = $AnimationPlayer
 @onready var ingameMenu: CanvasLayer = $InGameMenu
 
+
 enum State
 {
 	IDLE,
@@ -49,6 +50,7 @@ enum State
 @onready var jump: Jump = $Jump
 
 func _ready():
+	camera.ignore_rotation = true
 	colorSkills = [RedPowerUp, GreenPowerUp, BluePowerUp]
 	health.onDamage.connect(func(attacker): 
 		#defaultModulate = lerp(Color.BLACK, Color.WHITE, health.life / health.maxLife) 
@@ -122,6 +124,8 @@ var isAttackReversed = false
 
 var blockDialogue = false
 
+var rotateChargeAbility:RotateChargeAbility = null
+
 func processInputs():
 	if (Input.is_action_just_pressed("openInGameMenu")):
 		ingameMenu.visible = !ingameMenu.visible 
@@ -147,27 +151,39 @@ func processInputs():
 	
 				
 		#elif state != State.ATTACK:
-	if Dialogic.current_timeline == null and (Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("dash")):
-		if (currentAttackCooldown < 0.0):
-			currentAttackCooldown = attackCooldown
-			var attack = meleeAttackPrefab.instantiate() as DashAttack
-			get_parent().add_child(attack)
-			attack.global_position = global_position
-			#attack.isRight = (direction > 0)
-			#attack.isReversed = isAttackReversed
-			#attack.direction = Vector2(direction, 0)
-			if Input.is_action_just_pressed("dash"):
-				attack.direction = Vector2(1, 0)
-			if Input.is_action_just_pressed("attack"):
-				attack.direction = Vector2(-1, 0)
-			
-			attack.damages = attack.damages * dmgMultiplicator
-			#isAttackReversed = !isAttackReversed
-			attack.setSkillOwner(self)
-			#var previousState = state
-			#state = State.ATTACK
-			#velocity = Vector2(0,0) + impulseVelocity
-			#attack.tree_exiting.connect(func(): state = previousState)
+	if Dialogic.current_timeline == null:
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("dash"):
+			if (currentAttackCooldown < 0.0):
+				currentAttackCooldown = attackCooldown
+				var attack = meleeAttackPrefab.instantiate() as DashAttack
+				get_parent().add_child(attack)
+				attack.global_position = global_position
+				#attack.isRight = (direction > 0)
+				#attack.isReversed = isAttackReversed
+				#attack.direction = Vector2(direction, 0)
+				if Input.is_action_just_pressed("dash"):
+					attack.direction = Vector2(1, 0)
+				if Input.is_action_just_pressed("attack"):
+					attack.direction = Vector2(-1, 0)
+				
+				attack.damages = attack.damages * dmgMultiplicator
+				#isAttackReversed = !isAttackReversed
+				attack.setSkillOwner(self)
+				#var previousState = state
+				#state = State.ATTACK
+				#velocity = Vector2(0,0) + impulseVelocity
+				#attack.tree_exiting.connect(func(): state = previousState)
+		
+		if Input.is_action_just_pressed("rotateChargeAbility"):
+			if (rotateChargeAbility == null):
+				rotateChargeAbility = RotateChargeAbility.new()
+				rotateChargeAbility.skillOwner = self
+				add_child(rotateChargeAbility)
+				rotateChargeAbility.start()
+			else:
+				rotateChargeAbility.stop()
+				rotateChargeAbility.queue_free()
+				rotateChargeAbility = null
 		
 	#if Input.is_action_just_pressed("changeColor"):
 		#currentColorSkillIndex = (currentColorSkillIndex + 1) % (colorSkills.size() + 1)

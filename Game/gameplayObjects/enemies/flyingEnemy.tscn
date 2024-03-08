@@ -22,12 +22,12 @@ shader_parameter/u_mask = ExtResource("3_1plgn")
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)
 
-[sub_resource type="Gradient" id="Gradient_trnrj"]
+[sub_resource type="Gradient" id="Gradient_1bg4p"]
 offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
 colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5oajt"]
-gradient = SubResource("Gradient_trnrj")
+gradient = SubResource("Gradient_1bg4p")
 width = 512
 height = 512
 fill = 1
@@ -47,7 +47,7 @@ radius = 150.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_vmr8y")
 
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_rtmeo")
 mesh = SubResource("QuadMesh_kkumv")
 texture = SubResource("GradientTexture2D_5oajt")
@@ -64,7 +64,6 @@ script = ExtResource("4_qqvdq")
 avoidance_enabled = true
 radius = 100.0
 max_speed = 1600.0
-debug_enabled = true
 
 [node name="DetectionOutArea" type="Area2D" parent="."]
 visible = false
@@ -77,7 +76,6 @@ shape = SubResource("CircleShape2D_k2m0v")
 debug_color = Color(0, 0.576471, 0.678431, 0.0862745)
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("9_lhuxo")
@@ -97,7 +95,6 @@ script = ExtResource("10_w8gxl")
 shape = SubResource("CircleShape2D_pskhr")
 debug_color = Color(0.996078, 0, 0.219608, 0.419608)
 
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_exited" from="DetectionOutArea" to="DetectionOutArea" method="_on_body_exited"]
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]

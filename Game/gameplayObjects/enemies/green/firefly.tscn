@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ch3pcjycnxoub"]
 
-[ext_resource type="Script" path="res://scripts/entities/firefly.gd" id="1_qd4xg"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="1_qb7vp"]
 [ext_resource type="Shader" path="res://shaders/aberrationRadial.gdshader" id="2_anux5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8yfm"]
@@ -35,10 +35,9 @@ fill_to = Vector2(0.5, 0)
 [node name="firefly" type="Area2D"]
 collision_layer = 4
 collision_mask = 9
-script = ExtResource("1_qd4xg")
+script = ExtResource("1_qb7vp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_d8yfm")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]

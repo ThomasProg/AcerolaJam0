@@ -144,12 +144,11 @@ func _ready():
 		bossProgressBar.min_value = 0
 		bossProgressBar.max_value = health.maxLife
 		bossProgressBar.value = health.life
-		remove_child(bossUI)
-		get_parent().add_child(bossUI)
 		)
 			
 	health.onDeath.connect(func(killer:Node):
-		
+		remove_child(bossUI)
+		get_parent().add_child(bossUI)
 		bossProgressBar.value = 0
 		bossLabel.text = "[center]This is the end of the demo\nThanks for playing![/center]"
 		)

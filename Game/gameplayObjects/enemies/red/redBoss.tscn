@@ -1,11 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://8sg37qut2lmd"]
+[gd_scene load_steps=18 format=3 uid="uid://8sg37qut2lmd"]
 
 [ext_resource type="Script" path="res://scripts/entities/redBoss.gd" id="1_6k66t"]
-[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="2_1rmnh"]
-[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="3_4nib3"]
-[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="4_1qhyc"]
-[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_e6bc3"]
-[ext_resource type="Shader" path="res://shaders/triangleAberrationAura.gdshader" id="6_5y6bw"]
 [ext_resource type="Material" uid="uid://bpcv64mwqo3hs" path="res://materials/entities/M_RedBoss.tres" id="7_hlol5"]
 [ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="8_irt40"]
 [ext_resource type="Script" path="res://scripts/skills/charging.gd" id="8_tqa7i"]
@@ -19,26 +14,6 @@
 [ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="15_xayuu"]
 [ext_resource type="Script" path="res://scripts/damageArea.gd" id="17_hxakx"]
 [ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="19_kwsfx"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5px2l"]
-noise_type = 0
-frequency = 0.084
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_hi2gs"]
-seamless = true
-noise = SubResource("FastNoiseLite_5px2l")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6c1ng"]
-shader = ExtResource("6_5y6bw")
-shader_parameter/u_resolution = Vector2(500, 500)
-shader_parameter/u_speed = 5.82
-shader_parameter/u_color = Color(1, 1, 1, 1)
-shader_parameter/amount = 0.8
-shader_parameter/minColorMult = 0.2
-shader_parameter/u_mask = SubResource("NoiseTexture3D_hi2gs")
-
-[sub_resource type="QuadMesh" id="QuadMesh_lim1o"]
-size = Vector2(350, 350)
 
 [sub_resource type="QuadMesh" id="QuadMesh_qqx0d"]
 size = Vector2(500, 500)
@@ -56,22 +31,6 @@ script = ExtResource("1_6k66t")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
 target_desired_distance = 100.0
-
-[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
-script = ExtResource("2_1rmnh")
-characterBody = NodePath("..")
-jumpVelocityCurve = ExtResource("3_4nib3")
-fallingWithJumpCurve = ExtResource("4_1qhyc")
-fallingCurve = ExtResource("5_e6bc3")
-nbMaxAirJumps = 1
-nbAirJumpsLeft = 1
-
-[node name="Aura" type="MeshInstance2D" parent="."]
-visible = false
-modulate = Color(0.592157, 0.207843, 0.439216, 0.392157)
-material = SubResource("ShaderMaterial_6c1ng")
-position = Vector2(0, -100)
-mesh = SubResource("QuadMesh_lim1o")
 
 [node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
 material = ExtResource("7_hlol5")

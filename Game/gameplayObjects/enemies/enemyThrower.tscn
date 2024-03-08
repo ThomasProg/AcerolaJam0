@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://c88kq3pxww3ae"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemyThrower.gd" id="1_rc5gv"]
-[ext_resource type="PackedScene" uid="uid://vlxakc8grnel" path="res://gameplayObjects/enemies/fallingEnemy.tscn" id="2_5eyvp"]
+[ext_resource type="PackedScene" uid="uid://vlxakc8grnel" path="res://gameplayObjects/enemies/fallingEnemy.tscn" id="2_sqox5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e36x8"]
 
 [node name="enemyThrower" type="Node2D"]
 script = ExtResource("1_rc5gv")
-instantiated = ExtResource("2_5eyvp")
+instantiated = ExtResource("2_sqox5")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0

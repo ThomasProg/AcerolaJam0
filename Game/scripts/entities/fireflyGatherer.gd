@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export var amount:int = 10
@@ -7,7 +8,7 @@ extends Node2D
 @export var maxSpeedAtSpreading:float = 4000
 @export var maxSpreadRange:float = 300
 @export var accelerationAtSpreading:float = 4000
-@export var gathering:bool = true
+@export var gathering:bool = false
 
 @export var player:Player
 
@@ -16,9 +17,10 @@ var firefliesVelocities:Array[Vector2] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gathering = true
 	for child in get_children():
-		if (child is Firefly):
-			fireflies.push_back(child)
+		#if (child is Firefly):
+		fireflies.push_back(child)
 			
 	firefliesVelocities.resize(fireflies.size())
 
@@ -28,10 +30,13 @@ static func rand_point_in_circle(p_radius = 1.0): # Unit length by default.
 	return Vector2(r * cos(t), r * sin(t))
 
 func _physics_process(delta):
-	if (player.velocity.is_zero_approx()):
-		gathering = true
-	else:
+	if Engine.is_editor_hint():
 		gathering = false
+	else:
+		if (player.velocity.is_zero_approx()):
+			gathering = true
+		else:
+			gathering = false
 	
 	for i in range(fireflies.size()):
 		var firefly = fireflies[i]

@@ -44,6 +44,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 10
+collision_mask = 65
 script = ExtResource("1_mbevd")
 meleeAttackPrefab = ExtResource("2_tytx6")
 
@@ -54,7 +55,6 @@ mesh = SubResource("QuadMesh_ejxjl")
 shape = SubResource("RectangleShape2D_pe4gd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-368, 8)
 zoom = Vector2(0.225, 0.225)
 
 [node name="JumpResetArea" type="Area2D" parent="." node_paths=PackedStringArray("player")]
