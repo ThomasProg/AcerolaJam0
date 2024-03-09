@@ -21,13 +21,13 @@ class_name DashAttack
 
 var touchedEnemies = []
 
-func setSkillOwner(newOwner: Player):
+func setSkillOwner(newOwner: Node2D):
 	skillOwner = newOwner
 	
 	look_at(to_global(direction))
 	
 	skillOwner.impulseVelocity = - direction * impulseSpeed
-	
+
 	
 	var space_state = get_world_2d().direct_space_state
 	var endPosition = global_position + direction * maxDist

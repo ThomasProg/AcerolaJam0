@@ -15,11 +15,23 @@ class_name NPC
 
 @onready var jump: Jump = $Jump
 @onready var navAgent: NavigationAgent2D = $NavigationAgent2D
+@onready var meleeAttackPrefab:PackedScene = load("res://prefabs/skills/dashAttack.tscn")
+
+@export var impulseVelocity:Vector2 = Vector2.ZERO
+@export var impulseVelocityDamping:float = 10000
+
+var blockXUntilJump = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal onFloorAndMoving()
+
+func _ready():
+	set_physics_process(false)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	set_physics_process(true)
 
 func runDialogue():
 	if (dialogues.is_empty()):
@@ -43,17 +55,44 @@ func runDialogue():
 	return true
 	
 func pressJumpOnFloor():
+	blockXUntilJump = true
 	nextFloorIsJump = 1
 	await onFloorAndMoving
 	nextFloorIsJump = 2
 	pressJump()
 	
 func pressDoubleJumpOnFloor():
+	blockXUntilJump = true
 	await pressJumpOnFloor()
 	await get_tree().create_timer(jump.jumpDuration+0.1).timeout
 	pressJump()
 	
+func pressLongDoubleJumpOnFloor(dashDirection:Vector2):
+	blockXUntilJump = true
+	await pressJumpOnFloor()
+	await get_tree().create_timer(jump.jumpDuration+0.1).timeout
+	
+	var dash = func():
+		var attack = meleeAttackPrefab.instantiate() as DashAttack
+		get_parent().add_child(attack)
+		attack.global_position = global_position
+		attack.direction = dashDirection
+		attack.damages = 0
+		attack.setSkillOwner(self)
+		
+	for i in range(3):
+		await get_tree().create_timer(0.1).timeout
+		dash.call()
+
+	await get_tree().create_timer(0.1).timeout
+	pressJump()
+	
+	for i in range(3):
+		await get_tree().create_timer(0.1).timeout
+		dash.call()
+	
 func pressJump():
+	blockXUntilJump = false
 	jump.maxJumpSpeed = normalJumpSpeed
 	jump.timeSinceJumpPressed = 0.0
 
@@ -82,5 +121,18 @@ func _physics_process(delta):
 
 	if (!is_on_floor() and nextFloorIsJump == 2):
 		nextFloorIsJump = 0
-
+	
+	velocity += impulseVelocity
+	
+	if (blockXUntilJump):
+		velocity.x = 0
+	
 	move_and_slide()
+	
+	velocity -= impulseVelocity
+
+	var dampVelocity = impulseVelocity.normalized() * impulseVelocityDamping * delta
+	if (dampVelocity.length_squared() < impulseVelocity.length_squared()):
+		impulseVelocity -= dampVelocity
+	else:
+		impulseVelocity = Vector2.ZERO

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c8r5xbgjbfpfa"]
+[gd_scene load_steps=26 format=3 uid="uid://c8r5xbgjbfpfa"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_0tygd"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="1_bf21i"]
@@ -21,7 +21,6 @@
 [ext_resource type="Resource" path="res://dialogues/whiteVillage/npc9_1.dtl" id="18_db6q5"]
 [ext_resource type="Resource" path="res://dialogues/whiteVillage/leaveDialogue.dtl" id="19_eysip"]
 [ext_resource type="Resource" path="res://dialogues/whiteVillage/leaveDialogue2.dtl" id="20_xxm20"]
-[ext_resource type="PackedScene" uid="uid://dwl8xnhhq3so3" path="res://prefabs/ui/pressSpaceToTalk.tscn" id="22_tos5a"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -72,7 +71,6 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_axpfo")]
 position = Vector2(2488, 1714)
-pressSpaceToTalkPrefab = ExtResource("22_tos5a")
 
 [node name="RoomExit_right" parent="." instance=ExtResource("12_dw66c")]
 position = Vector2(12330, 3876)

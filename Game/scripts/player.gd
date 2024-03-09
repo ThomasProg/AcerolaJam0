@@ -52,7 +52,7 @@ enum State
 
 @onready var jump: Jump = $Jump
 
-@export var pressSpaceToTalkPrefab:PackedScene = null
+@onready var pressSpaceToTalkPrefab:PackedScene = load("res://prefabs/ui/pressSpaceToTalk.tscn")
 var pressSpaceToTalk:Node2D = null
 
 func _ready():

@@ -43,7 +43,8 @@ directories/dtl_directory={
 "tuto1": "res://dialogues/tutorial/tuto1.dtl",
 "tuto2": "res://dialogues/tutorial/tuto2.dtl",
 "tuto3": "res://dialogues/tutorial/tuto3.dtl",
-"tuto4": "res://dialogues/tutorial/tuto4.dtl"
+"tuto4": "res://dialogues/tutorial/tuto4.dtl",
+"tuto5": "res://dialogues/tutorial/tuto5.dtl"
 }
 layout/style_list=["res://dialogues/Styles/style1.tres"]
 layout/default_style="res://dialogues/Styles/style1.tres"
