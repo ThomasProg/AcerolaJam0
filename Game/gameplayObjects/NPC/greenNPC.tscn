@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://tdudfxgfqt1a"]
+
+[ext_resource type="Script" path="res://scripts/entities/npc.gd" id="1_7tcbp"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="2_c6nj2"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="3_axtgo"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="4_b4ev7"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_dsedn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghdex"]
+radius = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_l0i6a"]
+radius = 50.0
+height = 100.0
+
+[node name="GreenNPC" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 2
+script = ExtResource("1_7tcbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ghdex")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.364706, 0.945098, 0.658824, 1)
+rotation = 3.14159
+mesh = SubResource("SphereMesh_l0i6a")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 100.0
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_c6nj2")
+characterBody = NodePath("..")
+jumpVelocityCurve = ExtResource("3_axtgo")
+fallingWithJumpCurve = ExtResource("4_b4ev7")
+fallingCurve = ExtResource("5_dsedn")
+nbMaxAirJumps = 1
+nbAirJumpsLeft = 1

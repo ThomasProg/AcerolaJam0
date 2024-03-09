@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vk4xs53jfi5c"]
+[gd_scene load_steps=20 format=3 uid="uid://vk4xs53jfi5c"]
 
 [ext_resource type="Material" uid="uid://cx0k40pas7tpk" path="res://materials/environment/M_redBackground.tres" id="1_6olw4"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_bhijn"]
@@ -7,8 +7,13 @@
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_j4vjt"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_e5u23"]
 [ext_resource type="PackedScene" uid="uid://8lq4rcfl2yk" path="res://gameplayObjects/NPC/redNPC.tscn" id="5_glm6o"]
-[ext_resource type="PackedScene" uid="uid://d1k5k61220x73" path="res://gameplayObjects/enemies/damageArea.tscn" id="6_bl8a8"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc1_1.dtl" id="6_wqukv"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc2_1.dtl" id="7_lwt0v"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="8_6perk"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc3_1.dtl" id="8_ecmxl"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc4_1.dtl" id="9_7nfex"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc5_1.dtl" id="10_jx7ak"]
+[ext_resource type="Resource" path="res://dialogues/redVillage/npc6_1.dtl" id="11_3yv5i"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -50,27 +55,35 @@ mesh = SubResource("QuadMesh_gnqr8")
 [node name="Player" parent="." instance=ExtResource("4_e5u23")]
 position = Vector2(23936, 9946)
 
-[node name="RedNPC3" parent="." instance=ExtResource("5_glm6o")]
+[node name="RedNPC1" parent="." instance=ExtResource("5_glm6o")]
 position = Vector2(11036, 9264)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("6_wqukv")])
+repeatLastDialogue = true
+
+[node name="RedNPC2" parent="." instance=ExtResource("5_glm6o")]
+position = Vector2(14662, 9273)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("7_lwt0v")])
+repeatLastDialogue = true
+
+[node name="RedNPC3" parent="." instance=ExtResource("5_glm6o")]
+position = Vector2(12811, 10849)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("8_ecmxl")])
+repeatLastDialogue = true
 
 [node name="RedNPC4" parent="." instance=ExtResource("5_glm6o")]
-position = Vector2(12811, 10849)
+position = Vector2(13946, 10878)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("9_7nfex")])
+repeatLastDialogue = true
 
 [node name="RedNPC5" parent="." instance=ExtResource("5_glm6o")]
-position = Vector2(14662, 9273)
+position = Vector2(15626, 11343)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_jx7ak")])
+repeatLastDialogue = true
 
 [node name="RedNPC6" parent="." instance=ExtResource("5_glm6o")]
-position = Vector2(13946, 10878)
-
-[node name="RedNPC7" parent="." instance=ExtResource("5_glm6o")]
-position = Vector2(15626, 11343)
-
-[node name="RedNPC8" parent="." instance=ExtResource("5_glm6o")]
 position = Vector2(17299, 9716)
-
-[node name="DamageArea" parent="." instance=ExtResource("6_bl8a8")]
-position = Vector2(25578, 9710)
-scale = Vector2(5, 3)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("11_3yv5i")])
+repeatLastDialogue = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)

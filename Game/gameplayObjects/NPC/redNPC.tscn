@@ -17,7 +17,7 @@ script = ExtResource("1_jqt3i")
 polygon = PackedVector2Array(0, -60, 60, 60, -60, 60)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0.952941, 0.254902, 0.329412, 1)
+modulate = Color(1.906, 0.51, 0.658, 1)
 rotation = 3.14159
 mesh = SubResource("PrismMesh_es3vg")
 

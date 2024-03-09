@@ -33,7 +33,7 @@ func _ready():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
-func runDialogue():
+func canRunDialogue():
 	if (dialogues.is_empty()):
 		return false
 	
@@ -41,18 +41,24 @@ func runDialogue():
 		return false
 	
 	if (currentDialogueIndex >= dialogues.size()):
-		if (repeatLastDialogue):
+		if (!repeatLastDialogue):
 			currentDialogueIndex = dialogues.size() - 1
 		else:
 			return false
-	
-	Dialogic.start(dialogues[currentDialogueIndex])
-	get_viewport().set_input_as_handled()
-	
-	if (currentDialogueIndex < dialogues.size()):
-		currentDialogueIndex += 1
-		
+			
 	return true
+
+func runDialogue():
+	if (canRunDialogue()):
+		Dialogic.start(dialogues[currentDialogueIndex])
+		get_viewport().set_input_as_handled()
+		
+		if (currentDialogueIndex < dialogues.size()):
+			currentDialogueIndex += 1
+			
+		return true
+	else:
+		return false
 	
 func pressJumpOnFloor():
 	blockXUntilJump = true

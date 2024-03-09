@@ -260,35 +260,27 @@ metadata/_edit_lock_ = true
 
 [node name="HookTarget" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(30364, 69020)
-scale = Vector2(1, 1)
 
 [node name="HookTarget2" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(30364, 69020)
-scale = Vector2(1, 1)
 
 [node name="HookTarget3" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(33008, 65392)
-scale = Vector2(1, 1)
 
 [node name="HookTarget4" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(39490, 65222)
-scale = Vector2(1, 1)
 
 [node name="HookTarget5" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(41707, 60719)
-scale = Vector2(1, 1)
 
 [node name="HookTarget6" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(38958, 63231)
-scale = Vector2(1, 1)
 
 [node name="HookTarget7" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(26784, 63789)
-scale = Vector2(1, 1)
 
 [node name="HookTarget8" parent="HookTargets" instance=ExtResource("10_k5fpi")]
 position = Vector2(38455, 56960)
-scale = Vector2(1, 1)
 
 [editable path="RoomExit_left"]
 [editable path="RoomExit_right"]

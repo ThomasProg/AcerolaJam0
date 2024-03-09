@@ -184,6 +184,8 @@ func talkToNPC() -> NPC:
 		if body is NPC:
 			npcs.push_back(body)
 			
+	npcs = npcs.filter(func(npc:NPC): return npc.canRunDialogue())
+	
 	if (!blockDialogue and !npcs.is_empty()):
 		npcs.sort_custom(func(a:NPC, b:NPC): 
 			return a.global_position.distance_squared_to(global_position) < b.global_position.distance_squared_to(global_position))
@@ -238,7 +240,7 @@ func processInputs():
 				#velocity = Vector2(0,0) + impulseVelocity
 				#attack.tree_exiting.connect(func(): state = previousState)
 		
-		if Input.is_action_just_pressed("rotateChargeAbility") and grapplingHookAbility == null:
+		if SaveManager.currentCheckpoint.hasBeatenRedBoss and Input.is_action_just_pressed("rotateChargeAbility") and grapplingHookAbility == null:
 			if (rotateChargeAbility == null):
 				rotateChargeAbility = RotateChargeAbility.new()
 				rotateChargeAbility.skillOwner = self
@@ -249,7 +251,7 @@ func processInputs():
 				rotateChargeAbility.queue_free()
 				rotateChargeAbility = null
 				
-		if Input.is_action_just_pressed("grapplingHookAbility") and rotateChargeAbility == null:
+		if SaveManager.currentCheckpoint.hasBeatenGreenBoss and Input.is_action_just_pressed("grapplingHookAbility") and rotateChargeAbility == null:
 			if (grapplingHookAbility == null):
 				var usedHook = searchForHookTarget() 
 						

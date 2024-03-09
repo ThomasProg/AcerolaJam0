@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbl3jddxm8w3i"]
+[gd_scene load_steps=19 format=3 uid="uid://dbl3jddxm8w3i"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_f7c1j"]
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="2_vq7v4"]
@@ -8,6 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://cygk1u3hejjxi" path="res://gameplayObjects/enemies/green/pendulum.tscn" id="6_impas"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="6_lts1k"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="8_n3gcb"]
+[ext_resource type="PackedScene" uid="uid://tdudfxgfqt1a" path="res://gameplayObjects/NPC/greenNPC.tscn" id="9_cagi2"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc6_1.dtl" id="10_4ydxb"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc3_1.dtl" id="10_lr1s7"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc5_1.dtl" id="10_w2ceb"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc4_1.dtl" id="11_g5y8w"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc2_1.dtl" id="12_b78bg"]
+[ext_resource type="Resource" path="res://dialogues/greenVillage/npc1_1.dtl" id="14_741d6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -58,10 +65,59 @@ position = Vector2(9488, 25074)
 rotation = -1.309
 startOffset = 0.0
 radius = 500.0
-speed = 2.0
+speed = 0.0
 maxAngleDegrees = 100
 
+[node name="Pendulum11" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(11877, 23701)
+rotation = -1.309
+startOffset = 0.0
+radius = 500.0
+speed = 0.0
+maxAngleDegrees = 100
+
+[node name="Pendulum10" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(8920, 23510)
+startOffset = 0.0
+maxAngleDegrees = 40
+
+[node name="Pendulum12" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(9037, 21801)
+startOffset = 0.0
+maxAngleDegrees = 45
+
+[node name="Pendulum14" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(9235, 20301)
+startOffset = 0.0
+maxAngleDegrees = 45
+
+[node name="Pendulum18" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(9421, 19309)
+startOffset = 0.0
+maxAngleDegrees = 45
+
+[node name="Pendulum16" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(13134, 21064)
+startOffset = 0.0
+maxAngleDegrees = 45
+
+[node name="Pendulum13" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(11087, 21876)
+startOffset = 2.095
+maxAngleDegrees = 45
+
+[node name="Pendulum15" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(11527, 20638)
+startOffset = 2.095
+maxAngleDegrees = 45
+
+[node name="Pendulum17" parent="Enemies" instance=ExtResource("6_impas")]
+position = Vector2(10934, 19723)
+startOffset = 2.095
+maxAngleDegrees = 45
+
 [node name="Pendulum2" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(11723, 23632)
 rotation = -1.309
 startOffset = 0.0
@@ -70,6 +126,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum3" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(9961, 22425)
 startOffset = 0.0
 radius = 500.0
@@ -77,6 +134,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum4" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(12664, 21437)
 startOffset = 0.0
 radius = 500.0
@@ -84,6 +142,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum9" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(12930, 19886)
 startOffset = 0.0
 radius = 500.0
@@ -91,6 +150,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum5" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(10311, 20970)
 startOffset = 1.571
 radius = 500.0
@@ -98,6 +158,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum8" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(10311, 20970)
 startOffset = 1.571
 radius = 500.0
@@ -105,6 +166,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum6" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(14240, 20751)
 startOffset = 1.571
 radius = 500.0
@@ -112,6 +174,7 @@ speed = 2.0
 maxAngleDegrees = 100
 
 [node name="Pendulum7" parent="Enemies" instance=ExtResource("6_impas")]
+visible = false
 position = Vector2(9291, 19990)
 startOffset = 1.571
 radius = 500.0
@@ -154,6 +217,30 @@ position = Vector2(779, 379)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_left"]
 shape = SubResource("RectangleShape2D_7v4tv")
 metadata/_edit_lock_ = true
+
+[node name="GreenNPC6" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(5786, 22488)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_4ydxb")])
+
+[node name="GreenNPC5" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(6606, 19623)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_w2ceb")])
+
+[node name="GreenNPC4" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(6301, 20875)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("11_g5y8w")])
+
+[node name="GreenNPC3" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(6058, 24097)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_lr1s7")])
+
+[node name="GreenNPC2" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(16334, 21961)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("12_b78bg")])
+
+[node name="GreenNPC1" parent="." instance=ExtResource("9_cagi2")]
+position = Vector2(13611, 24398)
+dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("14_741d6")])
 
 [editable path="RoomExit_right"]
 [editable path="RoomExit_boss"]

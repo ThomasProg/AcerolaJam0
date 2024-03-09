@@ -155,10 +155,12 @@ func _ready():
 		)
 	
 	health.onDeath.connect(func(killer:Node):
-		remove_child(bossUI)
-		get_parent().add_child(bossUI)
-		bossProgressBar.value = 0
-		bossLabel.text = "[center]This is the end of the demo\nThanks for playing![/center]"
+		SaveManager.currentCheckpoint.hasBeatenGreenBoss = true
+		SaveManager.saveLastCheckpoint()
+		#remove_child(bossUI)
+		#get_parent().add_child(bossUI)
+		#bossProgressBar.value = 0
+		#bossLabel.text = "[center]This is the end of the demo\nThanks for playing![/center]"
 		)
 	
 	#startCharge()
