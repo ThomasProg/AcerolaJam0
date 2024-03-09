@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwywk8ubgf2n7"]
+[gd_scene load_steps=19 format=3 uid="uid://cwywk8ubgf2n7"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_g2oup"]
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_m4e0n"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://i7b8wupc7ml6" path="res://gameplayObjects/enemies/green/flyingPlatform.tscn" id="10_rgsgn"]
 [ext_resource type="Script" path="res://scripts/exitManagers/greenBossExitManager.gd" id="10_xkukq"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="11_tdvtb"]
+[ext_resource type="PackedScene" uid="uid://g1ikamkgp67b" path="res://gameplayObjects/hookTarget.tscn" id="12_hkrm4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -44,6 +45,7 @@ position = Vector2(0, -0.000244141)
 environment = ExtResource("1_m4e0n")
 
 [node name="RoomLimits" type="MeshInstance2D" parent="Env"]
+z_index = -1000
 material = ExtResource("2_8040r")
 position = Vector2(12736.5, 12623.8)
 scale = Vector2(8697, 4730.5)
@@ -74,25 +76,25 @@ position = Vector2(16101, 11372)
 [node name="centerAnchor" type="Node2D" parent="Enemies"]
 position = Vector2(12731, 11395)
 
-[node name="flyingEnemy" parent="Enemies" instance=ExtResource("8_v8rju")]
-position = Vector2(12349, 10817)
-
-[node name="flyingEnemy2" parent="Enemies" instance=ExtResource("8_v8rju")]
-position = Vector2(14088, 10848)
-
-[node name="flyingEnemy3" parent="Enemies" instance=ExtResource("8_v8rju")]
-position = Vector2(12561, 11473)
-
 [node name="GreenBoss" parent="Enemies" node_paths=PackedStringArray("anchor1", "anchor2", "centerAnchor", "flyingEnemies", "ball") instance=ExtResource("7_ub5lq")]
-position = Vector2(13137, 11396)
+position = Vector2(12773, 11135)
 anchor1 = NodePath("../anchor1")
 anchor2 = NodePath("../anchor2")
 centerAnchor = NodePath("../centerAnchor")
 flyingEnemies = [NodePath("../../FlyingPlatform3"), NodePath("../flyingEnemy"), NodePath("../flyingEnemy2"), NodePath("../flyingEnemy3")]
 ball = NodePath("../../FlyingPlatform3")
 
+[node name="flyingEnemy" parent="Enemies" instance=ExtResource("8_v8rju")]
+position = Vector2(12116, 12157)
+
+[node name="flyingEnemy2" parent="Enemies" instance=ExtResource("8_v8rju")]
+position = Vector2(14783, 11513)
+
+[node name="flyingEnemy3" parent="Enemies" instance=ExtResource("8_v8rju")]
+position = Vector2(13611, 12135)
+
 [node name="FlyingPlatform3" parent="." instance=ExtResource("10_rgsgn")]
-position = Vector2(13801, 11439)
+position = Vector2(11080, 11405)
 
 [node name="GreenBossExitManager" type="Node" parent="." node_paths=PackedStringArray("entrance", "exit", "area", "boss")]
 script = ExtResource("10_xkukq")
@@ -160,6 +162,12 @@ position = Vector2(-819, 376)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_right"]
 shape = SubResource("RectangleShape2D_tp5gb")
 metadata/_edit_lock_ = true
+
+[node name="HookTarget" parent="." instance=ExtResource("12_hkrm4")]
+z_index = -1
+position = Vector2(12768, 11142)
+maxDistance = 3500.0
+zoomMult = 1.429
 
 [editable path="RoomExit_left"]
 [editable path="RoomExit_right"]

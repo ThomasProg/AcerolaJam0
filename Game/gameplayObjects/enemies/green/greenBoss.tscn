@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmwupfjitgcv3"]
+[gd_scene load_steps=18 format=3 uid="uid://cmwupfjitgcv3"]
 
 [ext_resource type="Script" path="res://scripts/entities/greenBoss.gd" id="1_k5d65"]
+[ext_resource type="Resource" path="res://dialogues/abilityTuto/greenBossAbility.dtl" id="2_tjf1k"]
 [ext_resource type="Material" uid="uid://cll0t8a8muesf" path="res://materials/entities/M_GreenBoss.tres" id="6_mc1yq"]
 [ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="7_0b0i0"]
 [ext_resource type="Script" path="res://scripts/skills/greenBossThrowFallingEnemies.gd" id="9_tsl07"]
@@ -28,6 +29,7 @@ bg_color = Color(0.690196, 0, 0.0745098, 1)
 [node name="GreenBoss" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_k5d65")
+endDialogue = ExtResource("2_tjf1k")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0

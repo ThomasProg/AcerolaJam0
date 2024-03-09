@@ -2,7 +2,7 @@ extends Node
 class_name GrapplingHookAbility
 
 @export var skillOwner:Player
-@export var target:Node2D
+@export var target:HookTarget
 @export var zoomSpeed:float = 0.3
 
 @export var cameraZoomMult:float = 0.7
@@ -33,7 +33,7 @@ func start():
 	debugLine = Line2D.new()
 	skillOwner.get_parent().add_child(debugLine)
 	skillOwner.set_physics_process(false)
-	skillOwner.cameraZoomer.startTransition(skillOwner.cameraZoomer.defaultZoom * cameraZoomMult, 0.2)
+	skillOwner.cameraZoomer.startTransition(skillOwner.cameraZoomer.defaultZoom * cameraZoomMult * target.zoomMult, 0.2)
 	skillOwner.velocity = skillOwner.getTotalVelocity()
 	skillOwner.grapplingHookVelocity = Vector2.ZERO
 	

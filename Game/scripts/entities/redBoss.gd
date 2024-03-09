@@ -32,6 +32,8 @@ enum Phase { IDLE, CHARGING, GROW_SPIKES, SPAWN_ROTATING_ENEMIES }
 @export var phase = Phase.IDLE
 @export var delayBetweenPhases:float = 2.0 
 
+@export var endDialogue:DialogicTimeline
+
 var rotatingEnemies:Array[Node2D] = []
 
 func startCharge():
@@ -149,6 +151,9 @@ func _ready():
 	health.onDeath.connect(func(killer:Node):
 		SaveManager.currentCheckpoint.hasBeatenRedBoss = true
 		SaveManager.saveLastCheckpoint()
+		
+		Dialogic.start(endDialogue)
+		get_viewport().set_input_as_handled()
 		#remove_child(bossUI)
 		#get_parent().add_child(bossUI)
 		#bossProgressBar.value = 0

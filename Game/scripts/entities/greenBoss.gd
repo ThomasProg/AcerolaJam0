@@ -29,6 +29,8 @@ enum Phase { IDLE, THROW_FALLING_ENEMIES, ANGULAR_THROW_ENEMIES, THROW_FLYING_EN
 @onready var bossProgressBar:ProgressBar = $CanvasLayer/MarginContainer/VBoxContainer/ProgressBar
 @onready var bossLabel:RichTextLabel = $CanvasLayer/MarginContainer/VBoxContainer/RichTextLabel
 
+@export var endDialogue:DialogicTimeline
+
 func startThrowFlyingEnemies():
 	throwFlyingEnemies.flyingEnemies = flyingEnemies
 	throwFlyingEnemies.startPosition = centerAnchor.global_position
@@ -157,6 +159,9 @@ func _ready():
 	health.onDeath.connect(func(killer:Node):
 		SaveManager.currentCheckpoint.hasBeatenGreenBoss = true
 		SaveManager.saveLastCheckpoint()
+		
+		Dialogic.start(endDialogue)
+		get_viewport().set_input_as_handled()
 		#remove_child(bossUI)
 		#get_parent().add_child(bossUI)
 		#bossProgressBar.value = 0

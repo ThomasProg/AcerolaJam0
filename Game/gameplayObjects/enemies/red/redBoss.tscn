@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://8sg37qut2lmd"]
+[gd_scene load_steps=19 format=3 uid="uid://8sg37qut2lmd"]
 
 [ext_resource type="Script" path="res://scripts/entities/redBoss.gd" id="1_6k66t"]
+[ext_resource type="Resource" path="res://dialogues/abilityTuto/redBossAbility.dtl" id="2_6a3et"]
 [ext_resource type="Material" uid="uid://bpcv64mwqo3hs" path="res://materials/entities/M_RedBoss.tres" id="7_hlol5"]
 [ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="8_irt40"]
 [ext_resource type="Script" path="res://scripts/skills/charging.gd" id="8_tqa7i"]
@@ -27,6 +28,7 @@ bg_color = Color(0.690196, 0, 0.0745098, 1)
 [node name="RedBoss" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_6k66t")
+endDialogue = ExtResource("2_6a3et")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
