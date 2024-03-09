@@ -96,8 +96,7 @@ func _ProcessMovementInputs(delta):
 		axisDirection = Input.get_axis("ui_left", "ui_right")
 			
 	else:
-		direction = 0
-		velocity.x = 0
+		axisDirection = 0.0
 	
 func getTotalVelocity():
 	return velocity + grapplingHookVelocity + impulseVelocity
