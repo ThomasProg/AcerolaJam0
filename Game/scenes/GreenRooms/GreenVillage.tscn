@@ -31,6 +31,7 @@ size = Vector2(1000, 3000)
 [node name="EmptyGreenRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_f7c1j")
 roomLimits = NodePath("Env/RoomLimits")
+isCheckpoint = true
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)
@@ -115,71 +116,6 @@ maxAngleDegrees = 45
 position = Vector2(10934, 19723)
 startOffset = 2.095
 maxAngleDegrees = 45
-
-[node name="Pendulum2" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(11723, 23632)
-rotation = -1.309
-startOffset = 0.0
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum3" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(9961, 22425)
-startOffset = 0.0
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum4" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(12664, 21437)
-startOffset = 0.0
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum9" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(12930, 19886)
-startOffset = 0.0
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum5" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(10311, 20970)
-startOffset = 1.571
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum8" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(10311, 20970)
-startOffset = 1.571
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum6" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(14240, 20751)
-startOffset = 1.571
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
-
-[node name="Pendulum7" parent="Enemies" instance=ExtResource("6_impas")]
-visible = false
-position = Vector2(9291, 19990)
-startOffset = 1.571
-radius = 500.0
-speed = 2.0
-maxAngleDegrees = 100
 
 [node name="Player" parent="." instance=ExtResource("6_lts1k")]
 position = Vector2(16352, 25434)
