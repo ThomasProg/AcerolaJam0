@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dbfxsqdott82f"]
 
 [ext_resource type="Material" uid="uid://fpkeludf6glu" path="res://materials/environment/M_lightAberrationBackground.tres" id="1_0id4a"]
-[ext_resource type="Material" uid="uid://bfshxma2ljc3g" path="res://materials/environment/M_aberrationWalls.tres" id="2_pxt5u"]
+[ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_f741p"]
 [ext_resource type="Material" uid="uid://cid332lr8rbtr" path="res://materials/environment/M_lightAberrationWalls.tres" id="2_tjo6n"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="3_y6jf7"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="4_v60ew"]
@@ -17,7 +17,13 @@ agent_radius = 70.0
 
 [node name="EmptyAberrationRoom" type="Node2D"]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Env" type="Node2D" parent="."]
+position = Vector2(0, -0.000244141)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = ExtResource("1_f741p")
+
+[node name="RoomLimits" type="MeshInstance2D" parent="Env"]
 material = ExtResource("1_0id4a")
 position = Vector2(1180, 1117)
 scale = Vector2(23462.5, 13565)
@@ -40,8 +46,3 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_v60ew")]
 position = Vector2(-7866, 768)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_pxt5u")
-position = Vector2(-1563, 63)
-scale = Vector2(10.2344, 9.71875)

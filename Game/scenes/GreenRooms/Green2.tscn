@@ -6,10 +6,10 @@
 [ext_resource type="Material" uid="uid://2pqpmlm80e3e" path="res://materials/environment/M_greenWalls.tres" id="4_lseof"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="5_wcagt"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="6_1vhli"]
-[ext_resource type="PackedScene" uid="uid://c58hmb2dnj2i8" path="res://gameplayObjects/enemies/flyingEnemy.tscn" id="6_l58ku"]
 [ext_resource type="PackedScene" uid="uid://cygk1u3hejjxi" path="res://gameplayObjects/enemies/green/pendulum.tscn" id="8_n2d2v"]
 [ext_resource type="PackedScene" uid="uid://c88kq3pxww3ae" path="res://gameplayObjects/enemies/enemyThrower.tscn" id="9_pwwyk"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="10_8bp5h"]
+[ext_resource type="PackedScene" uid="uid://g1ikamkgp67b" path="res://gameplayObjects/hookTarget.tscn" id="10_k5fpi"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -37,6 +37,7 @@ material = ExtResource("3_omic4")
 position = Vector2(33554.3, 64361)
 scale = Vector2(27055.5, 16688)
 mesh = SubResource("QuadMesh_gnqr8")
+metadata/_edit_lock_ = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -53,9 +54,7 @@ layer_0/tile_data = PackedInt32Array(29950078, 65536, 1, 30015614, 65536, 1, 300
 metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="flyingEnemy" parent="Enemies" instance=ExtResource("6_l58ku")]
-position = Vector2(25913, 69073)
+metadata/_edit_lock_ = true
 
 [node name="Pendulum" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(30343, 68999)
@@ -64,6 +63,7 @@ startOffset = 0.0
 radius = 2000.0
 speed = 1.0
 maxAngleDegrees = 100
+metadata/_edit_lock_ = true
 
 [node name="Pendulum3" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(39451, 65197)
@@ -72,6 +72,7 @@ startOffset = 0.0
 radius = 2000.0
 speed = 1.0
 maxAngleDegrees = 130
+metadata/_edit_lock_ = true
 
 [node name="Pendulum7" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(33055, 65417)
@@ -80,6 +81,7 @@ startOffset = 0.0
 radius = 1500.0
 speed = 1.0
 maxAngleDegrees = 130
+metadata/_edit_lock_ = true
 
 [node name="Pendulum4" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(38948, 63260)
@@ -88,6 +90,7 @@ startOffset = 3.142
 radius = 2000.0
 speed = 1.0
 maxAngleDegrees = 130
+metadata/_edit_lock_ = true
 
 [node name="Pendulum5" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(41710, 60658)
@@ -96,6 +99,7 @@ startOffset = 3.142
 radius = 3000.0
 speed = 1.0
 maxAngleDegrees = 145
+metadata/_edit_lock_ = true
 
 [node name="Pendulum2" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(40548, 68594)
@@ -103,6 +107,7 @@ rotation = 1.5708
 startOffset = 0.0
 speed = 1.0
 maxAngleDegrees = 90
+metadata/_edit_lock_ = true
 
 [node name="Pendulum6" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(40871, 69684)
@@ -111,109 +116,126 @@ startOffset = 0.0
 radius = 3000.0
 speed = 1.0
 maxAngleDegrees = 90
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower5" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(24110, 69779)
 amount = 12
 onDuration = 4.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower6" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(36054, 67084)
 amount = 8
 onDuration = 4.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower7" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(42501, 61425)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower8" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(30832, 56541)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower9" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(34621, 56566)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower10" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(26672, 56502)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower16" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(27875, 61604)
 amount = 12
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower17" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(21857, 63844)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower20" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(23208, 63682)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower18" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(31873, 65305)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower19" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(32187, 62081)
 amount = 8
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower15" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(23676, 56498)
 amount = 11
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower11" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(40935, 56806)
 amount = 12
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower12" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(42773, 57110)
 amount = 13
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower13" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(44679, 57298)
 amount = 14
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="enemyThrower14" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(45910, 57291)
 amount = 15
 onDuration = 6.0
 offDuration = 0.0
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("6_1vhli")]
 position = Vector2(23910, 65516)
 
 [node name="RoomExit_left" parent="." instance=ExtResource("10_8bp5h")]
 position = Vector2(19451, 71982)
-nextRoom = "res://scenes/WhiteRooms/White3.tscn"
+nextRoom = "res://scenes/GreenRooms/Green1.tscn"
 
 [node name="PlayerEnter" parent="RoomExit_left" index="0"]
 position = Vector2(910, 424)
@@ -233,6 +255,40 @@ position = Vector2(-904, 533)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_right"]
 shape = SubResource("RectangleShape2D_2hmri")
 metadata/_edit_lock_ = true
+
+[node name="HookTargets" type="Node2D" parent="."]
+
+[node name="HookTarget" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(30364, 69020)
+scale = Vector2(1, 1)
+
+[node name="HookTarget2" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(30364, 69020)
+scale = Vector2(1, 1)
+
+[node name="HookTarget3" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(33008, 65392)
+scale = Vector2(1, 1)
+
+[node name="HookTarget4" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(39490, 65222)
+scale = Vector2(1, 1)
+
+[node name="HookTarget5" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(41707, 60719)
+scale = Vector2(1, 1)
+
+[node name="HookTarget6" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(38958, 63231)
+scale = Vector2(1, 1)
+
+[node name="HookTarget7" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(26784, 63789)
+scale = Vector2(1, 1)
+
+[node name="HookTarget8" parent="HookTargets" instance=ExtResource("10_k5fpi")]
+position = Vector2(38455, 56960)
+scale = Vector2(1, 1)
 
 [editable path="RoomExit_left"]
 [editable path="RoomExit_right"]

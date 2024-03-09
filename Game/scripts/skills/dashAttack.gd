@@ -2,8 +2,11 @@ extends Area2D
 class_name DashAttack
 
 @export var totalDuration:float = 0.2
-@export var damages = 2
-@export var direction = Vector2(1,0)
+@export var damages:float = 2
+@export var direction:Vector2 = Vector2(1,0)
+@export var maxDist:float = 600
+@export var impulseSpeed:float = 2000
+
 @onready var explosionCollider:Node2D = $ExplosionCollider
 @onready var laserCollider:Node2D = $LaserCollider
 @onready var laserParticles:GPUParticles2D = $Laser
@@ -23,10 +26,9 @@ func setSkillOwner(newOwner: Player):
 	
 	look_at(to_global(direction))
 	
-	skillOwner.impulseVelocity = - direction * 2000
+	skillOwner.impulseVelocity = - direction * impulseSpeed
 	
 	
-	var maxDist = 600
 	var space_state = get_world_2d().direct_space_state
 	var endPosition = global_position + direction * maxDist
 	var query = PhysicsRayQueryParameters2D.create(global_position, endPosition)

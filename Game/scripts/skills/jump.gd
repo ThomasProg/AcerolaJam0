@@ -24,6 +24,8 @@ var durationSinceLastFloorTime : float = 0
 @export var nbMaxAirJumps:int = 0
 @export var nbAirJumpsLeft:int = 0
 
+@export var jumpSpeedScale:float = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -61,10 +63,20 @@ func processJump(delta, state):
 		#return state
 	
 	# Add the gravity.
-	if ((not characterBody.is_on_floor())):
+	if (not characterBody.is_on_floor()) or (state == Player.State.JUMP):
 		durationSinceLastJump += delta
 
-		if (characterBody.velocity.y >= 0):
+		#if (characterBody.velocity.y < 0):
+		if (state == Player.State.JUMP):
+			if (state != Player.State.JUMP):
+				state = Player.State.IN_AIR
+			var y = jumpSpeedScale * jumpVelocityCurve.sample(durationSinceLastJump / jumpDuration * jumpSpeedScale)
+			characterBody.velocity.y = -y * maxJumpSpeed / jumpDuration
+			if (characterBody.velocity.y >= 0):
+				state = Player.State.IN_AIR
+#			position.y += (y - lastY) * maxJumpSpeed
+		
+		else:
 			if (state != Player.State.FALLING) and (state != Player.State.FALLING_WITH_JUMP):
 				state = Player.State.FALLING_WITH_JUMP
 				durationSinceLastFallStart = 0
@@ -82,12 +94,6 @@ func processJump(delta, state):
 
 			var y = usedCurve.sample(clamp(durationSinceLastFallStart / fallDurationUntilMaxSpeed, 0.0, 1.0))
 			characterBody.velocity.y = y * maxFallingSpeed
-		else:
-			if (state != Player.State.JUMP):
-				state = Player.State.IN_AIR
-			var y = jumpVelocityCurve.sample(durationSinceLastJump / jumpDuration)
-			characterBody.velocity.y = -y * maxJumpSpeed / jumpDuration
-#			position.y += (y - lastY) * maxJumpSpeed
 	else:
 		durationSinceLastFloorTime = 0
 		if (characterBody.velocity.x == 0):
@@ -96,5 +102,3 @@ func processJump(delta, state):
 			state = Player.State.RUN
 
 	return state
-
-	#characterBody.move_and_slide()

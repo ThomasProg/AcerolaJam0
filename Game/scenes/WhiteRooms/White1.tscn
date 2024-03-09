@@ -167,6 +167,17 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_axpfo")]
 position = Vector2(2561, 4850)
+defaultModulate = null
+colorSkills = null
+currentColorSkillIndex = null
+speed = null
+dmgMultiplicator = null
+regenerationPerSecond = null
+grapplingHookVelocity = null
+impulseVelocity = null
+impulseVelocityDamping = null
+attackCooldown = null
+state = null
 
 [node name="WhiteNPC" parent="." instance=ExtResource("5_kljsm")]
 position = Vector2(4550, 4868)

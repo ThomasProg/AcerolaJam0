@@ -5,6 +5,8 @@ class_name RoomExit
 @export_file("*.tscn") var nextRoom: String
 @export var nextExitName:String="RoomExit_right"
 @export var playerEnter:Node2D
+@export var useRelativePosition:bool = false
+@export var normal:Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +17,26 @@ func _ready():
 func _process(delta):
 	pass
 
+func getShapeOwner() -> CollisionShape2D:
+	var shapeOwners = get_shape_owners()
+	if (shapeOwners.size() != 1):
+		push_error("There should only be 1 shape owner for exits!")
+		return null
+
+	var shapeOwner = shape_owner_get_owner(shapeOwners[0])
+	if (shapeOwner is CollisionShape2D):
+		return shapeOwner
+	else:
+		push_error("shapeOwner is not a CollisionShape2D!")
+		return null
+		
+func getRectangle(shapeOwner:CollisionShape2D) -> RectangleShape2D:	
+	if (shapeOwner.shape as RectangleShape2D):
+		return shapeOwner.shape
+		
+	else:
+		push_error("exit shape is not a RectangleShape2D!")
+		return null
 
 func _on_body_entered(body):
 	if (body is Player):
@@ -25,4 +47,17 @@ func _on_body_entered(body):
 			SaveManager.currentCheckpoint.exit = name
 			SaveManager.saveLastCheckpoint()
 
-		SaveManager.changeRoom(nextRoom, nextExitName)
+		if (useRelativePosition):
+			var shapeOwner = getShapeOwner()
+			var rectangle = getRectangle(shapeOwner)
+
+			var playerToCollider = (shapeOwner.global_position - body.global_position)
+			playerToCollider /= rectangle.size
+			SaveManager.changeRoom2(nextRoom, nextExitName, playerToCollider, body)
+
+
+			#get_collider_shape().
+			#print(body.global_position)
+			#SaveManager.changeRoom(nextRoom, nextExitName)
+		else:
+			SaveManager.changeRoom(nextRoom, nextExitName)

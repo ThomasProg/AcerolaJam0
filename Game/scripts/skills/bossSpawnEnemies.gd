@@ -13,6 +13,8 @@ enum Phase { HINT, SPAWN_ENEMY, FINISHED }
 signal onEnemySpawned(enemy)
 signal onEnd()
 
+var baseScale:Vector2
+
 func _ready():
 	set_physics_process(false)
 
@@ -29,11 +31,14 @@ func SpawnEnemy(angVelocity:float = 0):
 		
 
 func Start():
+	time = 0.0
+	baseScale = skillOwner.scale
 	phase = Phase.HINT
 	set_physics_process(true)
 	await get_tree().create_timer(2.0).timeout
 	phase = Phase.SPAWN_ENEMY
 	
+	time = 0.0
 	#var v = 1000
 	
 	SpawnEnemy(PI*5)
@@ -41,7 +46,16 @@ func Start():
 	#SpawnEnemy(Vector2(-v, -100), PI)
 	
 	await get_tree().create_timer(1.0).timeout
+	skillOwner.scale = baseScale
 	onEnd.emit()
 
+var time:float = 0.0
 func _physics_process(delta):
-	skillOwner.angularVelocity = 2*PI
+	time += delta
+	
+	match (phase):
+		Phase.HINT:
+			skillOwner.angularVelocity = lerp(0.0, 2*PI * 1.0, time/2.0)
+			skillOwner.scale = lerp(baseScale, Vector2(1, 1), time/2.0)
+		Phase.SPAWN_ENEMY:
+			skillOwner.scale = lerp(Vector2(1, 1), baseScale, min(1.0, time/0.5))

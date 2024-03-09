@@ -60,10 +60,21 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_yyjh7")]
 position = Vector2(21581, 10799)
+defaultModulate = Color(1, 1, 1, 1)
+colorSkills = []
+currentColorSkillIndex = 0
+speed = 1500.0
+dmgMultiplicator = 1.0
+regenerationPerSecond = 0.0
+grapplingHookVelocity = Vector2(0, 0)
+impulseVelocity = Vector2(0, 0)
+impulseVelocityDamping = 10000.0
+attackCooldown = 0.1
+state = 0
 
 [node name="RedBoss" parent="." node_paths=PackedStringArray("chargeAnchor1", "chargeAnchor2", "spikesAnchor1", "spikesAnchor2") instance=ExtResource("7_lpovs")]
 position = Vector2(17483, 11088)
-scale = Vector2(2, 2)
+scale = Vector2(1.8, 1.8)
 chargeAnchor1 = NodePath("../chargeAnchor1")
 chargeAnchor2 = NodePath("../chargeAnchor2")
 spikesAnchor1 = NodePath("../spikesAnchor1")

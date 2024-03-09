@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbl3jddxm8w3i"]
+[gd_scene load_steps=12 format=3 uid="uid://dbl3jddxm8w3i"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_f7c1j"]
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="2_vq7v4"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cygk1u3hejjxi" path="res://gameplayObjects/enemies/green/pendulum.tscn" id="6_impas"]
 [ext_resource type="PackedScene" uid="uid://mj6782vdo5a3" path="res://gameplayObjects/player.tscn" id="6_lts1k"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="8_n3gcb"]
-[ext_resource type="PackedScene" uid="uid://8sg37qut2lmd" path="res://gameplayObjects/enemies/red/redBoss.tscn" id="9_apspw"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -155,9 +154,6 @@ position = Vector2(779, 379)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_left"]
 shape = SubResource("RectangleShape2D_7v4tv")
 metadata/_edit_lock_ = true
-
-[node name="RedBoss" parent="." instance=ExtResource("9_apspw")]
-position = Vector2(15386, 25582)
 
 [editable path="RoomExit_right"]
 [editable path="RoomExit_boss"]

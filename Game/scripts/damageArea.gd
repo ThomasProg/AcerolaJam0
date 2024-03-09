@@ -5,7 +5,7 @@ extends Area2D
 func onEntered(object:Node):
 	for child in object.get_children():
 		if (child is Health):
-			child.dealDamages(dmg, self)
+			child.dealDamages(dmg, get_parent())
 
 func _on_area_entered(area):
 	onEntered(area)

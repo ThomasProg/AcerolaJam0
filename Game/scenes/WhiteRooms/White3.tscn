@@ -111,6 +111,17 @@ position = Vector2(21886, 2545)
 
 [node name="Player" parent="." instance=ExtResource("2_dona6")]
 position = Vector2(24577, -1615)
+defaultModulate = null
+colorSkills = null
+currentColorSkillIndex = null
+speed = null
+dmgMultiplicator = null
+regenerationPerSecond = null
+grapplingHookVelocity = null
+impulseVelocity = null
+impulseVelocityDamping = null
+attackCooldown = null
+state = null
 
 [node name="RoomExit_left" parent="." instance=ExtResource("8_80a5m")]
 position = Vector2(1277, 1924)

@@ -8,6 +8,8 @@ var currentCheckpoint:CheckpointSaveData
 var lastCheckpointPath = "user://lastCheckpoint.tscn"
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")
 	currentCheckpoint.exit = ""
@@ -44,7 +46,8 @@ func preloadNextRooms():
 		
 	var exits = currentRoom.findAllExits()
 	for roomExit in exits:
-		ResourceLoader.load_threaded_request(roomExit.nextRoom)
+		if ResourceLoader.exists(roomExit.nextRoom):
+			ResourceLoader.load_threaded_request(roomExit.nextRoom)
 		
 		#Dialogic.preload_timeline()
 
@@ -81,6 +84,62 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 	var roomExit =  room.findExit(nextExitName)
 	if (roomExit != null):
 		room.player.global_position = roomExit.playerEnter.global_position
+		
+	if (room.isCheckpoint):
+		currentCheckpoint.room = newRoomPath
+		currentCheckpoint.exit = nextExitName
+		saveLastCheckpoint()
+	
+	root.add_child(room)
+	
+	for nodeToRemove in nodesToRemove:
+		nodeToRemove.queue_free()
+
+	currentRoom = room
+	currentRoomPath = newRoomPath
+	preloadNextRooms()
+	
+func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vector2, player:Player):	
+	if (!ResourceLoader.exists(newRoomPath)):
+		return
+
+	var room = (ResourceLoader.load(newRoomPath) as PackedScene).instantiate() as Room
+	room.player = room.find_child("Player", true, false) as Player
+	room.player.velocity = player.velocity
+	room.player.grapplingHookVelocity = player.grapplingHookVelocity
+	room.player.state = player.state
+	for child in room.player.get_children():
+		if child is Jump:
+			child.durationSinceLastJump = player.jump.durationSinceLastJump
+
+	var root = get_tree().get_root()
+	
+	var nodesToRemove = []
+	for child in root.get_children():
+		if child is Node2D:
+			nodesToRemove.push_back(child)
+			root.remove_child(child) 
+
+
+	
+	var roomExit =  room.findExit(nextExitName)
+	
+	var shapeOwner = roomExit.getShapeOwner()
+	var rectangle = roomExit.getRectangle(shapeOwner)
+	
+	if (rectangle.size.x > rectangle.size.y):
+		playerToCollider.y *= -1
+	else:
+		playerToCollider.x *= -1
+		
+	room.player.global_position = shapeOwner.global_position - playerToCollider * rectangle.size
+		
+	room.player.global_position += roomExit.normal * 200
+	if (roomExit.normal.is_zero_approx()):
+		push_error("the normal shouldn't be zero")
+		
+	#if (roomExit != null):
+		#room.player.global_position = roomExit.playerEnter.global_position
 		
 	if (room.isCheckpoint):
 		currentCheckpoint.room = newRoomPath
