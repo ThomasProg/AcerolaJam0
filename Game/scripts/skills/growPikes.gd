@@ -19,6 +19,7 @@ class_name GrowSpikes
 @export var spikesLifetime:float = 4.0 
 @export var hintDuration:float = 2.0 
 
+var spikes:Array[Node2D] = []
 
 enum Phase { PRE_ATTACK, HINT, GROWING_PIKES, FINISHED }
 
@@ -53,8 +54,8 @@ func Start():
 			continue
 			
 		var spikeParticle = particlesPrefab.instantiate() as Node2D
-		skillOwner.get_parent().add_child(spikeParticle)
 		spikeParticle.global_position = spawnPositions[i]
+		skillOwner.get_parent().add_child(spikeParticle)
 		spikesParticles.push_back(spikeParticle)
 	
 	await get_tree().create_timer(hintDuration).timeout
@@ -64,13 +65,12 @@ func Start():
 	for spikeParticle in spikesParticles:
 		spikeParticle.queue_free()
 	
-	var spikes:Array[Node2D] = []
 	for i in range(spawnPositions.size()):
 		if (i == randomSpikeIndexToRemove and removeRandomSpike):
 			continue
 		var spike = spikePrefab.instantiate() as Node2D
-		skillOwner.get_parent().add_child(spike)
 		spike.global_position = spawnPositions[i]
+		skillOwner.get_parent().add_child(spike)
 		spikes.push_back(spike)
 	
 	await get_tree().create_timer(postAttackWaitTime).timeout

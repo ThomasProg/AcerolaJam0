@@ -27,11 +27,17 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={}
 directories/dtl_directory={
+"abberationBoss_1": "res://dialogues/aberrationBoss/aberrationBoss_1.dtl",
+"aberrationBoss_2": "res://dialogues/aberrationBoss/aberrationBoss_2.dtl",
+"aberrationBoss_3": "res://dialogues/aberrationBoss/aberrationBoss_3.dtl",
 "dad1": "res://dialogues/whiteVillage/dad1.dtl",
 "dad2": "res://dialogues/whiteVillage/dad2.dtl",
 "dad3": "res://dialogues/whiteVillage/dad3.dtl",
 "dad4": "res://dialogues/whiteVillage/dad4.dtl",
 "dad5": "res://dialogues/whiteVillage/dad5.dtl",
+"finalRoom/npc1_1": "res://dialogues/finalRoom/npcWhite1_1.dtl",
+"finalRoom/npc2_1": "res://dialogues/finalRoom/npcGreen2_1.dtl",
+"finalRoom/npc3_1": "res://dialogues/finalRoom/npcRed3_1.dtl",
 "greenBossAbility": "res://dialogues/abilityTuto/redBossAbility.dtl",
 "greenVillage/npc1_1": "res://dialogues/greenVillage/npc1_1.dtl",
 "greenVillage/npc1_2": "res://dialogues/greenVillage/npc2_1.dtl",
@@ -51,6 +57,9 @@ directories/dtl_directory={
 "npc5_1": "res://dialogues/redVillage/npc5_1.dtl",
 "npc6_1": "res://dialogues/whiteVillage/npc6_1.dtl",
 "npc9_1": "res://dialogues/whiteVillage/npc9_1.dtl",
+"npcTip1_1": "res://dialogues/finalRoom/npcTip1_1.dtl",
+"npcTip2_1": "res://dialogues/finalRoom/npcTip2_1.dtl",
+"npcTip3_1": "res://dialogues/finalRoom/npcTip3_1.dtl",
 "redBossAbility": "res://dialogues/abilityTuto/greenBossAbility.dtl",
 "redVillage/npc1_1": "res://dialogues/redVillage/npc1_1.dtl",
 "redVillage/npc6_1": "res://dialogues/redVillage/npc6_1.dtl",

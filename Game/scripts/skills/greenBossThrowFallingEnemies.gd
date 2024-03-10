@@ -78,6 +78,6 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	var newEnemy = enemyToSpawn.instantiate() as FallingEnemy
-	skillOwner.get_parent().add_child(newEnemy)
 	newEnemy.useGravity = true
 	newEnemy.global_position = skillOwner.global_position
+	skillOwner.get_parent().add_child(newEnemy)

@@ -20,8 +20,8 @@ func _ready():
 
 func SpawnEnemy(angVelocity:float = 0):
 	var spike = enemyPrefab.instantiate() as Node2D
-	skillOwner.get_parent().add_child(spike)
 	spike.global_position = skillOwner.global_position
+	skillOwner.get_parent().add_child(spike)
 	if (spike is RigidBody2D):
 		spike.linear_velocity = enemySpawnSpeed * skillOwner.global_position.direction_to(target.global_position)
 		spike.angular_velocity = angVelocity

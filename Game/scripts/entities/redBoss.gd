@@ -154,6 +154,15 @@ func _ready():
 		
 		Dialogic.start(endDialogue)
 		get_viewport().set_input_as_handled()
+		
+		for rotatingEnemy in rotatingEnemies:
+			if (rotatingEnemy != null):
+				rotatingEnemy.queue_free()
+			
+		for spike in growSpikes.spikes:
+			if (spike != null):
+				spike.queue_free()
+		
 		#remove_child(bossUI)
 		#get_parent().add_child(bossUI)
 		#bossProgressBar.value = 0

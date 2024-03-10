@@ -157,26 +157,32 @@ metadata/_edit_lock_ = true
 [node name="GreenNPC6" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(5786, 22488)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_4ydxb")])
+repeatLastDialogue = true
 
 [node name="GreenNPC5" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(6606, 19623)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_w2ceb")])
+repeatLastDialogue = true
 
 [node name="GreenNPC4" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(6301, 20875)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("11_g5y8w")])
+repeatLastDialogue = true
 
 [node name="GreenNPC3" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(6058, 24097)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("10_lr1s7")])
+repeatLastDialogue = true
 
 [node name="GreenNPC2" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(16334, 21961)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("12_b78bg")])
+repeatLastDialogue = true
 
 [node name="GreenNPC1" parent="." instance=ExtResource("9_cagi2")]
 position = Vector2(13611, 24398)
 dialogues = Array[Resource("res://addons/dialogic/Resources/timeline.gd")]([ExtResource("14_741d6")])
+repeatLastDialogue = true
 
 [editable path="RoomExit_right"]
 [editable path="RoomExit_boss"]

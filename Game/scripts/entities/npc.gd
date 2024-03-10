@@ -80,8 +80,8 @@ func pressLongDoubleJumpOnFloor(dashDirection:Vector2):
 	
 	var dash = func():
 		var attack = meleeAttackPrefab.instantiate() as DashAttack
-		get_parent().add_child(attack)
 		attack.global_position = global_position
+		get_parent().add_child(attack)
 		attack.direction = dashDirection
 		attack.damages = 0
 		attack.setSkillOwner(self)

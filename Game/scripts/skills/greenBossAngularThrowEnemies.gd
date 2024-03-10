@@ -94,7 +94,7 @@ func onTimeout():
 		var angle:float = (float(i)/float(nbEnemies)) * threwEnemiesAngle + (PI-threwEnemiesAngle)/2
 		
 		var newEnemy = enemyToSpawn.instantiate() as FallingEnemy
-		skillOwner.get_parent().add_child(newEnemy)
 		newEnemy.useGravity = false
 		newEnemy.global_position = skillOwner.global_position
 		newEnemy.velocity = threwEnemiesSpeed * Vector2(cos(angle), sin(angle))
+		skillOwner.get_parent().add_child(newEnemy)

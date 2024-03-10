@@ -15,26 +15,32 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
+	
+func onDamage(attacker:Node2D):
+	if (attacker is AberrationArea):
+		return
+	
+	var bumpedEffect = BumpedEffect.new()
+	bumpedEffect.skillOwner = attacker
+	bumpedEffect.speed = 3000.0
+	bumpedEffect.damping = 3000.0
+	bumpedEffect.direction = skillOwner.global_position.direction_to(attacker.global_position)
+	attacker.add_child(bumpedEffect)
+	stop()
 
 func start():
 	for child in skillOwner.get_children():
 		if (child is Health):
-			child.onDamage.connect(func(attacker:Node2D): 
-				var bumpedEffect = BumpedEffect.new()
-				bumpedEffect.skillOwner = attacker
-				bumpedEffect.speed = 3000.0
-				bumpedEffect.damping = 3000.0
-				bumpedEffect.direction = skillOwner.global_position.direction_to(attacker.global_position)
-				attacker.add_child(bumpedEffect)
-				stop()
-				
-				
-				, CONNECT_ONE_SHOT)
+			child.onDamage.connect(onDamage)
 
 func stop():
 	skillOwner.scale = Vector2.ONE
 	skillOwner.rotation = 0
 	set_physics_process(false)
+	for child in skillOwner.get_children():
+		if (child is Health):
+			if (child.onDamage.is_connected(onDamage)):
+				child.onDamage.disconnect(onDamage)
 
 func _physics_process(delta):
 	direction = skillOwner.direction

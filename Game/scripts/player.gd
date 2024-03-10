@@ -98,7 +98,7 @@ func _ProcessMovementInputs(delta):
 	else:
 		axisDirection = 0.0
 	
-func getTotalVelocity():
+func getTotalVelocity()->Vector2:
 	return velocity + grapplingHookVelocity + impulseVelocity
 	
 func _physics_process(delta):
@@ -145,7 +145,10 @@ var grapplingHookAbility:GrapplingHookAbility = null
 
 func getHookTargetScore(hook:Node2D):
 	var totalScore:float = 0.0
-	totalScore += (global_position + getTotalVelocity()*0.5).distance_to(hook.global_position)
+	
+	var addedVelocity = getTotalVelocity()
+	addedVelocity.y = min(addedVelocity.y, 0.0)
+	totalScore += (global_position + addedVelocity*0.5).distance_to(hook.global_position)
 	
 	if (global_position.y - hook.global_position.y < - 50):
 		totalScore += 3000
@@ -222,8 +225,8 @@ func processInputs():
 			if (currentAttackCooldown < 0.0):
 				currentAttackCooldown = attackCooldown
 				var attack = meleeAttackPrefab.instantiate() as DashAttack
-				get_parent().add_child(attack)
 				attack.global_position = global_position
+				get_parent().add_child(attack)
 				#attack.isRight = (direction > 0)
 				#attack.isReversed = isAttackReversed
 				#attack.direction = Vector2(direction, 0)
@@ -290,8 +293,8 @@ func _process(delta):
 	var npc = talkToNPC()
 	if (npc != null and pressSpaceToTalk == null):
 		pressSpaceToTalk = pressSpaceToTalkPrefab.instantiate() as Node2D
+		pressSpaceToTalk.position = Vector2(0, -100) + Vector2(0, -50) * npc.scale.y
 		npc.add_child(pressSpaceToTalk)
-		pressSpaceToTalk.global_position = npc.global_position + Vector2(0, -100) + Vector2(0, -50) * npc.scale.y
 	
 	if (npc == null and pressSpaceToTalk != null):
 		pressSpaceToTalk.queue_free()

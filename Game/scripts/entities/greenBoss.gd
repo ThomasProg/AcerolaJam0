@@ -160,6 +160,10 @@ func _ready():
 		SaveManager.currentCheckpoint.hasBeatenGreenBoss = true
 		SaveManager.saveLastCheckpoint()
 		
+		ball.queue_free()
+		for enemy in flyingEnemies:
+			enemy.queue_free()
+		
 		Dialogic.start(endDialogue)
 		get_viewport().set_input_as_handled()
 		#remove_child(bossUI)

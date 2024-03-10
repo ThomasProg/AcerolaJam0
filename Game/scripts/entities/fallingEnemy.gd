@@ -4,7 +4,7 @@ class_name FallingEnemy
 @export var skillOwner:Node
 @export var useGravity:bool = false
 @export var velocity: Vector2 = Vector2.ZERO
-@export var dmg:float = 1
+@export var dmg:float = 0.5
 @export var maxSpeed:float = 3000
 
 func _physics_process(delta):

@@ -7,16 +7,16 @@
 script = ExtResource("1_852qc")
 
 [node name="firefly" parent="." instance=ExtResource("2_1jky2")]
-position = Vector2(-116.652, 59.0029)
+position = Vector2(77.8497, -67.6571)
 
 [node name="firefly2" parent="." instance=ExtResource("2_1jky2")]
-position = Vector2(222.864, 152.304)
+position = Vector2(79.4192, -1.5459)
 
 [node name="firefly4" parent="." instance=ExtResource("2_1jky2")]
-position = Vector2(50.0835, -213.419)
+position = Vector2(191.902, -174.229)
 
 [node name="firefly5" parent="." instance=ExtResource("2_1jky2")]
-position = Vector2(-2.92658, 92.462)
+position = Vector2(-22.3819, -69.2746)
 
 [node name="firefly3" parent="." instance=ExtResource("2_1jky2")]
-position = Vector2(-72.9946, 172.044)
+position = Vector2(5.4927, 88.3828)

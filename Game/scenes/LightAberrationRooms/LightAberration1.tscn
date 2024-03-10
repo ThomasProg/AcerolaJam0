@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://pq4b5h5crhw6"]
+[gd_scene load_steps=18 format=3 uid="uid://pq4b5h5crhw6"]
 
 [ext_resource type="Material" uid="uid://fpkeludf6glu" path="res://materials/environment/M_lightAberrationBackground.tres" id="1_02ajx"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_f2wqh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c58hmb2dnj2i8" path="res://gameplayObjects/enemies/flyingEnemy.tscn" id="8_tygrd"]
 [ext_resource type="PackedScene" uid="uid://dkv1t46wreme0" path="res://gameplayObjects/enemies/white/slimeEnemy.tscn" id="9_5kmhf"]
 [ext_resource type="PackedScene" uid="uid://r8jfnx182qj2" path="res://gameplayObjects/roomExit.tscn" id="10_5f62a"]
+[ext_resource type="PackedScene" uid="uid://c1v0ova4l3bju" path="res://gameplayObjects/enemies/aberrationArea.tscn" id="12_8cugy"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -54,6 +55,7 @@ navigation_polygon = SubResource("NavigationPolygon_xdsk6")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
+z_index = 500
 material = ExtResource("2_5uxgj")
 scale = Vector2(10, 10)
 tile_set = ExtResource("3_p1jwv")
@@ -182,5 +184,17 @@ normal = Vector2(0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_up1"]
 shape = SubResource("RectangleShape2D_o28v6")
 metadata/_edit_lock_ = true
+
+[node name="AberrationArea6" parent="." instance=ExtResource("12_8cugy")]
+position = Vector2(14249.1, -4274.75)
+scale = Vector2(23.5677, 5.223)
+
+[node name="AberrationArea7" parent="." instance=ExtResource("12_8cugy")]
+position = Vector2(-2708.54, -3805.38)
+scale = Vector2(8.70186, 8.1065)
+
+[node name="AberrationArea8" parent="." instance=ExtResource("12_8cugy")]
+position = Vector2(-9095.27, -1973.31)
+scale = Vector2(11.7949, 12.6853)
 
 [editable path="RoomExit_left"]

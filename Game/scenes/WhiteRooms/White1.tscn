@@ -80,8 +80,8 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_1rj40"]
-resource_name = "4"
+[sub_resource type="Animation" id="Animation_fbkby"]
+resource_name = "3"
 length = 8.0
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -101,8 +101,8 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_fbkby"]
-resource_name = "3"
+[sub_resource type="Animation" id="Animation_1rj40"]
+resource_name = "4"
 length = 8.0
 tracks/0/type = "method"
 tracks/0/imported = false

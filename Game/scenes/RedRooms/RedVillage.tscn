@@ -101,6 +101,7 @@ metadata/_edit_lock_ = true
 
 [node name="RoomExit_right" parent="." instance=ExtResource("8_6perk")]
 position = Vector2(26966, 9712)
+nextRoom = "res://scenes/RedRooms/Red5.tscn"
 nextExitName = "RoomExit_left"
 
 [node name="PlayerEnter" parent="RoomExit_right" index="0"]

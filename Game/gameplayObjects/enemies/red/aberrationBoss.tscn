@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://ctlyvnllj6p55"]
+
+[ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="1_3uldf"]
+[ext_resource type="Script" path="res://scripts/entities/aberrationBoss.gd" id="1_y8vbm"]
+[ext_resource type="Texture2D" uid="uid://rdpqmlr087bk" path="res://textures/enemies/T_Boss.tres" id="4_ih6rn"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="11_5eq4k"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="12_v1es7"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="13_6wqa6"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="14_lpfke"]
+[ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="15_81dkx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ej87m"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ugeiv"]
+seamless = true
+noise = SubResource("FastNoiseLite_ej87m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2jbr"]
+shader = ExtResource("1_3uldf")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.05
+shader_parameter/u_color = null
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 5.0
+shader_parameter/u_mask = SubResource("NoiseTexture2D_ugeiv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qqx0d"]
+size = Vector2(500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po3un"]
+size = Vector2(320, 320)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4beew"]
+radius = 1500.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmcg2"]
+bg_color = Color(0.690196, 0, 0.0745098, 1)
+
+[node name="AberrationBoss" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 257
+script = ExtResource("1_y8vbm")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 100.0
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_q2jbr")
+mesh = SubResource("QuadMesh_qqx0d")
+texture = ExtResource("4_ih6rn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_po3un")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("11_5eq4k")
+shouldRemoveOnDeath = false
+life = 20.0
+maxLife = 20.0
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("12_v1es7")
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("13_6wqa6")
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("14_lpfke")
+dmg = 0.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
+polygon = PackedVector2Array(0, -224, 194, 111, -194, 111)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("15_81dkx")
+shouldNotifyOut = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_4beew")
+debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Aberration Boss[/center]"
+fit_content = true
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_rmcg2")
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
