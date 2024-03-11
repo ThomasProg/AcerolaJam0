@@ -80,9 +80,10 @@ func Start():
 	
 	for spike in spikes:
 		if (spike != null):
-			for child in spike.get_children():
-				if (child is Health):
-					child.dealDamages(child.life, self)
+			spike.queue_free()
+			#for child in spike.get_children():
+				#if (child is Health):
+					#child.dealDamages(child.life, self)
 	spikes.clear()
 					
 	onSpikesDestroyed.emit()

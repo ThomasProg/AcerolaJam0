@@ -126,7 +126,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center]Red Triangle Boss[/center]"
+text = "[center]Spikes Lord[/center]"
 fit_content = true
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/VBoxContainer"]
