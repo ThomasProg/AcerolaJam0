@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c58hmb2dnj2i8"]
+[gd_scene load_steps=18 format=3 uid="uid://c58hmb2dnj2i8"]
 
 [ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_vmr8y"]
 [ext_resource type="Shader" path="res://shaders/flyingEnemy.gdshader" id="2_n7qhc"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_0bj2p"]
 [ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="3_1plgn"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_qqvdq"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="5_6lg5n"]
 [ext_resource type="Script" path="res://scripts/detectionOutArea.gd" id="6_gwhh4"]
 [ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_lhuxo"]
 [ext_resource type="Script" path="res://scripts/damageArea.gd" id="10_w8gxl"]
@@ -43,10 +44,15 @@ radius = 5000.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pskhr"]
 radius = 150.0
 
-[node name="flyingEnemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hmsg"]
+radius = 190.0
+
+[node name="flyingEnemy" type="Area2D"]
 z_index = 1000
 z_as_relative = false
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_vmr8y")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
@@ -56,8 +62,11 @@ texture = SubResource("GradientTexture2D_5oajt")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_0bj2p")
-life = 8.0
-maxLife = 8.0
+life = 80.0
+maxLife = 80.0
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("5_6lg5n")
 
 [node name="Enemy" type="Node" parent="."]
 script = ExtResource("4_qqvdq")
@@ -95,6 +104,10 @@ script = ExtResource("10_w8gxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_pskhr")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4hmsg")
 debug_color = Color(0.996078, 0, 0.219608, 0.419608)
 
 [connection signal="body_exited" from="DetectionOutArea" to="DetectionOutArea" method="_on_body_exited"]

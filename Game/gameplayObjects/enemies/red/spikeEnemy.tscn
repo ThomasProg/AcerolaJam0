@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhpe10uow08f2"]
+[gd_scene load_steps=12 format=3 uid="uid://dhpe10uow08f2"]
 
 [ext_resource type="Script" path="res://scripts/entities/pikeEnemy.gd" id="1_3lnqh"]
-[ext_resource type="Script" path="res://scripts/health.gd" id="3_kumpu"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_i1gvf"]
 [ext_resource type="Script" path="res://scripts/damageArea.gd" id="5_non1a"]
 [ext_resource type="Shader" path="res://shaders/rotatingTriangleEnemy.gdshader" id="10_ea0h5"]
@@ -71,11 +70,6 @@ scale = Vector2(1, 2)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_3lnqh")
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_kumpu")
-life = 8.0
-maxLife = 8.0
 
 [node name="Enemy" type="Node" parent="."]
 script = ExtResource("4_i1gvf")
