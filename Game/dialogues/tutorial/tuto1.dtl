@@ -1,5 +1,13 @@
 Hey! Wake up!
-Did you sleep too much you forgot how to move?
-Everyone knows you just use a and d or the arrows!
+What difficulty do you want?
+- Normal [if true == true]
+	do SaveManager.setDifficulty(0.0)
+- Hard [if true == true]
+	do SaveManager.setDifficulty(1.0)
+- Impossible [if true == true]
+	do SaveManager.setDifficulty(2.0)
+You can't always change it by pressing escape anyways!
+Also, did you sleep too much you forgot how to move?
+Everyone knows you just use [b]a[/b] and [b]d[/b] or the [b]arrows[/b]!
 Try to catch me if you can!
 [end_timeline]

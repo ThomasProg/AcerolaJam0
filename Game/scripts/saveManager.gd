@@ -7,6 +7,25 @@ var currentCheckpoint:CheckpointSaveData
 
 var lastCheckpointPath = "user://lastCheckpoint.tscn"
 
+var chrono:float = 0.0
+var isChronoRunning:bool = false
+var chronoStartRoomPath:String = "res://scenes/WhiteRooms/WhiteVillage.tscn"
+var chronoEndRoomPath:String = "res://scenes/AberrationRooms/FinalRoom.tscn"
+
+func setDifficulty(difficulty:int):
+	currentCheckpoint.difficulty = difficulty
+	saveLastCheckpoint()
+
+func _process(delta):
+	if (isChronoRunning):
+		chrono += delta
+
+func updateIsChronoRunning(roomPath:String):
+	if (roomPath == chronoStartRoomPath):
+		isChronoRunning = true
+	elif (roomPath == chronoEndRoomPath):
+		isChronoRunning = false
+
 func openLink(str:String):
 	OS.shell_open(str)
 
@@ -75,6 +94,8 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 	if (!ResourceLoader.exists(newRoomPath)):
 		return
 		
+	updateIsChronoRunning(newRoomPath)
+		
 	var root = get_tree().get_root()
 	
 	var nodesToRemove = []
@@ -107,6 +128,8 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vector2, player:Player):	
 	if (!ResourceLoader.exists(newRoomPath)):
 		return
+		
+	updateIsChronoRunning(newRoomPath)
 
 	var room = (ResourceLoader.load(newRoomPath) as PackedScene).instantiate() as Room
 	room.player = room.find_child("Player", true, false) as Player

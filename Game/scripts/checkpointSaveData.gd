@@ -6,6 +6,6 @@ class_name CheckpointSaveData
 
 @export var hasBeatenRedBoss:bool = false
 @export var hasBeatenGreenBoss:bool = false
-
+@export var difficulty:int = 0
 
 
