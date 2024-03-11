@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=20 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
@@ -23,24 +23,76 @@ size = Vector2(100, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ylxm"]
 radius = 400.0
 
-[sub_resource type="Animation" id="Animation_rn7od"]
-resource_name = "jump"
+[sub_resource type="Animation" id="Animation_xj53o"]
+resource_name = "damaged"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite/MeshInstance2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8od75"]
+resource_name = "dash"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rn7od"]
+resource_name = "jump"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.6, 1.7), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4rs7f"]
+resource_name = "onFloor"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.7, 0.6), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5dvrc"]
 _data = {
-"jump": SubResource("Animation_rn7od")
+"damaged": SubResource("Animation_xj53o"),
+"dash": SubResource("Animation_8od75"),
+"jump": SubResource("Animation_rn7od"),
+"onFloor": SubResource("Animation_4rs7f")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -49,10 +101,14 @@ collision_mask = 65
 script = ExtResource("1_mbevd")
 meleeAttackPrefab = ExtResource("2_tytx6")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Sprite"]
+position = Vector2(0, -50)
 mesh = SubResource("QuadMesh_ejxjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_pe4gd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -63,7 +119,7 @@ script = ExtResource("3_fvqqh")
 camera = NodePath("..")
 
 [node name="JumpResetArea" type="Area2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(0, 15)
+position = Vector2(0, -35)
 collision_layer = 0
 script = ExtResource("3_la6bx")
 player = NodePath("..")
@@ -105,14 +161,44 @@ libraries = {
 [node name="InGameMenu" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="InGameMenu"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -246.0
-offset_right = 246.0
-offset_bottom = 139.0
+[node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameMenu/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="NormalButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Normal"
+
+[node name="HardButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Hard"
+
+[node name="ImpossibleButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Impossible"
+
+[node name="RichTextLabelCopyright" type="RichTextLabel" parent="InGameMenu/VBoxContainer"]
+layout_mode = 2
 bbcode_enabled = true
 text = "[center]Copyright : prog'z[/center]"
+fit_content = true
+
+[node name="RichTextLabelTime" type="RichTextLabel" parent="InGameMenu/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Time : [/center]"
+fit_content = true
+
+[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
+[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/ImpossibleButton" to="." method="_on_impossible_button_pressed"]

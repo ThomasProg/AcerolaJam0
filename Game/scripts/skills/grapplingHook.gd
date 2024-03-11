@@ -25,7 +25,7 @@ func _process(delta):
 	debugLine.clear_points()
 	debugLine.default_color = Color.ROYAL_BLUE
 	
-	debugLine.add_point(skillOwner.global_position)
+	debugLine.add_point(skillOwner.getGlobalCenter())
 	debugLine.add_point(target.global_position)
 
 func start():

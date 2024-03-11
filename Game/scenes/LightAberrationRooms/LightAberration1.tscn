@@ -106,9 +106,6 @@ position = Vector2(24259, -291)
 [node name="HookTarget2" parent="HookTargets" instance=ExtResource("7_71mvo")]
 position = Vector2(16916, -942)
 
-[node name="HookTarget4" parent="HookTargets" instance=ExtResource("7_71mvo")]
-position = Vector2(13104, 617)
-
 [node name="HookTarget7" parent="HookTargets" instance=ExtResource("7_71mvo")]
 position = Vector2(23100, -1157)
 

@@ -26,6 +26,9 @@ var durationSinceLastFloorTime : float = 0
 
 @export var jumpSpeedScale:float = 1.0
 
+signal onJump()
+signal onFloor()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -39,18 +42,22 @@ func tryStartJump(state):
 	if (characterBody.is_on_floor()):
 		nbAirJumpsLeft = nbMaxAirJumps
 	
+	# Normal Jump
 	if state != Player.State.JUMP and durationSinceLastFloorTime < coyotteTime and timeSinceJumpPressed < jumpBufferDuration:
 		durationSinceLastJump = 0
 		characterBody.velocity.y = - maxJumpSpeed
 		state = Player.State.JUMP
 		timeSinceJumpPressed = jumpBufferDuration
+		onJump.emit()
 		
+	# Double Jump / in the air jump
 	if (!characterBody.is_on_floor() and timeSinceJumpPressed < jumpBufferDuration and nbAirJumpsLeft > 0):
 		durationSinceLastJump = 0
 		characterBody.velocity.y = - maxJumpSpeed
 		state = Player.State.JUMP
 		nbAirJumpsLeft -= 1
 		timeSinceJumpPressed = jumpBufferDuration
+		onJump.emit()
 		
 	return state
 
@@ -94,7 +101,9 @@ func processJump(delta, state):
 
 			var y = usedCurve.sample(clamp(durationSinceLastFallStart / fallDurationUntilMaxSpeed, 0.0, 1.0))
 			characterBody.velocity.y = y * maxFallingSpeed
-	else:
+	else: # on floor
+		if (state == Player.State.FALLING or state == Player.State.JUMP or state == Player.State.FALLING_WITH_JUMP):
+			onFloor.emit()
 		durationSinceLastFloorTime = 0
 		if (characterBody.velocity.x == 0):
 			state = Player.State.IDLE

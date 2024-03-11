@@ -31,7 +31,7 @@ func setSkillOwner(newOwner: Node2D):
 	
 	var space_state = get_world_2d().direct_space_state
 	var endPosition = global_position + direction * maxDist
-	var query = PhysicsRayQueryParameters2D.create(global_position, endPosition)
+	var query = PhysicsRayQueryParameters2D.create(global_position, endPosition, 0xFFFFFFFF, [skillOwner])
 	var result = space_state.intersect_ray(query)
 	
 	if (result):

@@ -7,6 +7,8 @@ class_name RotateChargeAbility
 
 @export var direction:float = 1.0
 
+signal onEnd()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,7 +26,7 @@ func onDamage(attacker:Node2D):
 	bumpedEffect.skillOwner = attacker
 	bumpedEffect.speed = 3000.0
 	bumpedEffect.damping = 3000.0
-	bumpedEffect.direction = skillOwner.global_position.direction_to(attacker.global_position)
+	bumpedEffect.direction = skillOwner.getGlobalCenter().direction_to(attacker.global_position)
 	attacker.add_child(bumpedEffect)
 	stop()
 
@@ -35,12 +37,15 @@ func start():
 
 func stop():
 	skillOwner.scale = Vector2.ONE
-	skillOwner.rotation = 0
+	skillOwner.setRotation(0)
 	set_physics_process(false)
 	for child in skillOwner.get_children():
 		if (child is Health):
 			if (child.onDamage.is_connected(onDamage)):
 				child.onDamage.disconnect(onDamage)
+				
+	onEnd.emit()
+	queue_free()
 
 func _physics_process(delta):
 	direction = skillOwner.direction
@@ -49,7 +54,7 @@ func _physics_process(delta):
 	skillOwner.scale.x = min(skillOwner.scale.x, 3.0)
 	skillOwner.scale.y = min(skillOwner.scale.y, 3.0)
 	#
-	skillOwner.rotation += delta * angularSpeed * direction
+	skillOwner.addRotation(delta * angularSpeed * direction)
 	
 	if (skillOwner.get_last_slide_collision()):
 		var ortho:Vector2 = -skillOwner.get_last_slide_collision().get_normal().orthogonal()
