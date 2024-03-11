@@ -7,6 +7,9 @@ var currentCheckpoint:CheckpointSaveData
 
 var lastCheckpointPath = "user://lastCheckpoint.tscn"
 
+func openLink(str:String):
+	OS.shell_open(str)
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	

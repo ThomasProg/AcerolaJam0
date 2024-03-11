@@ -139,3 +139,7 @@ func _process(delta: float) -> void:
 	while speed_counter > active_speed and revealing and !DialogicUtil.autoload().paused:
 		speed_counter -= active_speed
 		continue_reveal()
+
+
+func _on_meta_clicked(meta):
+	OS.shell_open(str(meta))

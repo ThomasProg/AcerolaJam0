@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvgqftidmt04y"]
+[gd_scene load_steps=13 format=3 uid="uid://bvgqftidmt04y"]
 
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_avtbq"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_dr28x"]
 [ext_resource type="Material" uid="uid://fp1ke0lcxgj4" path="res://materials/environment/M_aberrationBackground.tres" id="2_epbqd"]
 [ext_resource type="Material" uid="uid://bfshxma2ljc3g" path="res://materials/environment/M_aberrationWalls.tres" id="3_i4chf"]
 [ext_resource type="TileSet" uid="uid://b01vniwyqk72x" path="res://Tilesets/whiteTileset.tres" id="4_maeje"]
@@ -19,7 +20,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-10788, -5916, 13053, -
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 70.0
 
-[node name="EmptyAberrationRoom" type="Node2D"]
+[node name="EmptyAberrationRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+script = ExtResource("1_dr28x")
+roomLimits = NodePath("Env/RoomLimits")
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(-0.00012207, -0.000488281)
@@ -82,19 +85,24 @@ scale = Vector2(22.251, 81.004)
 
 [node name="FlyingThrowingEnemy" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(9263, 10462)
+amount = 5
 
 [node name="FlyingThrowingEnemy2" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(17132, 8230)
+amount = 5
 
 [node name="FlyingThrowingEnemy4" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(27742, 5988)
+amount = 5
 
 [node name="FlyingThrowingEnemy5" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(37899, -4112)
+amount = 5
 offDuration = 5.0
 
 [node name="FlyingThrowingEnemy6" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(43417, -4076)
+amount = 5
 offDuration = 5.0
 
 [node name="FlyingThrowingEnemy7" parent="Enemies" instance=ExtResource("8_hmt2g")]
@@ -103,14 +111,17 @@ offDuration = 5.0
 
 [node name="FlyingThrowingEnemy10" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(49384, -15671)
+amount = 5
 offDuration = 5.0
 
 [node name="FlyingThrowingEnemy8" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(52537, -15671)
+amount = 5
 offDuration = 5.0
 
 [node name="FlyingThrowingEnemy9" parent="Enemies" instance=ExtResource("8_hmt2g")]
 position = Vector2(55927, -15756)
+amount = 5
 offDuration = 5.0
 
 [node name="enemyThrower" parent="Enemies" instance=ExtResource("9_6exw8")]
@@ -136,7 +147,7 @@ initialDelay = 3.0
 deltaAngle = 0.0
 
 [node name="Player" parent="." instance=ExtResource("5_lioah")]
-position = Vector2(67701, -27932)
+position = Vector2(2551, 12330)
 
 [node name="HookTargets" type="Node2D" parent="."]
 

@@ -284,6 +284,7 @@ func processInputs():
 
 	return false
 
+var npcTalkingTo
 func _process(delta):
 	currentAttackCooldown -= delta
 	health.heal(regenerationPerSecond * delta, self)
@@ -291,10 +292,16 @@ func _process(delta):
 	_ProcessMovementInputs(delta)
 		
 	var npc = talkToNPC()
-	if (npc != null and pressSpaceToTalk == null):
+	if (npcTalkingTo != npc and npc != null):
+		npcTalkingTo = npc
+		
+		if (pressSpaceToTalk != null):
+			pressSpaceToTalk.queue_free()
+		
 		pressSpaceToTalk = pressSpaceToTalkPrefab.instantiate() as Node2D
-		pressSpaceToTalk.position = Vector2(0, -100) + Vector2(0, -50) * npc.scale.y
-		npc.add_child(pressSpaceToTalk)
+		pressSpaceToTalk.position = Vector2(0, -100) + Vector2(0, -50) * npcTalkingTo.scale.y
+		npcTalkingTo.add_child(pressSpaceToTalk)
 	
 	if (npc == null and pressSpaceToTalk != null):
+		npcTalkingTo = null
 		pressSpaceToTalk.queue_free()

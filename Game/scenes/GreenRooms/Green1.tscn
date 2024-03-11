@@ -93,17 +93,6 @@ offDuration = 0.0
 
 [node name="Player" parent="." instance=ExtResource("4_wmpcd")]
 position = Vector2(14603, 12075)
-defaultModulate = null
-colorSkills = null
-currentColorSkillIndex = null
-speed = null
-dmgMultiplicator = null
-regenerationPerSecond = null
-grapplingHookVelocity = null
-impulseVelocity = null
-impulseVelocityDamping = null
-attackCooldown = null
-state = null
 
 [node name="RoomExit_left" parent="." instance=ExtResource("10_p1dpi")]
 position = Vector2(1289, 11054)

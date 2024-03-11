@@ -340,3 +340,5 @@ theme_override_font_sizes/font_size = 15
 text = "S"
 script = ExtResource("7_bi7sh")
 name_label_root = NodePath("..")
+
+[connection signal="meta_clicked" from="Anchor/AnimationParent/Sizer/DialogTextPanel/DialogicNode_DialogText" to="Anchor/AnimationParent/Sizer/DialogTextPanel/DialogicNode_DialogText" method="_on_meta_clicked"]

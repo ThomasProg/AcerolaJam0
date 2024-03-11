@@ -1,3 +1,10 @@
 If you like the game, support the developer, Prog'z!
-He has accounts on [url="https\://progz.itch.io/]itch.io[/url], [url="https\://www.twitch.tv/progzyy]twitch[/url]
+- twitch
+	do SaveManager.openLink("https://progz.itch.io/")
+- youtube
+	do SaveManager.openLink("https://www.youtube.com/@progzyy?sub_confirmation=1")
+- discord
+	do SaveManager.openLink("https://discord.gg/pFmgFybzG5")
+- itch.io
+	do SaveManager.openLink("https://progz.itch.io/")
 [end_timeline]

@@ -60,6 +60,8 @@ directories/dtl_directory={
 "npcTip1_1": "res://dialogues/finalRoom/npcTip1_1.dtl",
 "npcTip2_1": "res://dialogues/finalRoom/npcTip2_1.dtl",
 "npcTip3_1": "res://dialogues/finalRoom/npcTip3_1.dtl",
+"npcTip4_1": "res://dialogues/finalRoom/npcTip4_1.dtl",
+"npcTip5_1": "res://dialogues/finalRoom/npcTip5_1.dtl",
 "redBossAbility": "res://dialogues/abilityTuto/greenBossAbility.dtl",
 "redVillage/npc1_1": "res://dialogues/redVillage/npc1_1.dtl",
 "redVillage/npc6_1": "res://dialogues/redVillage/npc6_1.dtl",
