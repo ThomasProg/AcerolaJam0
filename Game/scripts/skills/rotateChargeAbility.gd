@@ -22,12 +22,13 @@ func onDamage(attacker:Node2D):
 	if (attacker is AberrationArea):
 		return
 	
-	var bumpedEffect = BumpedEffect.new()
-	bumpedEffect.skillOwner = attacker
-	bumpedEffect.speed = 3000.0
-	bumpedEffect.damping = 3000.0
-	bumpedEffect.direction = skillOwner.getGlobalCenter().direction_to(attacker.global_position)
-	attacker.add_child(bumpedEffect)
+	#var bumpedEffect = BumpedEffect.new()
+	#bumpedEffect.skillOwner = attacker
+	#bumpedEffect.speed = 3000.0
+	#bumpedEffect.damping = 3000.0
+	#bumpedEffect.direction = skillOwner.getGlobalCenter().direction_to(attacker.global_position)
+	#attacker.add_child(bumpedEffect)
+	
 	stop()
 
 func start():

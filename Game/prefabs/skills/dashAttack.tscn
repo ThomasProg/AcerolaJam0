@@ -92,10 +92,12 @@ script = ExtResource("1_7kopd")
 [node name="LaserCollider" type="CollisionShape2D" parent="."]
 position = Vector2(50, 0)
 shape = SubResource("RectangleShape2D_ljhpx")
+disabled = true
 
 [node name="ExplosionCollider" type="CollisionShape2D" parent="."]
 position = Vector2(200, 0)
 shape = SubResource("RectangleShape2D_xytrt")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

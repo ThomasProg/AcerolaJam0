@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcodxluje3yec"]
+
+[ext_resource type="Script" path="res://scripts/entities/linkEnemy.gd" id="1_gvrv6"]
+[ext_resource type="PackedScene" uid="uid://dpwwreo2usnef" path="res://gameplayObjects/enemies/linkEnemySub.tscn" id="2_erm2c"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="3_k5lcp"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_owly5"]
+a = Vector2(-2117.25, 2793.93)
+b = Vector2(-3271.25, 2408.93)
+
+[node name="LinkEnemy" type="Node2D"]
+script = ExtResource("1_gvrv6")
+
+[node name="LinkEnemySub1" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_erm2c")]
+position = Vector2(0, -1000)
+target = NodePath("../Target1")
+
+[node name="LinkEnemySub2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_erm2c")]
+position = Vector2(0, 1000)
+target = NodePath("../Target2")
+
+[node name="SeparationLine" type="CharacterBody2D" parent="."]
+collision_layer = 3
+collision_mask = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationLine"]
+shape = SubResource("SegmentShape2D_owly5")
+
+[node name="Health" type="Node" parent="SeparationLine"]
+script = ExtResource("3_k5lcp")
+shouldRemoveOnDeath = false
+
+[node name="Target1" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Target2" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="OnTarget" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="A" type="Node2D" parent="OnTarget"]
+position = Vector2(-500, -500)
+metadata/_edit_lock_ = true
+
+[node name="B" type="Node2D" parent="OnTarget"]
+position = Vector2(-500, 500)
+metadata/_edit_lock_ = true

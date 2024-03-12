@@ -1,0 +1,88 @@
+[gd_scene load_steps=15 format=3 uid="uid://i6o6xkdeax4w"]
+
+[ext_resource type="Script" path="res://scripts/entities/skelerexEnemy.gd" id="1_ls4s4"]
+[ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="2_7c2n1"]
+[ext_resource type="Script" path="res://scripts/damageArea.gd" id="3_oqrrj"]
+[ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="4_8lldr"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="5_ap5xk"]
+[ext_resource type="Texture2D" uid="uid://bdloid1gblhy4" path="res://textures/enemies/T_Slime.tres" id="6_7821k"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="7_lgyv0"]
+[ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="8_mql21"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="9_rc83x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q4ev"]
+size = Vector2(250, 250)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb6f1"]
+radius = 3000.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q76o"]
+size = Vector2(250, 250)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
+shader = ExtResource("4_8lldr")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 0.3
+shader_parameter/u_color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.46
+shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
+shader_parameter/u_mask = ExtResource("5_ap5xk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
+size = Vector2(500, 500)
+
+[node name="SkelerexEnemy" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_ls4s4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2q4ev")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("2_7c2n1")
+shouldNotifyOut = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_wb6f1")
+debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_oqrrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("RectangleShape2D_5q76o")
+debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_rtmeo")
+mesh = SubResource("QuadMesh_kkumv")
+texture = ExtResource("6_7821k")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("7_lgyv0")
+shouldRemoveOnDeath = false
+
+[node name="GlowOnHit" type="Node" parent="Health"]
+script = ExtResource("8_mql21")
+
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("9_rc83x")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 300.0
+debug_enabled = true
+debug_path_custom_color = Color(0.741176, 0, 0, 1)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="area_entered" from="DamageArea" to="DamageArea" method="_on_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]

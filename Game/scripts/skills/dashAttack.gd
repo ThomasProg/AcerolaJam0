@@ -7,8 +7,8 @@ class_name DashAttack
 @export var maxDist:float = 600
 @export var impulseSpeed:float = 2000
 
-@onready var explosionCollider:Node2D = $ExplosionCollider
-@onready var laserCollider:Node2D = $LaserCollider
+@onready var explosionCollider:CollisionShape2D = $ExplosionCollider
+@onready var laserCollider:CollisionShape2D = $LaserCollider
 @onready var laserParticles:GPUParticles2D = $Laser
 @onready var explosionParticules:GPUParticles2D = $Explosion
 #@export var attackRange:float = 1
@@ -24,12 +24,14 @@ var touchedEnemies = []
 func setSkillOwner(newOwner: Node2D):
 	skillOwner = newOwner
 	
+func start():
+	
 	look_at(to_global(direction))
 	
 	skillOwner.impulseVelocity = - direction * impulseSpeed
 
 	
-	var space_state = get_world_2d().direct_space_state
+	var space_state = skillOwner.get_world_2d().direct_space_state
 	var endPosition = global_position + direction * maxDist
 	var query = PhysicsRayQueryParameters2D.create(global_position, endPosition, 0xFFFFFFFF, [skillOwner])
 	var result = space_state.intersect_ray(query)
@@ -37,6 +39,7 @@ func setSkillOwner(newOwner: Node2D):
 	if (result):
 		explosionCollider.global_position = result.position
 		explosionParticules.global_position = result.position
+		explosionCollider.disabled = false
 		print("attacked: ", result.collider.name)
 	else:
 		explosionCollider.global_position = endPosition
@@ -73,6 +76,7 @@ func _process(delta):
 	if (laserCollider != null):
 		laserCollider.global_position = laserParticles.global_position
 		(laserCollider.shape as RectangleShape2D).size.x = laserParticles.position.x
+		laserCollider.disabled = false
 
 func onObjectEntered(object: Node):
 	print("MeleeAttack: Trying to attack ", object.name)

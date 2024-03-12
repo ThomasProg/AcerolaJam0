@@ -122,7 +122,8 @@ position = Vector2(16352, 25434)
 
 [node name="RoomExit_right" parent="." instance=ExtResource("8_n3gcb")]
 position = Vector2(17892, 25378)
-nextRoom = "res://scenes/GreenRooms/GreenBossRoom.tscn"
+nextRoom = "res://scenes/GreenRooms/GreenPreBoss.tscn"
+nextExitName = "RoomExit_down"
 
 [node name="PlayerEnter" parent="RoomExit_right" index="0"]
 position = Vector2(-974, 364)

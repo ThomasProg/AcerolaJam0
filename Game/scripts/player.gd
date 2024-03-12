@@ -267,7 +267,6 @@ func processInputs():
 				currentAttackCooldown = attackCooldown
 				var attack = meleeAttackPrefab.instantiate() as DashAttack
 				attack.global_position = getGlobalCenter()
-				get_parent().add_child(attack)
 				#attack.isRight = (direction > 0)
 				#attack.isReversed = isAttackReversed
 				#attack.direction = Vector2(direction, 0)
@@ -281,6 +280,10 @@ func processInputs():
 				attack.damages = attack.damages * dmgMultiplicator
 				#isAttackReversed = !isAttackReversed
 				attack.setSkillOwner(self)
+				get_parent().add_child(attack)
+				
+				attack.start()
+				
 				#var previousState = state
 				#state = State.ATTACK
 				#velocity = Vector2(0,0) + impulseVelocity
