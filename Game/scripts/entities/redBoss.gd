@@ -158,10 +158,18 @@ func _ready():
 		for rotatingEnemy in rotatingEnemies:
 			if (rotatingEnemy != null):
 				rotatingEnemy.queue_free()
+				
+		rotatingEnemies.clear()
 			
 		for spike in growSpikes.spikes:
 			if (spike != null):
 				spike.queue_free()
+				
+		growSpikes.spikes.clear()
+				
+		for spikeParticle in growSpikes.spikesParticles:
+			spikeParticle.queue_free()
+		growSpikes.spikesParticles.clear()
 		
 		#remove_child(bossUI)
 		#get_parent().add_child(bossUI)

@@ -29,6 +29,9 @@ bg_color = Color(0.690196, 0, 0.0745098, 1)
 [node name="GreenBoss" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_k5d65")
+isBerserk = null
+phase = null
+delayBetweenPhases = null
 endDialogue = ExtResource("2_tjf1k")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

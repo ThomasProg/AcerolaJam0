@@ -64,6 +64,8 @@ func Start():
 	
 	for spikeParticle in spikesParticles:
 		spikeParticle.queue_free()
+		
+	spikesParticles.clear()
 	
 	for i in range(spawnPositions.size()):
 		if (i == randomSpikeIndexToRemove and removeRandomSpike):

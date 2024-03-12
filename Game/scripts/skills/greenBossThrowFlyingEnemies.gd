@@ -9,7 +9,7 @@ class_name GreenBossThrowFlyingEnemies
 @export var preChargeSpeed:float = 3000
 @export var chargeSpeed:float = 2000
 
-@export var flyingEnemies:Array[FlyingEnemy]
+@export var flyingEnemies:Array[Node2D]
 @export var flyingEnemiesRadius:float = 1000
 @export var flyingEnemiesAngle:float = 2.0/4.0*PI
 var flyingEnemiesTargets:Array[Vector2]

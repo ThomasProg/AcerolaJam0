@@ -13,7 +13,6 @@ radius = 200.0
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_oisyo")
-radius = 200
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 modulate = Color(0.278431, 0.831373, 0.462745, 1)

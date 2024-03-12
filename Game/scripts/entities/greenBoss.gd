@@ -4,7 +4,7 @@ class_name GreenBoss
 @export var anchor1:Node2D
 @export var anchor2:Node2D
 @export var centerAnchor:Node2D
-@export var flyingEnemies:Array[FlyingEnemy]
+@export var flyingEnemies:Array[Node2D]
 
 @export var target:Node2D
 @export var ball:Node2D
@@ -112,6 +112,10 @@ func startNextPhase():
 func setTarget(newTarget):
 	if (target == null):
 		target = newTarget
+		
+		for flyingEnemy in flyingEnemies:
+			flyingEnemy.target = target
+		
 		startNextPhase()
 
 func onPhaseEnd():

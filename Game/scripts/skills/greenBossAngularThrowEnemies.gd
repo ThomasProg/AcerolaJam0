@@ -10,7 +10,7 @@ class_name GreenBossAngularThrowEnemies
 @export var chargeSpeed:float = 2000
 
 @export var enemyToSpawn:PackedScene
-@export var flyingEnemies:Array[FlyingEnemy]
+@export var flyingEnemies:Array[Node2D]
 @export var flyingEnemiesRadius:float = 2000
 
 @export var nbEnemies:int = 60

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 class_name FlyingEnemy
 
 @export var accSpeed: float = 50

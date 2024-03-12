@@ -96,11 +96,10 @@ position = Vector2(-402, 35)
 shape = SubResource("RectangleShape2D_07alk")
 metadata/_edit_lock_ = true
 
-[node name="RoomExit_upright" parent="." node_paths=PackedStringArray("playerEnter") instance=ExtResource("9_01w80")]
+[node name="RoomExit_upright" parent="." instance=ExtResource("9_01w80")]
 position = Vector2(22055, 9202)
 nextRoom = "res://scenes/RedRooms/RedVillage.tscn"
 nextExitName = "RoomExit_down"
-playerEnter = NodePath("../RoomExit_downright/PlayerEnter")
 
 [node name="PlayerEnter" parent="RoomExit_upright" index="0"]
 position = Vector2(-402, 35)

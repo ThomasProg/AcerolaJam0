@@ -83,15 +83,25 @@ anchor2 = NodePath("../anchor2")
 centerAnchor = NodePath("../centerAnchor")
 flyingEnemies = [NodePath("../../FlyingPlatform3"), NodePath("../flyingEnemy"), NodePath("../flyingEnemy2"), NodePath("../flyingEnemy3")]
 ball = NodePath("../../FlyingPlatform3")
+phase = 0
 
 [node name="flyingEnemy" parent="Enemies" instance=ExtResource("8_v8rju")]
 position = Vector2(12116, 12157)
 
+[node name="Health" parent="Enemies/flyingEnemy" index="1"]
+shouldRemoveOnDeath = false
+
 [node name="flyingEnemy2" parent="Enemies" instance=ExtResource("8_v8rju")]
 position = Vector2(14783, 11513)
 
+[node name="Health" parent="Enemies/flyingEnemy2" index="1"]
+shouldRemoveOnDeath = false
+
 [node name="flyingEnemy3" parent="Enemies" instance=ExtResource("8_v8rju")]
 position = Vector2(13611, 12135)
+
+[node name="Health" parent="Enemies/flyingEnemy3" index="1"]
+shouldRemoveOnDeath = false
 
 [node name="FlyingPlatform3" parent="." instance=ExtResource("10_rgsgn")]
 position = Vector2(11080, 11405)
@@ -171,5 +181,8 @@ position = Vector2(12768, 11142)
 maxDistance = 3500.0
 zoomMult = 1.429
 
+[editable path="Enemies/flyingEnemy"]
+[editable path="Enemies/flyingEnemy2"]
+[editable path="Enemies/flyingEnemy3"]
 [editable path="RoomExit_left"]
 [editable path="RoomExit_right"]
