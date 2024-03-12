@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 @export var target:Node2D
 
-@export var maxSpeed:float = 2300.0
+@export var maxSpeed:float = 1800.0
 @export var speed:float = 1800.0
-@export var healSpeed:float = 3.0
+@export var healSpeed:float = 5.0
 
+@export var angularSpeed:float = PI
 
 @onready var health:Health = $Health
 @onready var navAgent:NavigationAgent2D = $NavigationAgent2D
@@ -29,6 +30,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
+	
+	rotate(angularSpeed*delta)
 
 	if (target != null):
 		navAgent.target_position = getTargetPos()

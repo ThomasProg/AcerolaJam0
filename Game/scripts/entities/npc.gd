@@ -41,7 +41,7 @@ func canRunDialogue():
 		return false
 	
 	if (currentDialogueIndex >= dialogues.size()):
-		if (!repeatLastDialogue):
+		if (repeatLastDialogue):
 			currentDialogueIndex = dialogues.size() - 1
 		else:
 			return false
@@ -85,6 +85,7 @@ func pressLongDoubleJumpOnFloor(dashDirection:Vector2):
 		attack.direction = dashDirection
 		attack.damages = 0
 		attack.setSkillOwner(self)
+		attack.start()
 		
 	for i in range(3):
 		await get_tree().create_timer(0.1).timeout

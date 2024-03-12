@@ -65,19 +65,18 @@ func stop():
 	set_physics_process(false)
 
 
-func computeRadialVelocity():
-	var targetToOwner = skillOwner.global_position - target.global_position
-
+func computeRadialVelocity() -> Vector2:
 	if (!skillOwner.impulseVelocity.is_zero_approx()):
 		skillOwner.velocity += skillOwner.impulseVelocity 
 		skillOwner.impulseVelocity = Vector2.ZERO
 	
-	if skillOwner.velocity.is_zero_approx() or targetToOwner.length() < 10: return
+	var targetToOwner = skillOwner.global_position - target.global_position
+	if skillOwner.velocity.is_zero_approx() or targetToOwner.length() < 10: return Vector2.ZERO
 	
-	var angle = acos(targetToOwner.dot(skillOwner.velocity) / (targetToOwner.length() * skillOwner.velocity.length()))
+	var angle = targetToOwner.angle_to(skillOwner.velocity)# acos(targetToOwner.dot(skillOwner.velocity) / (targetToOwner.length() * skillOwner.velocity.length()))
 	var radialVelocity = cos(angle) * skillOwner.velocity.length()
 	
-	skillOwner.velocity += - targetToOwner.normalized() * radialVelocity
+	return - targetToOwner.normalized() * radialVelocity
 
 func _physics_process(delta):
 
@@ -88,7 +87,7 @@ func _physics_process(delta):
 		
 	#skillOwner.set_physics_process(false)
 	
-	computeRadialVelocity()
+	skillOwner.velocity += computeRadialVelocity()
 
 	#debugLine.add_point(skillOwner.global_position + 1000 * sin(angle) * skillOwner.velocity)
 

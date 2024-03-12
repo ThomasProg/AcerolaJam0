@@ -1,0 +1,50 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdm0kxaihtoko"]
+
+[ext_resource type="Script" path="res://scripts/entities/npc.gd" id="1_14g1k"]
+[ext_resource type="Script" path="res://scripts/skills/jump.gd" id="2_inet8"]
+[ext_resource type="Shader" path="res://shaders/lightAberrationNPC.gdshader" id="2_lftlf"]
+[ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="3_wpee5"]
+[ext_resource type="Curve" uid="uid://c0ft4oye3kj6e" path="res://curves/fallingWithJump.tres" id="4_i5pbn"]
+[ext_resource type="Curve" uid="uid://c4wk67fsklm26" path="res://curves/fallingCurve.tres" id="5_8mgxj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0tsc8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_40hvw"]
+noise = SubResource("FastNoiseLite_0tsc8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_alp4i"]
+shader = ExtResource("2_lftlf")
+shader_parameter/noise = SubResource("NoiseTexture2D_40hvw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_i33b3"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a07v"]
+size = Vector2(75, 75)
+
+[node name="LightAberrationNPC" type="CharacterBody2D"]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+collision_layer = 130
+script = ExtResource("1_14g1k")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.607843, 0.443137, 1, 1)
+material = SubResource("ShaderMaterial_alp4i")
+mesh = SubResource("QuadMesh_i33b3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8a07v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 100.0
+
+[node name="Jump" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_inet8")
+characterBody = NodePath("..")
+jumpVelocityCurve = ExtResource("3_wpee5")
+fallingWithJumpCurve = ExtResource("4_i5pbn")
+fallingCurve = ExtResource("5_8mgxj")
+nbMaxAirJumps = 1
+nbAirJumpsLeft = 1

@@ -35,9 +35,9 @@ func _ready():
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")
 	currentCheckpoint.exit = ""
-	currentCheckpoint.hasBeatenGreenBoss = true
-	currentCheckpoint.hasBeatenRedBoss = true
-	
+	#currentCheckpoint.hasBeatenGreenBoss = true
+	#currentCheckpoint.hasBeatenRedBoss = true
+	#
 	preloadDialogic()	
 	preloadNextRooms()
 	ResourceLoader.load_threaded_request("res://Textures/enemySeemlessNoise2D.tres")
@@ -89,6 +89,11 @@ func saveLastCheckpoint():
 
 func loadLastCheckpoint():
 	loadCheckpoint(lastCheckpointPath)
+
+func changeRoomNextFrame(newRoomPath: String, nextExitName: String):	
+	Dialogic.timeline_ended.connect(func():
+		changeRoom(newRoomPath, nextExitName)
+	)
 
 func changeRoom(newRoomPath: String, nextExitName: String):	
 	if (!ResourceLoader.exists(newRoomPath)):

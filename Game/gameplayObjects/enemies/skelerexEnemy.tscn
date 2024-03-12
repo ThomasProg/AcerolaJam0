@@ -40,31 +40,37 @@ script = ExtResource("1_ls4s4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_2q4ev")
+metadata/_edit_lock_ = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("2_7c2n1")
 shouldNotifyOut = false
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_wb6f1")
 debug_color = Color(0.678431, 0.0980392, 0, 0.0862745)
+metadata/_edit_lock_ = true
 
 [node name="DamageArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("3_oqrrj")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("RectangleShape2D_5q76o")
 debug_color = Color(0.996078, 0, 0.219608, 0.419608)
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_rtmeo")
 mesh = SubResource("QuadMesh_kkumv")
 texture = ExtResource("6_7821k")
+metadata/_edit_lock_ = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("7_lgyv0")

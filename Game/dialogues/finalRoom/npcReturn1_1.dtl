@@ -1,0 +1,6 @@
+I can make you go back into the last village if you want.
+Do you want to go back to explore more?
+- Don't go back
+- Go back
+	do SaveManager.changeRoomNextFrame("res://scenes/LightAberrationRooms/LightAberration3.tscn", "RoomExit_right")
+[end_timeline]
