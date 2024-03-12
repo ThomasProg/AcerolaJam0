@@ -333,7 +333,7 @@ maxDistance = 4000.0
 
 [node name="RoomExit_right" parent="." instance=ExtResource("11_3w2op")]
 position = Vector2(73257, -31668)
-nextRoom = "res://gameplayObjects/enemies/red/aberrationBoss.tscn"
+nextRoom = "res://scenes/AberrationRooms/AberrationBossRoom.tscn"
 nextExitName = "RoomExit_left"
 
 [node name="PlayerEnter" parent="RoomExit_right" index="0"]

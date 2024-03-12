@@ -90,19 +90,19 @@ func getTargetPos()->Vector2:
 	else:
 		return target.getGlobalCenter() + Vector2(target.velocity.x * delay * getDifficultyMultiplier(), 0.0)
 
-func _draw():
-	if (target != null):
-		draw_line(to_local(target.getGlobalCenter()), to_local(getTargetPos()), Color.AQUA, 20)
-		#draw_line(target.getGlobalCenter(), Vector2.ZERO, Color.AQUA, 100)
-		#draw_line(to_local(target.getGlobalCenter()), to_local(target.getGlobalCenter() + target.getTotalVelocity()), Color.RED, 20)
+#func _draw():
+	#if (target != null):
+		#draw_line(to_local(target.getGlobalCenter()), to_local(getTargetPos()), Color.AQUA, 20)
+		##draw_line(target.getGlobalCenter(), Vector2.ZERO, Color.AQUA, 100)
+		##draw_line(to_local(target.getGlobalCenter()), to_local(target.getGlobalCenter() + target.getTotalVelocity()), Color.RED, 20)
+#
+		##if (target.grapplingHookAbility != null):
+			##draw_line(to_local(target.getGlobalCenter()), to_local(target.getGlobalCenter() + target.grapplingHookAbility.computeRadialVelocity() * delay * getDifficultyMultiplier()), Color.RED, 20)
+#
 
-		#if (target.grapplingHookAbility != null):
-			#draw_line(to_local(target.getGlobalCenter()), to_local(target.getGlobalCenter() + target.grapplingHookAbility.computeRadialVelocity() * delay * getDifficultyMultiplier()), Color.RED, 20)
 
-
-
-func _process(delta):
-	queue_redraw()
+#func _process(delta):
+	#queue_redraw()
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO

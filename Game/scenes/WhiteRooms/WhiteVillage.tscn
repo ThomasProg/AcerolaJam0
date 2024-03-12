@@ -94,7 +94,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-13351, 1344)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_left"]
-position = Vector2(-13958, 1005)
+position = Vector2(-14490, 967)
 shape = SubResource("RectangleShape2D_t8qco")
 
 [node name="WhiteNPC2" parent="." instance=ExtResource("5_kljsm")]
