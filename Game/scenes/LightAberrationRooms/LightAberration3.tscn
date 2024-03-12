@@ -113,7 +113,7 @@ maxDistance = 5000.0
 zoomMult = 0.8
 
 [node name="HookTarget6" parent="." instance=ExtResource("7_kdmnl")]
-position = Vector2(48840, 12592)
+position = Vector2(48352, 12872)
 maxDistance = 4000.0
 zoomMult = 0.8
 

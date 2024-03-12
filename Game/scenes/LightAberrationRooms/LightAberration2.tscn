@@ -119,6 +119,7 @@ scale = Vector2(5.634, 2.364)
 position = Vector2(29852, 17621)
 
 [node name="LinkEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_gv1ah")]
+z_index = 1001
 position = Vector2(29851, 17536)
 target = NodePath("../Target")
 wallSize = 3000.0
@@ -132,6 +133,7 @@ life = 1.0
 maxLife = 1.0
 
 [node name="LinkEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_gv1ah")]
+z_index = 1001
 position = Vector2(35875, 17357)
 rotation = -0.523599
 target = NodePath("../Target2")
@@ -149,6 +151,7 @@ position = Vector2(157.707, -2269.16)
 position = Vector2(30.2896, 1331.54)
 
 [node name="LinkEnemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_gv1ah")]
+z_index = 1001
 position = Vector2(44908, 20263)
 rotation = 1.5708
 target = NodePath("../Target2")

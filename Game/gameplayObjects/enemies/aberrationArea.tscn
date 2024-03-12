@@ -4,22 +4,21 @@
 [ext_resource type="Shader" path="res://shaders/damageArea.gdshader" id="2_j7k5p"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_jkxv3"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ys41"]
-noise_type = 0
-frequency = 0.084
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3vy8v"]
+noise_type = 3
+frequency = 0.0121
 
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_2ln2s"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2y663"]
 seamless = true
-noise = SubResource("FastNoiseLite_4ys41")
+noise = SubResource("FastNoiseLite_3vy8v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
 shader = ExtResource("2_j7k5p")
 shader_parameter/u_resolution = Vector2(500, 500)
 shader_parameter/u_speed = 5.82
-shader_parameter/u_color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.8
 shader_parameter/minColorMult = 0.2
-shader_parameter/u_mask = SubResource("NoiseTexture3D_2ln2s")
+shader_parameter/u_mask = SubResource("NoiseTexture2D_2y663")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)
