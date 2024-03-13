@@ -36,6 +36,9 @@ func _on_timer_timeout():
 	spawnedEnemies = spawnedEnemies.filter(func(previousEnemy:Node2D):
 		if (previousEnemy == null):
 			return false
+			
+		if (boss.target == null):
+			return false
 		
 		if (boss.target.global_position.x - previousEnemy.global_position.x > 9000):
 			previousEnemy.queue_free()
@@ -44,6 +47,9 @@ func _on_timer_timeout():
 		return true
 		)
 	
+	if (enemyPrefabs.is_empty()):
+		return
+		
 	var enemy = (enemyPrefabs.pick_random() as PackedScene).instantiate() as Node2D
 	
 	enemy.global_position = boss.target.global_position + boss.target.velocity*0.8 +  Vector2(0, -5000)

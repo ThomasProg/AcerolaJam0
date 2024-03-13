@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://cm6ms15mwai8b"]
+[gd_scene load_steps=95 format=3 uid="uid://cm6ms15mwai8b"]
 
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_8fub3"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_bbcxb"]
@@ -315,6 +315,9 @@ Array[int]([1, 0]): 15
 _next_key = 23
 _material_overrides = {}
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01nxk"]
+size = Vector2(1187, 2114)
+
 [sub_resource type="Resource" id="Resource_ovkn1"]
 script = ExtResource("7_d7tnq")
 texture_idx = 0
@@ -437,6 +440,9 @@ Array[int]([1, 0]): 15
 }
 _next_key = 29
 _material_overrides = {}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc01j"]
+size = Vector2(1187, 2114)
 
 [sub_resource type="Curve2D" id="Curve2D_ue1he"]
 _data = {
@@ -676,12 +682,10 @@ script = ExtResource("6_iueio")
 _points = SubResource("Resource_kcoa3")
 shape_material = SubResource("Resource_g3phs")
 collision_offset = 120.0
-collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase5/RightWall"]
-visible = false
-modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(1709.31, -1132.22, -1052.94, -1131.58, -1117.11, -1020.06, -1222, -916.34, -1337.2, -824.406, -1404.13, -672.15, -1091.27, 90.7655, -762.419, 620.686, -602.649, 609.17, -441.678, 625.305, -268.856, 712.855, -28.1978, 1187.14, 152.221, 1696.54, 221.326, 1937.25, 235.153, 1970.2, 247.476, 1993.25, 254.998, 2004.4, 262.484, 2013.39, 268.001, 2018.87, 273.691, 2023.56, 280.396, 2028.06, 288.316, 2032.15, 297.541, 2035.45, 307.906, 2037.5, 318.92, 2037.89, 329.837, 2036.47, 339.891, 2033.44, 348.572, 2029.31, 355.699, 2024.64, 361.37, 2019.87, 365.81, 2015.28, 369.742, 2010.33, 373.786, 2004.09, 376.663, 1998.66, 350.234, 2014.73, 1805.78, 1997.71)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phase5/RightWall"]
+position = Vector2(-197.5, 957)
+shape = SubResource("RectangleShape2D_01nxk")
 
 [node name="LeftWall" type="StaticBody2D" parent="Phase5"]
 position = Vector2(87280, 536)
@@ -693,12 +697,10 @@ script = ExtResource("6_iueio")
 _points = SubResource("Resource_4jpnl")
 shape_material = SubResource("Resource_g3phs")
 collision_offset = 120.0
-collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase5/LeftWall"]
-visible = false
-modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(2359.7, -551.359, -938.118, -456.456, -1905.79, 2000.51, 372.333, 2009.9, 467.204, 1882.04, 491.784, 1846.69, 553.999, 1740.35, 631.63, 1570.01, 703.581, 1343.26, 720.537, 1283.79, 739.682, 1231.54, 786.98, 1134.25, 840.28, 1051.7, 895.025, 983.293, 946.156, 929.573, 988.238, 891.281, 1031.83, 856.899)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase5/LeftWall"]
+position = Vector2(671, 959)
+shape = SubResource("RectangleShape2D_uc01j")
 
 [node name="Phase6" type="Node2D" parent="."]
 

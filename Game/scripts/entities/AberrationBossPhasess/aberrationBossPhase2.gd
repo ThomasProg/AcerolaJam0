@@ -36,7 +36,7 @@ func _physics_process(delta):
 		
 	match(phaseIndex):
 		0:
-			if (boss.global_position.distance_to(positionTarget.global_position) > 100):
+			if (positionTarget != null and boss.global_position.distance_to(positionTarget.global_position) > 100):
 				boss.velocity = 1000 * boss.global_position.direction_to(positionTarget.global_position)
 			else:
 				phaseIndex = 1

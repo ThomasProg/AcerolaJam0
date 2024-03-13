@@ -53,6 +53,9 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	if (boss.target == null):
+		return
+		
 	var speed:float = boss.target.speed * defaultSpeedMultiplier
 	
 	#var playerDistance:float = boss.global_position.distance_to(boss.target.global_position + boss.target.getTotalVelocity())
