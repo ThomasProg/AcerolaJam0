@@ -34,7 +34,7 @@ func dealDamages(damages:float, attacker:Node, removeInvulnerability:bool=false)
 	
 	var wasDead:bool = isDead()
 	
-	if (wasDead):
+	if (wasDead and shouldRemoveOnDeath):
 		return
 	
 	life -= damages

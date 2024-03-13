@@ -30,6 +30,8 @@ shape = SubResource("SegmentShape2D_owly5")
 [node name="Health" type="Node" parent="SeparationLine"]
 script = ExtResource("3_k5lcp")
 shouldRemoveOnDeath = false
+life = 1e+07
+maxLife = 1e+07
 
 [node name="Target1" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
