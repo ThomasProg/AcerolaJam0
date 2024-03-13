@@ -140,7 +140,6 @@ mesh = SubResource("QuadMesh_ct0jy")
 [node name="StaticBody2D" type="StaticBody2D" parent="Phase2/UpperWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phase2/UpperWall/StaticBody2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_q7h5b")
 
 [node name="BottomWall" type="MeshInstance2D" parent="Phase2"]
@@ -152,7 +151,6 @@ mesh = SubResource("QuadMesh_ct0jy")
 [node name="StaticBody2D" type="StaticBody2D" parent="Phase2/BottomWall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phase2/BottomWall/StaticBody2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_q7h5b")
 
 [node name="Phase3" type="Node2D" parent="."]
@@ -263,8 +261,8 @@ isSkipped = false
 script = ExtResource("17_v7tfp")
 boss = NodePath("../../AberrationBoss")
 positionTarget = NodePath("../../Phase6/Path2D/PathFollow2D")
-upperWall = NodePath("../LeftWall")
-bottomWall = NodePath("../RightWall")
+upperWall = NodePath("../RightWall")
+bottomWall = NodePath("../LeftWall")
 dialogue = ExtResource("27_7ps24")
 wallMoveDirection = Vector2(-1, 0)
 isSkipped = false
@@ -279,7 +277,6 @@ mesh = SubResource("QuadMesh_ct0jy")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phase5/LeftWall/StaticBody2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_q7h5b")
 metadata/_edit_lock_ = true
 
@@ -293,7 +290,6 @@ mesh = SubResource("QuadMesh_ct0jy")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phase5/RightWall/StaticBody2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_q7h5b")
 metadata/_edit_lock_ = true
 

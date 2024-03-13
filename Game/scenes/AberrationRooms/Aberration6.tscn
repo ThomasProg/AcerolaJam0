@@ -135,12 +135,12 @@ offDuration = 5.0
 [node name="enemyThrower" parent="Enemies" instance=ExtResource("9_6exw8")]
 position = Vector2(66907, -32579)
 amount = 3
-onDuration = 1.0
-offDuration = 5.0
+onDuration = 0.7
+offDuration = 4.0
 deltaAngle = 0.0
 
 [node name="enemyThrower3" parent="Enemies" instance=ExtResource("9_6exw8")]
-position = Vector2(65637, -28393)
+position = Vector2(65744, -28411)
 amount = 3
 onDuration = 1.0
 offDuration = 3.0
@@ -149,9 +149,9 @@ deltaAngle = 0.0
 [node name="enemyThrower2" parent="Enemies" instance=ExtResource("9_6exw8")]
 position = Vector2(67780, -32574)
 amount = 3
-onDuration = 1.0
-offDuration = 5.0
-initialDelay = 3.0
+onDuration = 0.7
+offDuration = 4.0
+initialDelay = 2.35
 deltaAngle = 0.0
 
 [node name="Player" parent="." instance=ExtResource("5_lioah")]
