@@ -5,6 +5,7 @@ class_name BossSpawnEnemies
 @export var phase:Phase = Phase.HINT
 @export var target:Node2D
 @export var enemySpawnSpeed:float = 3000
+@export var hintDuration = 2.0
 
 @export var enemyPrefab:PackedScene
 
@@ -17,6 +18,14 @@ var baseScale:Vector2
 
 func _ready():
 	set_physics_process(false)
+	
+	match SaveManager.currentCheckpoint.difficulty:
+		0:
+			hintDuration = 3.0
+		1:
+			hintDuration = 2.1
+		2:
+			hintDuration = 1.8
 
 func SpawnEnemy(angVelocity:float = 0):
 	var spike = enemyPrefab.instantiate() as Node2D
@@ -35,7 +44,7 @@ func Start():
 	baseScale = skillOwner.scale
 	phase = Phase.HINT
 	set_physics_process(true)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(hintDuration).timeout
 	phase = Phase.SPAWN_ENEMY
 	
 	time = 0.0

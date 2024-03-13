@@ -234,7 +234,7 @@ nextExitName = "RoomExit_up1"
 useRelativePosition = true
 
 [node name="PlayerEnter" parent="RoomExit_down1" index="0"]
-position = Vector2(4609, -1075)
+position = Vector2(-1941, -1643)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_down1"]
 position = Vector2(9, 0)

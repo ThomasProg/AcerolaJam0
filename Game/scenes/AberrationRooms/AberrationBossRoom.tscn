@@ -628,6 +628,16 @@ position = Vector2(142135, -29910)
 maxDistance = 5000.0
 zoomMult = 0.7
 
+[node name="HookTarget22" parent="Phase7/HookTargets" instance=ExtResource("25_q0m6r")]
+position = Vector2(144949, -31232)
+maxDistance = 5000.0
+zoomMult = 0.7
+
+[node name="HookTarget21" parent="Phase7/HookTargets" instance=ExtResource("25_q0m6r")]
+position = Vector2(140321, -27181)
+maxDistance = 5000.0
+zoomMult = 0.7
+
 [node name="Phase8" type="Node2D" parent="."]
 
 [node name="AberrationBossPhase1" type="Node" parent="Phase8" node_paths=PackedStringArray("boss")]

@@ -119,6 +119,14 @@ func setTarget(newTarget):
 		startNextPhase()
 
 func _ready():
+	match SaveManager.currentCheckpoint.difficulty:
+		0:
+			delayBetweenPhases = 3.0
+		1:
+			delayBetweenPhases = 2.1
+		2:
+			delayBetweenPhases = 1.8
+	
 	var skills:Array[Node] = [
 		$Charging, 
 		$ChargingBerserk, 

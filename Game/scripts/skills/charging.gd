@@ -8,8 +8,9 @@ class_name Charging
 @export var phase:Phase = Phase.PRE_CHARGE
 @export var preChargeSpeed:float = 3000
 @export var chargeSpeed:float = 2000
+@export var hintDuration:float = 1.5
 
-enum Phase { PRE_CHARGE, CHARGING, FINISHED }
+enum Phase { PRE_CHARGE, HINT, CHARGING, FINISHED }
 
 signal onEnd()
 signal onPreCharge()
@@ -17,7 +18,13 @@ signal onCharge()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	match SaveManager.currentCheckpoint.difficulty:
+		0:
+			hintDuration = 1.5
+		1:
+			hintDuration = 0.7
+		2:
+			hintDuration = 0.1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,8 +53,14 @@ func _physics_process(delta):
 		Phase.PRE_CHARGE:
 			var isFinished = goFastToPosition(startPosition, 100, preChargeSpeed, 500)
 			if (isFinished):
+				phase = Phase.HINT
+				await get_tree().create_timer(hintDuration).timeout
 				phase = Phase.CHARGING
 				onCharge.emit()
+
+		Phase.HINT:
+			skillOwner.velocity = Vector2.ZERO
+			skillOwner.angularVelocity = rotationSpeed * signf(skillOwner.global_position.direction_to(endPosition).x)
 
 		Phase.CHARGING:
 			skillOwner.angularVelocity = rotationSpeed * signf(skillOwner.velocity.x)

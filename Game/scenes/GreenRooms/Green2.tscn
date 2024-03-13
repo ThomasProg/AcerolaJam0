@@ -95,7 +95,7 @@ metadata/_edit_lock_ = true
 [node name="Pendulum5" parent="Enemies" instance=ExtResource("8_n2d2v")]
 position = Vector2(41710, 60658)
 rotation = 0.872665
-startOffset = 3.142
+startOffset = 0.0
 radius = 3000.0
 speed = 1.0
 maxAngleDegrees = 145

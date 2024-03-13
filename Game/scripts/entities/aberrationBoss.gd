@@ -20,6 +20,8 @@ func runNextPhase():
 		phases[currentPhaseIndex].start()
 
 func _ready():
+	meshInstance.material.set("shader_parameter/glow", 5.0)
+	
 	for phase in phases:
 		phase.boss = self
 	

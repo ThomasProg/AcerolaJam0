@@ -191,6 +191,7 @@ shape = SubResource("RectangleShape2D_14lml")
 position = Vector2(-8481, -4611)
 nextRoom = "res://scenes/GreenRooms/Green1.tscn"
 nextExitName = "RoomExit_down1"
+useRelativePosition = true
 normal = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_up1"]
