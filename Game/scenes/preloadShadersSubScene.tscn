@@ -1,0 +1,202 @@
+[gd_scene load_steps=31 format=3 uid="uid://mfhr1q74gvy"]
+
+[ext_resource type="Shader" path="res://shaders/slimeEnemy.gdshader" id="1_0kbpu"]
+[ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="2_rrobh"]
+[ext_resource type="Texture2D" uid="uid://bdloid1gblhy4" path="res://textures/enemies/T_Slime.tres" id="3_h17oa"]
+[ext_resource type="Shader" path="res://shaders/aberrationRadial.gdshader" id="4_c6ips"]
+[ext_resource type="Shader" path="res://shaders/backgrounds/aberrationBackground.gdshader" id="5_6f4ks"]
+[ext_resource type="Shader" path="res://shaders/aberrationBlackAndWhite.gdshader" id="5_gyto4"]
+[ext_resource type="Shader" path="res://shaders/backgrounds/blueBackground.gdshader" id="6_55mof"]
+[ext_resource type="Shader" path="res://shaders/damageArea.gdshader" id="6_g0oo5"]
+[ext_resource type="Shader" path="res://shaders/deathParticles.gdshader" id="6_memy8"]
+[ext_resource type="Shader" path="res://shaders/backgrounds/greenBackground.gdshader" id="7_hbi08"]
+[ext_resource type="Shader" path="res://shaders/flyingEnemy.gdshader" id="7_mqphn"]
+[ext_resource type="Shader" path="res://shaders/backgrounds/redBackground.gdshader" id="8_nrb4c"]
+[ext_resource type="Shader" path="res://shaders/lightAberrationNPC.gdshader" id="8_rfjgs"]
+[ext_resource type="Shader" path="res://shaders/rotatingTriangleEnemy.gdshader" id="9_d62w6"]
+[ext_resource type="Shader" path="res://shaders/backgrounds/whiteBackground.gdshader" id="9_fufsd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_135te"]
+shader = ExtResource("1_0kbpu")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/u_color = null
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
+shader_parameter/u_mask = ExtResource("2_rrobh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_q6pn2"]
+size = Vector2(100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_av8nt"]
+shader = ExtResource("4_c6ips")
+shader_parameter/apply = true
+shader_parameter/amount = 1.0
+shader_parameter/green = 0.105
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwsyq"]
+shader = ExtResource("5_gyto4")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/u_color = null
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gpti"]
+shader = ExtResource("6_g0oo5")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0shn"]
+shader = ExtResource("7_mqphn")
+shader_parameter/u_resolution = Vector2(500, 500)
+shader_parameter/u_speed = 20.0
+shader_parameter/u_color = null
+shader_parameter/amount = 1.0
+shader_parameter/minColorMult = 0.2
+shader_parameter/glow = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvt41"]
+shader = ExtResource("8_rfjgs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6mvhj"]
+shader = ExtResource("9_d62w6")
+shader_parameter/u_speed = 20.0
+shader_parameter/size = 100.0
+shader_parameter/glow = 2.0
+shader_parameter/triangleShape = 250.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3574p"]
+shader = ExtResource("6_memy8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66a8e"]
+shader = ExtResource("5_6f4ks")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color3 = Color(1, 1, 1, 1)
+shader_parameter/distorsion = 400.0
+shader_parameter/maxDistorsionLength = 10000.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1mi6"]
+shader = ExtResource("6_55mof")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color3 = Color(1, 1, 1, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7js1y"]
+shader = ExtResource("7_hbi08")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color3 = Color(1, 1, 1, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18odw"]
+shader = ExtResource("8_nrb4c")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color3 = Color(1, 1, 1, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmvhw"]
+shader = ExtResource("9_fufsd")
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color3 = Color(1, 1, 1, 1)
+shader_parameter/zoom = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_quuy8"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_min = 10.0
+scale_max = 10.0
+
+[node name="PreloadShadersSubScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_135te")
+position = Vector2(169, 166)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_av8nt")
+position = Vector2(239, 164)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_bwsyq")
+position = Vector2(160, 245)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D9" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_8gpti")
+position = Vector2(67, 205)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D11" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_u0shn")
+position = Vector2(149, 92)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D12" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_hvt41")
+position = Vector2(237, 84)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D13" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_6mvhj")
+position = Vector2(305, 116)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D10" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_3574p")
+position = Vector2(66, 123)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_66a8e")
+position = Vector2(278, 247)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D5" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_w1mi6")
+position = Vector2(194, 350)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_7js1y")
+position = Vector2(303, 350)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_18odw")
+position = Vector2(384, 250)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="MeshInstance2D8" type="MeshInstance2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_fmvhw")
+position = Vector2(419, 355)
+mesh = SubResource("QuadMesh_q6pn2")
+texture = ExtResource("3_h17oa")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(155, 18)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_quuy8")

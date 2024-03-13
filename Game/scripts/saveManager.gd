@@ -51,9 +51,10 @@ func _ready():
 	
 	await get_tree().process_frame
 	get_tree().root.add_child(preloadShaders)
-	#await get_tree().process_frame
-	#await get_tree().process_frame
-	#await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	preloadShaders.queue_free()
 	#preloadShaders.queue_free()
 	
 func preloadDialogic():

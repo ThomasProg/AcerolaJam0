@@ -32,7 +32,6 @@ size = Vector2(1000, 3000)
 script = ExtResource("1_f7c1j")
 roomLimits = NodePath("Env/RoomLimits")
 isCheckpoint = true
-metadata/_edit_group_ = true
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)
@@ -134,12 +133,12 @@ shape = SubResource("RectangleShape2D_7v4tv")
 metadata/_edit_lock_ = true
 
 [node name="RoomExit_boss" parent="." instance=ExtResource("8_n3gcb")]
-position = Vector2(17813, 19003)
+position = Vector2(18460, 18993)
 nextRoom = "res://scenes/GreenRooms/GreenBossRoom.tscn"
 nextExitName = "RoomExit_left"
 
 [node name="PlayerEnter" parent="RoomExit_boss" index="0"]
-position = Vector2(-910, -163)
+position = Vector2(-1481, -201)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomExit_boss"]
 shape = SubResource("RectangleShape2D_7v4tv")

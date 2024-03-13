@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmahytqnverqs"]
 
-[ext_resource type="Shader" path="res://shaders/enemyPlatform.gdshader" id="1_nlya0"]
+[ext_resource type="Shader" path="res://shaders/unused/enemyPlatform.gdshader" id="1_nlya0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dyg3b"]
 noise_type = 3
