@@ -28,6 +28,10 @@ func _ready():
 	player.camera.limit_top = roomLimits.position.y - roomLimits.scale.y / 2.0
 	player.camera.limit_bottom = roomLimits.position.y + roomLimits.scale.y / 2.0
 
+	if (SaveManager.currentRoom == null):
+		SaveManager.visitRoom(self)
+		SaveManager.currentRoom = self
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

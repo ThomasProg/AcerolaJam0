@@ -28,10 +28,11 @@ agent_radius = 70.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v4tv"]
 size = Vector2(1000, 3000)
 
-[node name="EmptyGreenRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+[node name="GreenVillage" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_f7c1j")
 roomLimits = NodePath("Env/RoomLimits")
 isCheckpoint = true
+metadata/_edit_group_ = true
 
 [node name="Env" type="Node2D" parent="."]
 position = Vector2(0, -0.000244141)

@@ -5,6 +5,9 @@ var currentRoomPath:String
 
 var currentCheckpoint:CheckpointSaveData
 
+signal onRoomVisited(Room)
+var visitedRooms:Array[String] = []
+
 var lastCheckpointPath = "user://lastCheckpoint.tscn"
 
 var chrono:float = 0.0
@@ -53,7 +56,6 @@ func _ready():
 	#await get_tree().process_frame
 	#preloadShaders.queue_free()
 	
-	
 func preloadDialogic():
 	#ResourceLoader.load_threaded_request(ProjectSettings.get_setting("dialogic/layout/default_style"))
 	var defaultStyle:DialogicStyle = ResourceLoader.load(ProjectSettings.get_setting("dialogic/layout/default_style")) as DialogicStyle
@@ -97,6 +99,12 @@ func changeRoomNextFrame(newRoomPath: String, nextExitName: String):
 		changeRoom(newRoomPath, nextExitName)
 	)
 
+func visitRoom(room:Room):
+	currentRoom = room
+	visitedRooms.push_back(currentRoom.name)
+	onRoomVisited.emit(room)
+	
+
 func changeRoom(newRoomPath: String, nextExitName: String):	
 	if (!ResourceLoader.exists(newRoomPath)):
 		return
@@ -128,6 +136,7 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 	for nodeToRemove in nodesToRemove:
 		nodeToRemove.queue_free()
 
+	visitRoom(room)
 	currentRoom = room
 	currentRoomPath = newRoomPath
 	preloadNextRooms()
@@ -186,6 +195,7 @@ func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vec
 	for nodeToRemove in nodesToRemove:
 		nodeToRemove.queue_free()
 
+	visitRoom(room)
 	currentRoom = room
 	currentRoomPath = newRoomPath
 	preloadNextRooms()

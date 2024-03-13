@@ -35,7 +35,7 @@ agent_radius = 70.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dll0"]
 size = Vector2(1000, 2000)
 
-[node name="EmptyWhiteRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+[node name="FinalRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_dr50o")
 roomLimits = NodePath("Env/RoomLimits")
 
@@ -70,7 +70,7 @@ metadata/_edit_lock_ = true
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("5_via3g")]
-position = Vector2(7373, 16333)
+position = Vector2(15904, 15315)
 
 [node name="RoomExit_left" parent="." instance=ExtResource("6_16kxl")]
 position = Vector2(5326, 15684)

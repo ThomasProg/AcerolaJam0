@@ -1,0 +1,490 @@
+[gd_scene load_steps=4 format=3 uid="uid://k0gn5gj6x5q2"]
+
+[ext_resource type="Script" path="res://scripts/minimap/minimapScene.gd" id="1_w60sd"]
+[ext_resource type="Script" path="res://scripts/minimap/roomConnection.gd" id="2_x5tm6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_f5k42"]
+
+[node name="MinimapScene" type="Node2D" node_paths=PackedStringArray("roomsRoot", "connectionsRoot")]
+script = ExtResource("1_w60sd")
+roomsRoot = NodePath("Rooms")
+connectionsRoot = NodePath("Connections")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1903, 127)
+zoom = Vector2(0.2, 0.2)
+
+[node name="Connections" type="Node2D" parent="."]
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
+
+[node name="Connection1" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(1016.25, 210.75)
+scale = Vector2(158, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White1")
+room2 = NodePath("../../Rooms/WhiteRooms/WhiteVillage")
+
+[node name="Connection2" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(1374.5, 101)
+scale = Vector2(227, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/WhiteVillage")
+room2 = NodePath("../../Rooms/WhiteRooms/White2")
+
+[node name="Connection3" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2274, -162)
+scale = Vector2(303, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White2")
+room2 = NodePath("../../Rooms/WhiteRooms/White3")
+
+[node name="Connection9" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3613.75, -229)
+scale = Vector2(1232.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White3")
+room2 = NodePath("../../Rooms/GreenRooms/Green1")
+
+[node name="Connection14" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2653.88, 792)
+scale = Vector2(830.25, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White5")
+room2 = NodePath("../../Rooms/RedRooms/Red4")
+
+[node name="Connection4" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(1989, 117)
+scale = Vector2(283, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White2")
+room2 = NodePath("../../Rooms/WhiteRooms/White3")
+
+[node name="Connection11" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3411.75, 178)
+scale = Vector2(278.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White4")
+room2 = NodePath("../../Rooms/WhiteRooms/White6")
+
+[node name="Connection18" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3837, 791)
+scale = Vector2(278.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/RedRooms/Red4")
+room2 = NodePath("../../Rooms/RedRooms/RedVillage")
+
+[node name="Connection21" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4533, 717)
+scale = Vector2(278.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/RedRooms/RedVillage")
+room2 = NodePath("../../Rooms/RedRooms/Red5")
+
+[node name="Connection19" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4016.5, 1149)
+scale = Vector2(419, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/RedRooms/RedVillage")
+room2 = NodePath("../../Rooms/RedRooms/RedBossRoom")
+
+[node name="Connection16" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3409.88, 538)
+scale = Vector2(460.25, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/RedRooms/Red4")
+
+[node name="Connection23" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4282.94, 532)
+scale = Vector2(746.125, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/RedRooms/Red5")
+
+[node name="Connection12" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4115, 188)
+scale = Vector2(278.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration1")
+
+[node name="Connection24" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4935.38, 195)
+scale = Vector2(337.25, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/LightAberrationRooms/LightAberration1")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration2")
+
+[node name="Connection36" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4762.69, -219)
+scale = Vector2(214.625, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/Green1")
+room2 = NodePath("../../Rooms/GreenRooms/Green2")
+
+[node name="Connection37" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5239, -636)
+scale = Vector2(214.625, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/Green2")
+room2 = NodePath("../../Rooms/GreenRooms/GreenVillage")
+
+[node name="Connection39" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(6279, -885.125)
+scale = Vector2(103, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/GreenPreBoss")
+room2 = NodePath("../../Rooms/GreenRooms/GreenBossRoom")
+
+[node name="Connection40" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5871.5, -883.125)
+scale = Vector2(103, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/GreenBossRoom")
+room2 = NodePath("../../Rooms/GreenRooms/GreenVillage")
+
+[node name="Connection41" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5780, -710)
+scale = Vector2(103, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/GreenBossRoom")
+room2 = NodePath("../../Rooms/GreenRooms/GreenVillage")
+
+[node name="Connection38" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(6039, -591)
+scale = Vector2(583.312, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/GreenVillage")
+room2 = NodePath("../../Rooms/GreenRooms/GreenPreBoss")
+
+[node name="Connection26" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5226.56, 311)
+scale = Vector2(337.124, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/LightAberrationRooms/LightAberration1")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration2")
+
+[node name="Connection28" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(6332.5, 412)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/LightAberrationRooms/LightAberration2")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration3")
+
+[node name="Connection29" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(8084.25, 417)
+scale = Vector2(204.5, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/LightAberrationRooms/LightAberration3")
+room2 = NodePath("../../Rooms/AberrationRooms/Aberration4")
+
+[node name="Connection30" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(8833.5, 512.5)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/Aberration4")
+room2 = NodePath("../../Rooms/AberrationRooms/Aberration5")
+
+[node name="Connection32" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(8965.5, 781.5)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/Aberration4")
+room2 = NodePath("../../Rooms/AberrationRooms/Aberration5")
+
+[node name="Connection33" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(9790, 806)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/Aberration5")
+room2 = NodePath("../../Rooms/AberrationRooms/Aberration6")
+
+[node name="Connection34" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(11045, 793)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/Aberration6")
+room2 = NodePath("../../Rooms/AberrationRooms/AberrationBossRoom")
+
+[node name="Connection35" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(12288, 797)
+scale = Vector2(184.999, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/AberrationBossRoom")
+room2 = NodePath("../../Rooms/WhiteRooms/FinalRoom")
+
+[node name="Connection25" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5270, 519)
+scale = Vector2(283.125, 43)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/RedRooms/Red5")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration2")
+
+[node name="Connection5" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2143, -12)
+scale = Vector2(52.4999, 296)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White2")
+room2 = NodePath("../../Rooms/WhiteRooms/White3")
+
+[node name="Connection7" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2653, 348.5)
+scale = Vector2(52.4999, 227)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White4")
+room2 = NodePath("../../Rooms/WhiteRooms/White5")
+
+[node name="Connection15" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3187, 632)
+scale = Vector2(52.4999, 227)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/RedRooms/Red4")
+
+[node name="Connection13" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2259, 662)
+scale = Vector2(52.4999, 227)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White5")
+room2 = NodePath("../../Rooms/RedRooms/Red4")
+
+[node name="Connection8" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(1839, 324)
+scale = Vector2(52.4999, 227)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White2")
+room2 = NodePath("../../Rooms/WhiteRooms/White5")
+
+[node name="Connection6" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(2725, -10)
+scale = Vector2(52.4999, 180.5)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White3")
+room2 = NodePath("../../Rooms/WhiteRooms/White4")
+
+[node name="Connection17" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3628, 416.375)
+scale = Vector2(52.4999, 269.25)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/RedRooms/Red4")
+
+[node name="Connection22" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(3931, 422)
+scale = Vector2(52.4999, 269.25)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/WhiteRooms/White6")
+room2 = NodePath("../../Rooms/RedRooms/Red5")
+
+[node name="Connection27" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5081.38, 253)
+scale = Vector2(53.2501, 156)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/LightAberrationRooms/LightAberration1")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration2")
+
+[node name="Connection20" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4200, 1025.41)
+scale = Vector2(52.4999, 290.813)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/RedRooms/RedVillage")
+room2 = NodePath("../../Rooms/RedRooms/RedBossRoom")
+
+[node name="Connection31" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(8900.5, 656.5)
+scale = Vector2(52.4999, 290.813)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/AberrationRooms/Aberration4")
+room2 = NodePath("../../Rooms/AberrationRooms/Aberration5")
+
+[node name="Connection10" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(4446.25, -17.25)
+scale = Vector2(52.4999, 218.25)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/Green1")
+room2 = NodePath("../../Rooms/LightAberrationRooms/LightAberration1")
+
+[node name="Connection42" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
+position = Vector2(5846, -796.438)
+scale = Vector2(52.4999, 215.125)
+mesh = SubResource("QuadMesh_f5k42")
+script = ExtResource("2_x5tm6")
+room1 = NodePath("../../Rooms/GreenRooms/GreenBossRoom")
+room2 = NodePath("../../Rooms/GreenRooms/GreenVillage")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="WhiteRooms" type="Node2D" parent="Rooms"]
+
+[node name="White1" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(717.25, 199.75)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="WhiteVillage" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(1166.13, 139.125)
+scale = Vector2(190.25, 273.75)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="White2" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(1690, 119)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="White3" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(2700.38, -177)
+scale = Vector2(601.25, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="White4" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(2910.88, 169)
+scale = Vector2(746.25, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="White5" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(2235, 510)
+scale = Vector2(952, 161.688)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="White6" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(3766, 201)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="FinalRoom" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
+position = Vector2(12585, 797)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="RedRooms" type="Node2D" parent="Rooms"]
+modulate = Color(0.509804, 0, 0.0901961, 1)
+
+[node name="Red4" type="MeshInstance2D" parent="Rooms/RedRooms"]
+position = Vector2(3386, 791)
+scale = Vector2(646.812, 136.844)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="Red5" type="MeshInstance2D" parent="Rooms/RedRooms"]
+position = Vector2(4892, 632.008)
+scale = Vector2(521.531, 291.984)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="RedVillage" type="MeshInstance2D" parent="Rooms/RedRooms"]
+position = Vector2(4184, 782)
+scale = Vector2(475.062, 226)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="RedBossRoom" type="MeshInstance2D" parent="Rooms/RedRooms"]
+position = Vector2(3605, 1144)
+scale = Vector2(457.125, 227.875)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="GreenRooms" type="Node2D" parent="Rooms"]
+modulate = Color(0, 0.313726, 0.0470588, 1)
+
+[node name="Green1" type="MeshInstance2D" parent="Rooms/GreenRooms"]
+position = Vector2(4443.25, -208.25)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="Green2" type="MeshInstance2D" parent="Rooms/GreenRooms"]
+position = Vector2(4997, -437)
+scale = Vector2(296.25, 603.75)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="GreenVillage" type="MeshInstance2D" parent="Rooms/GreenRooms"]
+position = Vector2(5539, -640)
+scale = Vector2(454.5, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="GreenBossRoom" type="MeshInstance2D" parent="Rooms/GreenRooms"]
+position = Vector2(6079.5, -884.125)
+scale = Vector2(344.25, 153.75)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="GreenPreBoss" type="MeshInstance2D" parent="Rooms/GreenRooms"]
+position = Vector2(6419, -743)
+scale = Vector2(240.124, 428.875)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="LightAberrationRooms" type="Node2D" parent="Rooms"]
+modulate = Color(0.34902, 0.243137, 0.419608, 1)
+
+[node name="LightAberration1" type="MeshInstance2D" parent="Rooms/LightAberrationRooms"]
+position = Vector2(4518.25, 187.75)
+scale = Vector2(550.25, 207.5)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="LightAberration3" type="MeshInstance2D" parent="Rooms/LightAberrationRooms"]
+position = Vector2(7206, 403)
+scale = Vector2(1580.28, 269.969)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="LightAberration2" type="MeshInstance2D" parent="Rooms/LightAberrationRooms"]
+position = Vector2(5816, 410)
+scale = Vector2(880.063, 312)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="AberrationRooms" type="Node2D" parent="Rooms"]
+modulate = Color(0.372549, 0.129412, 0.419608, 1)
+
+[node name="Aberration4" type="MeshInstance2D" parent="Rooms/AberrationRooms"]
+position = Vector2(8477, 438)
+scale = Vector2(606.125, 258.375)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="Aberration5" type="MeshInstance2D" parent="Rooms/AberrationRooms"]
+position = Vector2(9380.5, 797.5)
+scale = Vector2(661.126, 303.375)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="Aberration6" type="MeshInstance2D" parent="Rooms/AberrationRooms"]
+position = Vector2(10418, 810)
+scale = Vector2(1110.13, 500.375)
+mesh = SubResource("QuadMesh_f5k42")
+
+[node name="AberrationBossRoom" type="MeshInstance2D" parent="Rooms/AberrationRooms"]
+position = Vector2(11665, 804)
+scale = Vector2(1110.13, 500.375)
+mesh = SubResource("QuadMesh_f5k42")

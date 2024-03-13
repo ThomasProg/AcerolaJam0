@@ -31,7 +31,7 @@ size = Vector2(4164, 331)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxmv3"]
 size = Vector2(700, 2000)
 
-[node name="EmptyWhiteRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+[node name="White6" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_rskn7")
 roomLimits = NodePath("Env/RoomLimits")
 

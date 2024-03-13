@@ -23,7 +23,7 @@ agent_radius = 70.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hmri"]
 size = Vector2(1000, 3000)
 
-[node name="Green1" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+[node name="Green2" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_bpdga")
 roomLimits = NodePath("Env/RoomLimits")
 

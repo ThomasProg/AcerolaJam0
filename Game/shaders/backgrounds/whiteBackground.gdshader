@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform vec4 color1 : source_color = vec4(1.0);
 uniform vec4 color2 : source_color = vec4(1.0);
 uniform vec4 color3 : source_color = vec4(1.0);
+uniform float zoom = 1.0;
 
 uniform sampler2D noise;
 
@@ -57,9 +58,9 @@ void fragment() {
 	//float v2 = repBox(0.9*worldPosition+vec2(-980,500)+5000.0*texture(noise, UV).xy, vec2(100, 100));
 	//float v3 = repBox(worldPosition+vec2(300,942)+10000.0*texture(noise, UV).xy, vec2(100, 100));
 
-	float v1 = repBox(rotate(worldPosition, 3.14/6.0) +vec2(0,0), vec2(100, 100), 000.0);
-	float v2 = repBox(rotate(worldPosition, -67.0 * 3.14/100.0) +vec2(-300,0), vec2(100, 100), 000.0);
-	float v3 = repBox(rotate(worldPosition, 3.14/8.0) +vec2(0,0), vec2(100, 100), 0.0);
+	float v1 = repBox(rotate(worldPosition / zoom, 3.14/6.0) +vec2(0,0), vec2(100, 100), 000.0);
+	float v2 = repBox(rotate(worldPosition / zoom, -67.0 * 3.14/100.0) +vec2(-300,0), vec2(100, 100), 000.0);
+	float v3 = repBox(rotate(worldPosition / zoom, 3.14/8.0) +vec2(0,0), vec2(100, 100), 0.0);
 
 
 

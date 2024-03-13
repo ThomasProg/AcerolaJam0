@@ -28,7 +28,7 @@ size = Vector2(500, 2000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x07pi"]
 size = Vector2(500, 2000)
 
-[node name="EmptyAberrationRoom" type="Node2D" node_paths=PackedStringArray("roomLimits")]
+[node name="Aberration5" type="Node2D" node_paths=PackedStringArray("roomLimits")]
 script = ExtResource("1_1fiab")
 roomLimits = NodePath("Env/RoomLimits")
 
