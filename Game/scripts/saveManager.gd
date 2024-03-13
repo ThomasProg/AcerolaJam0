@@ -8,6 +8,8 @@ var currentCheckpoint:CheckpointSaveData
 signal onRoomVisited(Room)
 var visitedRooms:Array[String] = []
 
+var isGamePaused:bool = false
+
 var lastCheckpointPath = "user://lastCheckpoint.tscn"
 
 var chrono:float = 0.0

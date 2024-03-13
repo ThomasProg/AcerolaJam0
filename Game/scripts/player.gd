@@ -255,14 +255,6 @@ func setRotation(newRotation:float):
 	($CollisionShape2D as Node2D).rotation = newRotation
 
 func processInputs():
-	if (Input.is_action_just_pressed("openInGameMenu")):
-		if (ingameMenu.visible):
-			ingameMenu.visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			ingameMenu.visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
 	if Input.is_action_just_pressed("talk") and delaySinceLastDialogue > dialogueCooldown:
 		var npc = talkToNPC()
 		if (npc != null):

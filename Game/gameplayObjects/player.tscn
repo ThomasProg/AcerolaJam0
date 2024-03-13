@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=26 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/health.gd" id="4_r8e58"]
 [ext_resource type="Script" path="res://scripts/skills/jump.gd" id="5_a5qrp"]
 [ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="5_r0i4p"]
+[ext_resource type="Script" path="res://scripts/ui/inGameMenu.gd" id="11_bo7yo"]
 [ext_resource type="Script" path="res://scripts/minimap.gd" id="11_l7agl"]
 [ext_resource type="PackedScene" uid="uid://k0gn5gj6x5q2" path="res://prefabs/minimap/MinimapScene.tscn" id="12_mlc17"]
 
@@ -182,7 +183,9 @@ libraries = {
 }
 
 [node name="InGameMenu" type="CanvasLayer" parent="."]
+process_mode = 3
 visible = false
+script = ExtResource("11_bo7yo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu"]
 anchors_preset = 15
