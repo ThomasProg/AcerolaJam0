@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1k5k61220x73"]
+[gd_scene load_steps=12 format=3 uid="uid://d1k5k61220x73"]
 
 [ext_resource type="Shader" path="res://shaders/damageArea.gdshader" id="2_nj5x3"]
 [ext_resource type="Script" path="res://scripts/damageArea.gd" id="3_x5pi2"]
@@ -12,22 +12,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7iye"]
 size = Vector2(500, 500)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ys41"]
-noise_type = 0
-frequency = 0.084
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_2ln2s"]
-seamless = true
-noise = SubResource("FastNoiseLite_4ys41")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtmeo"]
 shader = ExtResource("2_nj5x3")
 shader_parameter/u_resolution = Vector2(500, 500)
 shader_parameter/u_speed = 5.82
-shader_parameter/u_color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.8
 shader_parameter/minColorMult = 0.2
-shader_parameter/u_mask = SubResource("NoiseTexture3D_2ln2s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)

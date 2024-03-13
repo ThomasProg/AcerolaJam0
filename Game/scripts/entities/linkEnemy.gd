@@ -150,8 +150,7 @@ func _physics_process(delta):
 			bumpedEffect.skillOwner = collision.get_collider()
 			bumpedEffect.speed = 400
 			bumpedEffect.damping = 400.0
-			print("vel:", vel)
-			print("obj:", collision.get_collider().name)
+
 			if (ortho.dot(aToPlayer) > 0):
 				bumpedEffect.direction = ortho #-collision.get_normal()
 			else:

@@ -40,11 +40,11 @@ func start():
 		explosionCollider.global_position = result.position
 		explosionParticules.global_position = result.position
 		explosionCollider.disabled = false
-		print("attacked: ", result.collider.name)
+		#print("attacked: ", result.collider.name)
 	else:
 		explosionCollider.global_position = endPosition
 		explosionParticules.global_position = endPosition
-		print("nothing attacked")
+		#print("nothing attacked")
 		
 
 	
@@ -79,7 +79,7 @@ func _process(delta):
 		laserCollider.disabled = false
 
 func onObjectEntered(object: Node):
-	print("MeleeAttack: Trying to attack ", object.name)
+	#print("MeleeAttack: Trying to attack ", object.name)
 	for child in object.get_children():
 		if (child is Health):
 			if (!touchedEnemies.has(object)):

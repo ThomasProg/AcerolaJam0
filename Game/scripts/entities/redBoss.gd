@@ -161,15 +161,25 @@ func _ready():
 				
 		rotatingEnemies.clear()
 			
-		for spike in growSpikes.spikes:
+		for spike in $GrowSpikes.spikes:
 			if (spike != null):
 				spike.queue_free()
 				
-		growSpikes.spikes.clear()
+		$GrowSpikes.spikes.clear()
 				
-		for spikeParticle in growSpikes.spikesParticles:
+		for spikeParticle in $GrowSpikes.spikesParticles:
 			spikeParticle.queue_free()
-		growSpikes.spikesParticles.clear()
+		$GrowSpikes.spikesParticles.clear()
+		
+		for spike in $GrowSpikesBerserk.spikes:
+			if (spike != null):
+				spike.queue_free()
+				
+		$GrowSpikesBerserk.spikes.clear()
+		
+		for spikeParticle in $GrowSpikesBerserk.spikesParticles:
+			spikeParticle.queue_free()
+		$GrowSpikesBerserk.spikesParticles.clear()
 		
 		#remove_child(bossUI)
 		#get_parent().add_child(bossUI)

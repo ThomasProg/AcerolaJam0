@@ -59,7 +59,7 @@ func stop():
 	skillOwner.grapplingHookVelocity = skillOwner.velocity
 	skillOwner.velocity = Vector2.ZERO
 	
-	print("impulse:",skillOwner.impulseVelocity)
+	#print("impulse:",skillOwner.impulseVelocity)
 	#skillOwner.impulseVelocity.x = 2000
 	skillOwner.jump.durationSinceLastFallStart = 0
 	set_physics_process(false)

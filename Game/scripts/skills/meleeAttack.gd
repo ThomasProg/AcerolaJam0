@@ -47,7 +47,7 @@ func _process(delta):
 		queue_free()
 	
 func onObjectEntered(object: Node):
-	print("MeleeAttack: Trying to attack ", object.name)
+	#print("MeleeAttack: Trying to attack ", object.name)
 	for child in object.get_children():
 		if (child is Health):
 			child.dealDamages(damages, self)

@@ -205,9 +205,10 @@ func searchForHookTarget() -> HookTarget :
 func talkToNPC() -> NPC:
 	var npcs:Array[NPC] = []
 	for body in dialogueTrigger.get_overlapping_bodies():
-		if body is NPC:
-			npcs.push_back(body)
-			
+		if (body != null):
+			if body is NPC:
+				npcs.push_back(body)
+				
 	npcs = npcs.filter(func(npc:NPC): return npc.canRunDialogue())
 	
 	if (!blockDialogue and !npcs.is_empty()):
@@ -242,7 +243,7 @@ func processInputs():
 	if (Input.is_action_just_pressed("openInGameMenu")):
 		if (ingameMenu.visible):
 			ingameMenu.visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			ingameMenu.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

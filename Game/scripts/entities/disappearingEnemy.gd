@@ -111,9 +111,6 @@ func _physics_process(delta):
 			navAgent.target_position = getTargetPos()
 			if (!navAgent.is_target_reachable()):
 				navAgent.target_position = target.getGlobalCenter()
-				print("not found")
-			else:
-				print("found")
 			
 			if (navAgent.is_target_reachable() and getTargetPos().distance_to(global_position) > speed * delta + 50):
 			#if (!navAgent.is_target_reached()):

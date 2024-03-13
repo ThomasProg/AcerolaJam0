@@ -30,7 +30,7 @@ func openLink(str:String):
 	OS.shell_open(str)
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")

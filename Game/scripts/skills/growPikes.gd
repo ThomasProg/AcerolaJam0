@@ -19,6 +19,7 @@ class_name GrowSpikes
 @export var spikesLifetime:float = 4.0 
 @export var hintDuration:float = 2.0 
 
+var spikesParticles:Array[Node2D] = []
 var spikes:Array[Node2D] = []
 
 enum Phase { PRE_ATTACK, HINT, GROWING_PIKES, FINISHED }
@@ -36,8 +37,6 @@ func Start():
 	await get_tree().create_timer(preAttackWaitTime).timeout
 	phase = Phase.HINT
 	onHint.emit()
-	
-	var spikesParticles:Array[Node2D] = []
 	
 	var spawnPositions:Array[Vector2] = [] 
 	var spawnPositionIndicesOutsideOfTheBoss:Array[int] = [] 

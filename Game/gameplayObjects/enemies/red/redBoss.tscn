@@ -75,7 +75,7 @@ enemyPrefab = ExtResource("12_3sf5l")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("13_prp1y")
-life = 120.0
+life = 1.0
 maxLife = 120.0
 
 [node name="GlowOnHit" type="Node" parent="Health"]
