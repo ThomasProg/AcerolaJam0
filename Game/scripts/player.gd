@@ -56,6 +56,9 @@ enum State
 @onready var pressSpaceToTalkPrefab:PackedScene = load("res://prefabs/ui/pressSpaceToTalk.tscn")
 var pressSpaceToTalk:Node2D = null
 
+var dialogueCooldown:float = 0.5
+var delaySinceLastDialogue:float = 0.0
+
 func _ready():
 	camera.ignore_rotation = true
 	colorSkills = [RedPowerUp, GreenPowerUp, BluePowerUp]
@@ -107,7 +110,7 @@ func _ProcessMovementInputs(delta):
 	
 	if (!isTalking and Dialogic.current_timeline == null):
 		# Handle Jump.
-		if Input.is_action_just_pressed("jump") and rotateChargeAbility == null:
+		if Input.is_action_just_pressed("jump") and delaySinceLastDialogue > dialogueCooldown and rotateChargeAbility == null:
 			jump.timeSinceJumpPressed = 0.0
 			
 		#state = jump.tryStartJump(state)	
@@ -248,7 +251,7 @@ func processInputs():
 			ingameMenu.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if Input.is_action_just_pressed("talk"):
+	if Input.is_action_just_pressed("talk") and delaySinceLastDialogue > dialogueCooldown:
 		var npc = talkToNPC()
 		if (npc != null):
 			var hasRunDialogue = npc.runDialogue()
@@ -337,6 +340,11 @@ func processInputs():
 
 var npcTalkingTo
 func _process(delta):
+	if (Dialogic.current_timeline == null):
+		delaySinceLastDialogue += delta
+	else:
+		delaySinceLastDialogue = 0.0
+		
 	timeLabel.text = "[center]Time: %.03f[/center]" % SaveManager.chrono 
 	currentAttackCooldown -= delta
 	health.heal(regenerationPerSecond * delta, self)
