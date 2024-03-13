@@ -118,7 +118,7 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 	if (roomExit != null):
 		room.player.global_position = roomExit.playerEnter.global_position
 		
-	if (room.isCheckpoint):
+	if (room.isCheckpoint or currentCheckpoint.difficulty == 0):
 		currentCheckpoint.room = newRoomPath
 		currentCheckpoint.exit = nextExitName
 		saveLastCheckpoint()
@@ -176,7 +176,7 @@ func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vec
 	#if (roomExit != null):
 		#room.player.global_position = roomExit.playerEnter.global_position
 		
-	if (room.isCheckpoint):
+	if (room.isCheckpoint or currentCheckpoint.difficulty == 0):
 		currentCheckpoint.room = newRoomPath
 		currentCheckpoint.exit = nextExitName
 		saveLastCheckpoint()
