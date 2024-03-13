@@ -33,6 +33,8 @@ var currentAttackCooldown:float = 0.0
 @onready var animationPlayer:AnimationPlayer = $AnimationPlayer
 @onready var ingameMenu: CanvasLayer = $InGameMenu
 
+@onready var healthProgressBar:ProgressBar = $UI/Health/HBoxContainer/HealthProgressBar
+
 @onready var timeLabel: RichTextLabel = $InGameMenu/VBoxContainer/RichTextLabelTime
 
 enum State
@@ -70,6 +72,10 @@ func _ready():
 		playAnim("damaged")
 		
 		sprite.self_modulate = lerp(Color.BLACK, Color.WHITE, health.life / health.maxLife)
+	
+		healthProgressBar.min_value = 0.0
+		healthProgressBar.max_value = health.maxLife
+		healthProgressBar.value = health.life
 	)
 	
 	health.onHeal.connect(func(healer): 
@@ -78,7 +84,13 @@ func _ready():
 			#sprite.modulate = defaultModulate
 		#)
 		
-		sprite.self_modulate = lerp(Color.BLACK, Color.WHITE, health.life / health.maxLife) 
+		sprite.self_modulate = lerp(Color.GRAY, Color.WHITE, health.life / health.maxLife) 
+	
+		healthProgressBar.min_value = 0.0
+		healthProgressBar.max_value = health.maxLife
+		healthProgressBar.value = health.life
+		
+		#healthProgressBar.modulate = Color.GREEN
 	)
 	
 	health.onDeath.connect(func(killer): 
@@ -340,6 +352,8 @@ func processInputs():
 
 var npcTalkingTo
 func _process(delta):
+	healthProgressBar.modulate = lerp(Color.WHITE, Color.RED, health.invulnerabilityTimeLeft / health.invulnerabilityDuration)
+	
 	if (Dialogic.current_timeline == null):
 		delaySinceLastDialogue += delta
 	else:
