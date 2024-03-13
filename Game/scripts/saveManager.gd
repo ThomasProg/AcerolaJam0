@@ -38,8 +38,8 @@ func _ready():
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")
 	currentCheckpoint.exit = ""
-	#currentCheckpoint.hasBeatenGreenBoss = true
-	#currentCheckpoint.hasBeatenRedBoss = true
+	currentCheckpoint.hasBeatenGreenBoss = true
+	currentCheckpoint.hasBeatenRedBoss = true
 	#
 	preloadDialogic()	
 	preloadNextRooms()
@@ -179,7 +179,7 @@ func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vec
 		
 	room.player.global_position = shapeOwner.global_position - playerToCollider * rectangle.size
 		
-	room.player.global_position += roomExit.normal * 200
+	room.player.global_position += roomExit.normal * 400
 	if (roomExit.normal.is_zero_approx()):
 		push_error("the normal shouldn't be zero")
 		

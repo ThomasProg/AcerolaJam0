@@ -219,6 +219,7 @@ position = Vector2(16035, 13961)
 nextRoom = "res://scenes/LightAberrationRooms/LightAberration1.tscn"
 nextExitName = "RoomExit_up2"
 useRelativePosition = true
+normal = Vector2(0, -1)
 
 [node name="PlayerEnter" parent="RoomExit_down2" index="0"]
 position = Vector2(4609, -1075)
@@ -232,6 +233,7 @@ position = Vector2(6979, 13876)
 nextRoom = "res://scenes/LightAberrationRooms/LightAberration1.tscn"
 nextExitName = "RoomExit_up1"
 useRelativePosition = true
+normal = Vector2(0, -1)
 
 [node name="PlayerEnter" parent="RoomExit_down1" index="0"]
 position = Vector2(-1941, -1643)
