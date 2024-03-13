@@ -137,7 +137,7 @@ maxAngleDegrees = 130
 [node name="Pendulum3" parent="Pendulums" instance=ExtResource("7_mocux")]
 position = Vector2(20388, 10287)
 rotation = 0.261799
-startOffset = 0.0
+startOffset = 3.142
 radius = 2000.0
 speed = 1.0
 maxAngleDegrees = 130
@@ -145,7 +145,7 @@ maxAngleDegrees = 130
 [node name="Pendulum4" parent="Pendulums" instance=ExtResource("7_mocux")]
 position = Vector2(19890, 9251)
 rotation = -0.261799
-startOffset = 3.142
+startOffset = 0.0
 radius = 2000.0
 speed = 1.0
 maxAngleDegrees = 130

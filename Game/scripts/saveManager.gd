@@ -59,10 +59,12 @@ func preloadDialogic():
 	var defaultStyle:DialogicStyle = ResourceLoader.load(ProjectSettings.get_setting("dialogic/layout/default_style")) as DialogicStyle
 	defaultStyle.prepare()
 	
-	var styles:Array = ProjectSettings.get_setting("dialogic/layout/style_list")
-	for style in styles:
-		if (style is String):
-			ResourceLoader.load_threaded_request(style)
+	#var styles:Array = ProjectSettings.get_setting("dialogic/layout/style_list")
+	#for style in styles:
+		#if (style is String):
+			#ResourceLoader.load_threaded_request(style)
+
+	ResourceLoader.load_threaded_request("res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn")
 
 func preloadNextRooms():
 	if (currentRoom == null):

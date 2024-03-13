@@ -132,13 +132,6 @@ onDuration = 4.0
 offDuration = 0.0
 metadata/_edit_lock_ = true
 
-[node name="enemyThrower7" parent="Enemies" instance=ExtResource("9_pwwyk")]
-position = Vector2(42501, 61425)
-amount = 8
-onDuration = 6.0
-offDuration = 0.0
-metadata/_edit_lock_ = true
-
 [node name="enemyThrower8" parent="Enemies" instance=ExtResource("9_pwwyk")]
 position = Vector2(30832, 56541)
 amount = 8
