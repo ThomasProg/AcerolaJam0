@@ -140,6 +140,7 @@ shouldRemoveOnDeath = false
 life = 5.0
 maxLife = 5.0
 invulnerabilityDuration = 0.5
+hasTemporaryInvulnerability = true
 
 [node name="GlowOnHit" type="Node" parent="Health"]
 script = ExtResource("5_r0i4p")

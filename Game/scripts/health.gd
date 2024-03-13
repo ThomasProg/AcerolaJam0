@@ -6,6 +6,7 @@ class_name Health
 @export var life:float = 10
 @export var maxLife:float = 10
 @export var invulnerabilityDuration:float = 0.1
+@export var hasTemporaryInvulnerability:bool = false
 @onready var deathParticlesPrefab:PackedScene = load("res://prefabs/particles/deathParticles.tscn")
 
 signal onDeath(killer:Node)
@@ -28,7 +29,7 @@ func dealDamages(damages:float, attacker:Node, removeInvulnerability:bool=false)
 		if (attacker.skillOwner == get_parent()):
 			return
 			
-	if (!removeInvulnerability and invulnerabilityTimeLeft > 0):
+	if (!removeInvulnerability and invulnerabilityTimeLeft > 0 and hasTemporaryInvulnerability):
 		return
 	
 	var wasDead:bool = isDead()
