@@ -88,7 +88,7 @@ func getTargetPos()->Vector2:
 		#return target.getGlobalCenter() + target.grapplingHookAbility.computeRadialVelocity() * delay * getDifficultyMultiplier()
 	
 	else:
-		return target.getGlobalCenter() + Vector2(target.velocity.x * delay * getDifficultyMultiplier(), 0.0)
+		return target.getGlobalCenter() + Vector2(target.velocity.x * 2.0 * delay * getDifficultyMultiplier(), 0.0)
 
 #func _draw():
 	#if (target != null):

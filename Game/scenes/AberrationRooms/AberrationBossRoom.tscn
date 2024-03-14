@@ -528,8 +528,8 @@ metadata/_edit_lock_ = true
 
 [node name="AberrationArea6" parent="Phase7" instance=ExtResource("20_bm7v5")]
 z_index = -500
-position = Vector2(73038, -18586.5)
-scale = Vector2(37.818, 60.894)
+position = Vector2(71252.3, -29883)
+scale = Vector2(30.675, 76.6)
 
 [node name="HookTargets" type="Node2D" parent="Phase7"]
 

@@ -16,11 +16,12 @@ script = ExtResource("1_oisyo")
 radius = 200
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0.278431, 0.831373, 0.462745, 1)
+modulate = Color(0.635294, 0.870588, 0.698039, 1)
 mesh = SubResource("SphereMesh_a3wpn")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_wincv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

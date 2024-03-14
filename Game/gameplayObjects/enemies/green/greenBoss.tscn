@@ -24,7 +24,7 @@ radius = 200.0
 radius = 4000.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmcg2"]
-bg_color = Color(0.690196, 0, 0.0745098, 1)
+bg_color = Color(0.737255, 0.00784314, 0, 1)
 
 [node name="GreenBoss" type="CharacterBody2D"]
 collision_layer = 2
@@ -55,9 +55,11 @@ script = ExtResource("15_3lrce")
 script = ExtResource("16_6m5kl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_fc5ep")
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("17_10c1g")

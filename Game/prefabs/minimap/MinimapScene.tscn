@@ -20,7 +20,7 @@ position = Vector2(1295, 127)
 zoom = Vector2(0.2, 0.2)
 
 [node name="Connections" type="Node2D" parent="."]
-modulate = Color(0.564706, 0.564706, 0.564706, 1)
+modulate = Color(0.364706, 0.376471, 0.372549, 1)
 metadata/_edit_lock_ = true
 
 [node name="Connection1" type="MeshInstance2D" parent="Connections" node_paths=PackedStringArray("room1", "room2")]
@@ -355,7 +355,7 @@ room2 = NodePath("../../Rooms/GreenRooms/GreenVillage")
 metadata/_edit_lock_ = true
 
 [node name="WhiteRooms" type="Node2D" parent="Rooms"]
-modulate = Color(0.305882, 0.305882, 0.305882, 1)
+modulate = Color(0.243137, 0.243137, 0.243137, 1)
 
 [node name="White1" type="MeshInstance2D" parent="Rooms/WhiteRooms"]
 position = Vector2(109.25, 199.75)
@@ -398,7 +398,7 @@ scale = Vector2(454.5, 207.5)
 mesh = SubResource("QuadMesh_f5k42")
 
 [node name="RedRooms" type="Node2D" parent="Rooms"]
-modulate = Color(0.509804, 0, 0.0901961, 1)
+modulate = Color(0.431373, 0.00392157, 0, 1)
 
 [node name="Red4" type="MeshInstance2D" parent="Rooms/RedRooms"]
 position = Vector2(2935, 791)
@@ -421,7 +421,7 @@ scale = Vector2(457.125, 227.875)
 mesh = SubResource("QuadMesh_f5k42")
 
 [node name="GreenRooms" type="Node2D" parent="Rooms"]
-modulate = Color(0, 0.313726, 0.0470588, 1)
+modulate = Color(0.0196078, 0.294118, 0.14902, 1)
 
 [node name="Green1" type="MeshInstance2D" parent="Rooms/GreenRooms"]
 position = Vector2(4443.25, -208.25)
@@ -449,7 +449,7 @@ scale = Vector2(240.124, 428.875)
 mesh = SubResource("QuadMesh_f5k42")
 
 [node name="LightAberrationRooms" type="Node2D" parent="Rooms"]
-modulate = Color(0.34902, 0.243137, 0.419608, 1)
+modulate = Color(0.45098, 0.321569, 0.454902, 1)
 
 [node name="LightAberration1" type="MeshInstance2D" parent="Rooms/LightAberrationRooms"]
 position = Vector2(4518.25, 187.75)
@@ -467,7 +467,7 @@ scale = Vector2(880.063, 312)
 mesh = SubResource("QuadMesh_f5k42")
 
 [node name="AberrationRooms" type="Node2D" parent="Rooms"]
-modulate = Color(0.372549, 0.129412, 0.419608, 1)
+modulate = Color(0.317647, 0.188235, 0.321569, 1)
 
 [node name="Aberration4" type="MeshInstance2D" parent="Rooms/AberrationRooms"]
 position = Vector2(8017.03, 444)

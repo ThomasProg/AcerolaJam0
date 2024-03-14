@@ -5,8 +5,8 @@
 
 [resource]
 shader = ExtResource("1_opbfk")
-shader_parameter/color1 = Color(0.113725, 0.113725, 0.113725, 1)
-shader_parameter/color2 = Color(0.156863, 0.156863, 0.156863, 1)
-shader_parameter/color3 = Color(0.215686, 0.215686, 0.215686, 1)
+shader_parameter/color1 = Color(0.0980392, 0.101961, 0.101961, 1)
+shader_parameter/color2 = Color(0.137255, 0.141176, 0.137255, 1)
+shader_parameter/color3 = Color(0.172549, 0.180392, 0.176471, 1)
 shader_parameter/zoom = 1.0
 shader_parameter/noise = ExtResource("2_ym71s")

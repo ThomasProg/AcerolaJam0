@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c58hmb2dnj2i8"]
+[gd_scene load_steps=17 format=3 uid="uid://c58hmb2dnj2i8"]
 
 [ext_resource type="Script" path="res://scripts/entities/flyingEnemy.gd" id="1_vmr8y"]
 [ext_resource type="Shader" path="res://shaders/flyingEnemy.gdshader" id="2_n7qhc"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_0bj2p"]
 [ext_resource type="Texture2D" uid="uid://dtp6xkearvs6d" path="res://textures/enemySeemlessNoise2D.tres" id="3_1plgn"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="4_qqvdq"]
+[ext_resource type="Texture2D" uid="uid://bdloid1gblhy4" path="res://textures/enemies/T_Slime.tres" id="4_xm6h5"]
 [ext_resource type="Script" path="res://scripts/glowOnHit.gd" id="5_6lg5n"]
 [ext_resource type="Script" path="res://scripts/detectionOutArea.gd" id="6_gwhh4"]
 [ext_resource type="Script" path="res://scripts/DetectionRange.gd" id="9_lhuxo"]
@@ -22,18 +23,6 @@ shader_parameter/u_mask = ExtResource("3_1plgn")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkumv"]
 size = Vector2(500, 500)
-
-[sub_resource type="Gradient" id="Gradient_1bg4p"]
-offsets = PackedFloat32Array(0, 0.0862944, 0.182741, 0.56599, 0.725888, 1)
-colors = PackedColorArray(0.185054, 2.76692e-05, 0.189525, 1, 0.263442, 0.0513289, 0.267415, 0.949239, 0, 0, 0, 0.850254, 0.440562, 0.199496, 0.441904, 0.762738, 0.600511, 0.271924, 0.60234, 0.730964, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5oajt"]
-gradient = SubResource("Gradient_1bg4p")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2m0v"]
 radius = 15000.0
@@ -58,7 +47,7 @@ script = ExtResource("1_vmr8y")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_rtmeo")
 mesh = SubResource("QuadMesh_kkumv")
-texture = SubResource("GradientTexture2D_5oajt")
+texture = ExtResource("4_xm6h5")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_0bj2p")

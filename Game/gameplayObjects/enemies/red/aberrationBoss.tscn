@@ -36,7 +36,7 @@ size = Vector2(320, 320)
 radius = 1500.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmcg2"]
-bg_color = Color(0.690196, 0, 0.0745098, 1)
+bg_color = Color(0.737255, 0.00784314, 0, 1)
 
 [node name="AberrationBoss" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)

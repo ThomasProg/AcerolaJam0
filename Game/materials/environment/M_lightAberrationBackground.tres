@@ -5,9 +5,9 @@
 
 [resource]
 shader = ExtResource("1_2q4jm")
-shader_parameter/color1 = Color(0.0431373, 0.0352941, 0.054902, 1)
-shader_parameter/color2 = Color(0.0392157, 0.027451, 0.0431373, 1)
-shader_parameter/color3 = Color(0.0566434, 0.0348621, 0.0558953, 1)
+shader_parameter/color1 = Color(0.0313726, 0.0196078, 0.0313726, 1)
+shader_parameter/color2 = Color(0.0431373, 0.0313726, 0.0470588, 1)
+shader_parameter/color3 = Color(0.0588235, 0.0431373, 0.0588235, 1)
 shader_parameter/distorsion = 120.0
 shader_parameter/maxDistorsionLength = 10000.0
 shader_parameter/noise = ExtResource("2_6cf7b")

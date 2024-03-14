@@ -5,8 +5,8 @@
 
 [resource]
 shader = ExtResource("1_l27m8")
-shader_parameter/color1 = Color(0.203922, 0.34902, 0.290196, 1)
-shader_parameter/color2 = Color(0.2, 0.333333, 0.192157, 1)
-shader_parameter/color3 = Color(0.054902, 0.152941, 0.105882, 1)
-shader_parameter/color4 = Color(0.0705882, 0.203922, 0.12549, 1)
+shader_parameter/color1 = Color(0.0117647, 0.160784, 0.0823529, 1)
+shader_parameter/color2 = Color(0.188235, 0.313726, 0.227451, 1)
+shader_parameter/color3 = Color(0.109804, 0.235294, 0.152941, 1)
+shader_parameter/color4 = Color(0.235294, 0.427451, 0.290196, 1)
 shader_parameter/noise = ExtResource("2_0hemx")
