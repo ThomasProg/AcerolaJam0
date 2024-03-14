@@ -35,7 +35,7 @@ var currentAttackCooldown:float = 0.0
 
 @onready var healthProgressBar:ProgressBar = $UI/Health/HBoxContainer/HealthProgressBar
 
-@onready var timeLabel: RichTextLabel = $InGameMenu/VBoxContainer/RichTextLabelTime
+@onready var timeLabel: RichTextLabel = $InGameMenu/Panel/MarginContainer/VBoxContainer/RichTextLabelTime
 
 enum State
 {

@@ -8,11 +8,12 @@
 [sub_resource type="QuadMesh" id="QuadMesh_qgfyh"]
 size = Vector2(100, 100)
 
-[node name="MinimapScene" type="Node2D" node_paths=PackedStringArray("roomsRoot", "connectionsRoot", "playerIcon")]
+[node name="MinimapScene" type="Node2D" node_paths=PackedStringArray("roomsRoot", "connectionsRoot", "playerIcon", "camera")]
 script = ExtResource("1_w60sd")
 roomsRoot = NodePath("Rooms")
 connectionsRoot = NodePath("Connections")
 playerIcon = NodePath("PlayerIcon")
+camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1295, 127)

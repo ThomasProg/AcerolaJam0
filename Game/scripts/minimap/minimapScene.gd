@@ -1,14 +1,19 @@
 extends Node2D
+class_name MinimapScene
 
 @export var roomsRoot:Node2D = null
 @export var connectionsRoot:Node2D = null
 @export var playerIcon:Node2D
+@export var zoom:float = 1.0
+@export var camera:Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SaveManager.onRoomVisited.connect(func(room):
 		update()
 		)
+		
+	camera.zoom *= Vector2(zoom, zoom)
 		
 	update()
 

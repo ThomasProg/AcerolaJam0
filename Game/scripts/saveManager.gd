@@ -40,8 +40,8 @@ func _ready():
 	currentCheckpoint = CheckpointSaveData.new()
 	currentCheckpoint.room = ProjectSettings.get_setting("game/config/first_room")
 	currentCheckpoint.exit = ""
-	currentCheckpoint.hasBeatenGreenBoss = true
-	currentCheckpoint.hasBeatenRedBoss = true
+	#currentCheckpoint.hasBeatenGreenBoss = true
+	#currentCheckpoint.hasBeatenRedBoss = true
 	#
 	preloadDialogic()	
 	preloadNextRooms()

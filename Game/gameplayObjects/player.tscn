@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=27 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
@@ -98,6 +98,9 @@ _data = {
 "onFloor": SubResource("Animation_4rs7f")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04g3s"]
+bg_color = Color(0, 0, 0, 0.588235)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_317n6"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -182,52 +185,166 @@ libraries = {
 "": SubResource("AnimationLibrary_5dvrc")
 }
 
-[node name="InGameMenu" type="CanvasLayer" parent="."]
+[node name="InGameMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("minimap", "resumeButton", "player", "difficultyButtons")]
 process_mode = 3
+layer = 100
 visible = false
 script = ExtResource("11_bo7yo")
+minimap = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel")
+resumeButton = NodePath("Panel/MarginContainer/VBoxContainer/ButtonResume")
+player = NodePath("..")
+difficultyButtons = [NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/NormalButton"), NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/HardButton"), NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/ImpossibleButton")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu"]
+[node name="Panel" type="Panel" parent="InGameMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -465.5
+offset_top = -373.0
+offset_right = 465.5
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_04g3s")
+
+[node name="MarginContainer" type="MarginContainer" parent="InGameMenu/Panel"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InGameMenu/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu/Panel/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 10
 
-[node name="NormalButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="RichTextLabelCopyright2" type="RichTextLabel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Normal"
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]Game Paused[/center]"
+fit_content = true
 
-[node name="HardButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Hard"
-
-[node name="ImpossibleButton" type="Button" parent="InGameMenu/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Impossible"
-
-[node name="RichTextLabelCopyright" type="RichTextLabel" parent="InGameMenu/VBoxContainer"]
+[node name="RichTextLabelCopyright" type="RichTextLabel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Copyright : prog'z[/center]"
 fit_content = true
 
-[node name="RichTextLabelTime" type="RichTextLabel" parent="InGameMenu/VBoxContainer"]
+[node name="RichTextLabelTime" type="RichTextLabel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center]Time : [/center]"
+text = "[center]Current Time (s): [/center]"
 fit_content = true
+
+[node name="MarginContainerDifficulty" type="MarginContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty"]
+layout_mode = 2
+
+[node name="RichTextLabelDifficulty" type="RichTextLabel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Difficulty[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NormalButton" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Normal"
+
+[node name="HardButton" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Hard"
+
+[node name="ImpossibleButton" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Impossible"
+
+[node name="ButtonDeath" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Instant Death"
+
+[node name="MarginContainerMap" type="MarginContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer" node_paths=PackedStringArray("viewport", "minimapScene")]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_317n6")
+script = ExtResource("11_l7agl")
+viewport = NodePath("MarginContainer/SubViewportContainer/SubViewport")
+minimapScene = NodePath("MarginContainer/SubViewportContainer/SubViewport/MinimapScene")
+
+[node name="MarginContainer" type="MarginContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel/MarginContainer/SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="MinimapScene" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("12_mlc17")]
+zoom = 0.5
+
+[node name="RichTextLabelMap" type="RichTextLabel" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Drag on the map to move it[/center]"
+fit_content = true
+
+[node name="ButtonResume" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Resume"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Minimap" type="Control" parent="UI" node_paths=PackedStringArray("viewport")]
+[node name="Minimap" type="Control" parent="UI" node_paths=PackedStringArray("viewport", "minimapScene")]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -235,6 +352,7 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("11_l7agl")
 viewport = NodePath("Panel/MarginContainer/SubViewportContainer/SubViewport")
+minimapScene = NodePath("Panel/MarginContainer/SubViewportContainer/SubViewport/MinimapScene")
 
 [node name="Panel" type="Panel" parent="UI/Minimap"]
 modulate = Color(1, 1, 1, 0.588235)
@@ -302,6 +420,8 @@ fill_mode = 3
 show_percentage = false
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
-[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
-[connection signal="pressed" from="InGameMenu/VBoxContainer/HBoxContainer/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
+[connection signal="pressed" from="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
+[connection signal="pressed" from="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
+[connection signal="mouse_entered" from="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel" to="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel" to="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel" method="_on_mouse_exited"]
