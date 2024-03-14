@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4ouxh5vtsq7b"]
+[gd_scene load_steps=27 format=3 uid="uid://c4ouxh5vtsq7b"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_dr50o"]
 [ext_resource type="Environment" uid="uid://cx6i4ewgxjgog" path="res://Environments/baseEnvironment.tres" id="1_u7lhv"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cdm0kxaihtoko" path="res://gameplayObjects/NPC/lightAberrationNPC.tscn" id="20_2t6fs"]
 [ext_resource type="Resource" path="res://dialogues/finalRoom/npcReturn1_1.dtl" id="20_v8y8w"]
 [ext_resource type="PackedScene" uid="uid://c1v0ova4l3bju" path="res://gameplayObjects/enemies/aberrationArea.tscn" id="22_5agom"]
+[ext_resource type="PackedScene" uid="uid://1tqv6vk1lwtb" path="res://scenes/Credits.tscn" id="23_b3y8s"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gnqr8"]
 
@@ -137,5 +138,10 @@ maxDistance = 3000.0
 [node name="AberrationArea" parent="." instance=ExtResource("22_5agom")]
 position = Vector2(22283.5, 15342.5)
 scale = Vector2(2.102, 3.314)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="Credits" parent="CanvasLayer" instance=ExtResource("23_b3y8s")]
 
 [editable path="RoomExit_left"]

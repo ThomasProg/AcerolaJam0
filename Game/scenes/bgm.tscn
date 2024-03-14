@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://n3cwxabpix5e"]
+
+[ext_resource type="AudioStream" uid="uid://cdmuffnvn30c3" path="res://musics/Floating Cities.mp3" id="1_1je1m"]
+
+[node name="Bgm" type="AudioStreamPlayer"]
+stream = ExtResource("1_1je1m")
+autoplay = true

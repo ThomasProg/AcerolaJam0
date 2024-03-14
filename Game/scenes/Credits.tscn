@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://1tqv6vk1lwtb"]
+
+[ext_resource type="Material" uid="uid://c0ljy60jgp8r0" path="res://materials/environment/M_whiteBackground.tres" id="1_6sxix"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_xdh8r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrtfs"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xdh8r")
+
+[node name="Panel" type="Panel" parent="."]
+material = ExtResource("1_6sxix")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrtfs")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]Thank you for playing[/center]"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]Press To Continue[/center]"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Members: 
+- Prog'z
+
+Networks: 
+[url]https://progz.itch.io/[/url]
+[url]https://discord.gg/pFmgFybzG5[/url]
+[url]https://www.youtube.com/@progzyy[/url]
+[url]https://www.twitch.tv/progzyy[/url]
+
+Music:
+"
+fit_content = true
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Press Here To Continue"
+
+[connection signal="meta_clicked" from="Panel/MarginContainer/Control/VBoxContainer/RichTextLabel2" to="." method="_on_rich_text_label_2_meta_clicked"]
+[connection signal="pressed" from="Panel/MarginContainer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]

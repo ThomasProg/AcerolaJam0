@@ -59,6 +59,12 @@ func _ready():
 	preloadShaders.queue_free()
 	#preloadShaders.queue_free()
 	
+	var packedScene2 = ResourceLoader.load("res://scenes/bgm.tscn") as PackedScene
+	var bgm = packedScene.instantiate()
+	get_tree().root.add_child(bgm)
+	
+#func updateMusic():
+	
 func preloadDialogic():
 	#ResourceLoader.load_threaded_request(ProjectSettings.get_setting("dialogic/layout/default_style"))
 	var defaultStyle:DialogicStyle = ResourceLoader.load(ProjectSettings.get_setting("dialogic/layout/default_style")) as DialogicStyle

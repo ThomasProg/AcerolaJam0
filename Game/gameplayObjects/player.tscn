@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://mj6782vdo5a3"]
+[gd_scene load_steps=28 format=3 uid="uid://mj6782vdo5a3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbevd"]
 [ext_resource type="Curve" uid="uid://dtsxfuqqn7fb7" path="res://curves/jumpVelocityCurve.tres" id="2_6gkgu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ui/inGameMenu.gd" id="11_bo7yo"]
 [ext_resource type="Script" path="res://scripts/minimap.gd" id="11_l7agl"]
 [ext_resource type="PackedScene" uid="uid://k0gn5gj6x5q2" path="res://prefabs/minimap/MinimapScene.tscn" id="12_mlc17"]
+[ext_resource type="PackedScene" uid="uid://1tqv6vk1lwtb" path="res://scenes/Credits.tscn" id="12_un12t"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ejxjl"]
 size = Vector2(100, 100)
@@ -194,6 +195,7 @@ minimap = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxC
 resumeButton = NodePath("Panel/MarginContainer/VBoxContainer/ButtonResume")
 player = NodePath("..")
 difficultyButtons = [NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/NormalButton"), NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/HardButton"), NodePath("Panel/MarginContainer/VBoxContainer/MarginContainerDifficulty/VBoxContainer/HBoxContainer/ImpossibleButton")]
+creditPrefab = ExtResource("12_un12t")
 
 [node name="Panel" type="Panel" parent="InGameMenu"]
 anchors_preset = 8
@@ -324,7 +326,7 @@ stretch = true
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(781, 193)
 render_target_update_mode = 0
 
 [node name="MinimapScene" parent="InGameMenu/Panel/MarginContainer/VBoxContainer/MarginContainerMap/VBoxContainer/Panel/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("12_mlc17")]
@@ -335,6 +337,12 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[center]Drag on the map to move it[/center]"
 fit_content = true
+
+[node name="ButtonCredit" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Credits"
 
 [node name="ButtonResume" type="Button" parent="InGameMenu/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
