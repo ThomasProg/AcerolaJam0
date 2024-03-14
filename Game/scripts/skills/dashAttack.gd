@@ -30,7 +30,14 @@ func start():
 	
 	skillOwner.impulseVelocity = - direction * impulseSpeed
 
-	
+	match (SaveManager.currentCheckpoint.difficulty):
+		0:
+			maxDist = 900.0
+		1: 
+			maxDist = 700.0
+		2: 
+			maxDist = 600.0
+			
 	var space_state = skillOwner.get_world_2d().direct_space_state
 	var endPosition = global_position + direction * maxDist
 	var query = PhysicsRayQueryParameters2D.create(global_position, endPosition, 0xFFFFFFFF, [skillOwner])
