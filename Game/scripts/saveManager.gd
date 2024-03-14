@@ -17,6 +17,17 @@ var isChronoRunning:bool = false
 var chronoStartRoomPath:String = "res://scenes/WhiteRooms/WhiteVillage.tscn"
 var chronoEndRoomPath:String = "res://scenes/AberrationRooms/FinalRoom.tscn"
 
+var bgm:AudioStreamPlayer
+
+@onready var redBossRoomMusic = preload("res://musics/Ossuary 4 - Animate.mp3")
+@onready var greenBossRoomMusic = preload("res://musics/Corruption.mp3")
+@onready var aberrationBossRoomMusic = preload("res://musics/Killers.mp3")
+@onready var whiteMusic = preload("res://musics/Floating Cities.mp3")
+@onready var redMusic = preload("res://musics/The Escalation.mp3")
+@onready var greenMusic = preload("res://musics/Lord of the Land.mp3")
+@onready var lightAberrationMusic = preload("res://musics/Interloper.mp3")
+@onready var aberrationMusic = preload("res://musics/The Complex.mp3")
+
 func setDifficulty(difficulty:int):
 	currentCheckpoint.difficulty = difficulty
 	saveLastCheckpoint()
@@ -60,10 +71,47 @@ func _ready():
 	#preloadShaders.queue_free()
 	
 	var packedScene2 = ResourceLoader.load("res://scenes/bgm.tscn") as PackedScene
-	var bgm = packedScene.instantiate()
+	bgm = packedScene2.instantiate() as AudioStreamPlayer
 	get_tree().root.add_child(bgm)
 	
-#func updateMusic():
+#func tryChangeMusic(path:String):
+	#if (path == bgm.stream.resource_path):
+		#return
+		#
+	#bgm.stream = load(path)
+	#bgm.play()
+	
+func tryChangeMusic(stream):
+	if (stream == bgm.stream):
+		return
+		
+	bgm.stream = stream
+	bgm.play()
+	
+func updateMusic():
+	#currentRoom = room
+	#currentRoomPath = newRoomPath
+	
+	if (bgm == null):
+		return
+	
+	if (currentRoom.name == "RedBossRoom"):
+		tryChangeMusic(redBossRoomMusic)
+	elif (currentRoom.name == "GreenBossRoom"):
+		tryChangeMusic(greenBossRoomMusic)
+	#elif (currentRoom.name == "AberrationBossRoom"):
+		#tryChangeMusic("res://musics/Burn The World Waltz .mp3")
+
+	elif (currentRoom.name.contains("Red")):
+		tryChangeMusic(redMusic)
+	elif (currentRoom.name.contains("Green")):
+		tryChangeMusic(greenMusic)
+	elif (currentRoom.name.contains("LightAberration")):
+		tryChangeMusic(lightAberrationMusic)
+	elif (currentRoom.name.contains("Aberration")):
+		tryChangeMusic(aberrationMusic)
+	else: # white
+		tryChangeMusic(whiteMusic)
 	
 func preloadDialogic():
 	#ResourceLoader.load_threaded_request(ProjectSettings.get_setting("dialogic/layout/default_style"))
@@ -150,6 +198,8 @@ func changeRoom(newRoomPath: String, nextExitName: String):
 	currentRoomPath = newRoomPath
 	preloadNextRooms()
 	
+	updateMusic()
+	
 func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vector2, player:Player):	
 	if (!ResourceLoader.exists(newRoomPath)):
 		return
@@ -209,3 +259,4 @@ func changeRoom2(newRoomPath: String, nextExitName: String, playerToCollider:Vec
 	currentRoomPath = newRoomPath
 	preloadNextRooms()
 	
+	updateMusic()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdmuffnvn30c3"
+path="res://.godot/imported/Floating Cities.mp3-5a9b6d8f86bfd1c8eee6389c04c81f85.mp3str"
+
+[deps]
+
+source_file="res://musics/Floating Cities.mp3"
+dest_files=["res://.godot/imported/Floating Cities.mp3-5a9b6d8f86bfd1c8eee6389c04c81f85.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

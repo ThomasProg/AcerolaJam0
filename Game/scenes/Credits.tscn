@@ -33,9 +33,9 @@ anchor_bottom = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 20
 
 [node name="Control" type="Control" parent="Panel/MarginContainer"]
@@ -57,17 +57,15 @@ bbcode_enabled = true
 text = "[center]Thank you for playing[/center]"
 fit_content = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "[center]Press To Continue[/center]"
-fit_content = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 30
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Members: 
 - Prog'z
@@ -76,9 +74,26 @@ Networks:
 [url]https://progz.itch.io/[/url]
 [url]https://discord.gg/pFmgFybzG5[/url]
 [url]https://www.youtube.com/@progzyy[/url]
-[url]https://www.twitch.tv/progzyy[/url]
+[url]https://www.twitch.tv/progzyy[/url]"
+fit_content = true
 
-Music:
+[node name="RichTextLabel3" type="RichTextLabel" parent="Panel/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Free Copyright Music by Kevin MacLeod ([url]https://incompetech.com[/url]) :
+- \"Floating Cities\"
+- \"Ossuary 4 - Animate\"
+- \"The Escalation\" 
+- \"The Complex\"
+- \"Lord of the Land\"
+- \"Interloper\"
+- \"Killers\"
+- \"Corruption\"
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
 "
 fit_content = true
 
@@ -89,5 +104,6 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Press Here To Continue"
 
-[connection signal="meta_clicked" from="Panel/MarginContainer/Control/VBoxContainer/RichTextLabel2" to="." method="_on_rich_text_label_2_meta_clicked"]
+[connection signal="meta_clicked" from="Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/RichTextLabel2" to="." method="_on_rich_text_label_2_meta_clicked"]
+[connection signal="meta_clicked" from="Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/RichTextLabel3" to="." method="_on_rich_text_label_2_meta_clicked"]
 [connection signal="pressed" from="Panel/MarginContainer/Control/VBoxContainer/Button" to="." method="_on_button_pressed"]

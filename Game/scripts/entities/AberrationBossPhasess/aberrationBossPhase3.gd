@@ -39,6 +39,8 @@ func start():
 	for trigger in triggers:
 		trigger.boss = boss
 		
+	SaveManager.tryChangeMusic(SaveManager.aberrationBossRoomMusic)
+		
 	if (isSkipped):
 		pathFollow.progress_ratio = 1.0
 		set_physics_process(false)

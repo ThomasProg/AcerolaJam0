@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbkbfo3hrgrbp"
+path="res://.godot/imported/Long Note Two.mp3-71d074dda952a6bb576e2ecd7af027e8.mp3str"
+
+[deps]
+
+source_file="res://musics/Long Note Two.mp3"
+dest_files=["res://.godot/imported/Long Note Two.mp3-71d074dda952a6bb576e2ecd7af027e8.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

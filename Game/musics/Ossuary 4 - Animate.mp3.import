@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dirlfrpxcd3kb"
+path="res://.godot/imported/Ossuary 4 - Animate.mp3-962083412cded084ff49b7b18cbcb5a6.mp3str"
+
+[deps]
+
+source_file="res://musics/Ossuary 4 - Animate.mp3"
+dest_files=["res://.godot/imported/Ossuary 4 - Animate.mp3-962083412cded084ff49b7b18cbcb5a6.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

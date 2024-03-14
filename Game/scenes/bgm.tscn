@@ -3,5 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://cdmuffnvn30c3" path="res://musics/Floating Cities.mp3" id="1_1je1m"]
 
 [node name="Bgm" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_1je1m")
 autoplay = true
